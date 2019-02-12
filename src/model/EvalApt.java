@@ -2,9 +2,7 @@
  * Marco Cipriani (c) 2019.
  */
 
-package model;/*
- * Marco Cipriani (c) 2019.
- */
+package model;
 
 public class EvalApt {
 
@@ -24,6 +22,28 @@ public class EvalApt {
         this.aptid = aptid;
         this.owner = owner;
         this.evalusr = evalusr;
+    }
+
+    public EvalApt(int id, String text, int stars, boolean status, int aptid, String owner, String evalusr) {
+        this.id = id;
+        this.text = text;
+        this.stars = stars;
+        this.status = status;
+        this.aptid = aptid;
+        this.owner = owner;
+        this.evalusr = evalusr;
+    }
+
+    @Override
+    public String toString() {
+        return "Valutazione " +
+                "numero " + id +
+                " di " + evalusr +
+                " sull'appartamento numero " + aptid +
+                " di prorietà di " + owner +
+                " valutato " + stars + " stelle " +
+                text
+                ;
     }
 
     public int getId() {
