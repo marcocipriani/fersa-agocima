@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="it" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <title>FERSA</title>
+  </head>
+  <body>
+
+    <!-- inizio MENU -->
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login.html">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- fine MENU -->
+
+    <!-- inizio TESTATA -->
+    <div class="jumbotron jumbotron-fluid testata" style="background: url(img/testata.jpg);
+      -webkit-background-size: cover;
+      background-position: center;">
+      <div class="container">
+        <h1 class="display-4">F.E.R.S.A.</h1>
+        <p class="lead">Filter Evaluation Renting System A....</p>
+        <hr class="my-4">
+        <p>Leggi il regolamento per il sistema di valutazione</p>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" style="text-transform: uppercase;">
+          Regolamento
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle" style="text-transform: uppercase;">Regolamento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Benvenuto nel sistema FERSA, lo strumento che ti consentirà di scrivere, modificare, eliminare e visualizzare le recensioni della piattaforma</p>
+                <p>Prima di qualsiasi azione (salvo la visualizzazione), controlla se sei in linea con i seguenti requisiti:</p>
+                <ul>
+                  <li>Devi essere registrato ed autenticato</li>
+                  <li>Il contratto deve essere terminato</li>
+                  <li>...</li>
+                  <li>...</li>
+                </ul>
+                <p>La visualizzazione è aperta a tutti gli utenti (registrati e non).</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- fine TESTATA -->
+
+    <!-- inizio VALUTAZIONE -->
+    <div class="container">
+      <p class="my-3 lead">Dati del contratto</p>
+      <div class="row">
+        <div class="col">
+          <p>ID: 3</p>
+        </div>
+        <div class="col">
+          <p>Appartamento: Villetta borghese</p>
+        </div>
+        <div class="col">
+          <p>Locatore: Mimmo</p>
+        </div>
+        <div class="col">
+          <p>Locatari: Mariolino</p>
+        </div>
+      </div>
+      <h4 class="my-5">Valutazione sui locatari</h4>
+
+      <form>
+        <div class="row">
+          <div class="col">
+            <p class="lead">Valutazione su Mariolino</p>
+          </div>
+          <div class="col">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+              Cancella la valutazione
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">CANCELLAZIONE</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Attenzione!! La cancellazione sarà definitiva
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Indietro</button>
+                    <button type="button" class="btn btn-danger">Conferma</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="exampleFormControlTextarea1">Commenta</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">Mi ha lasciato l'appartamento in condizioni indescrivibili</textarea>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="exampleFormControlSelect2">Voto</label>
+            <select id="inputState" class="form-control">
+              <option>Vota...</option>
+              <option selected>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+            </select>
+          </div>
+        </div>
+      </form>
+      <hr class="mt-2 mb-5 mx-5">
+
+      <h4 class="my-5">Valutazione sul locatore</h4>
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="exampleFormControlTextarea1">Commenta</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">E questo me lo chiamate locatore?!</textarea>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="exampleFormControlSelect2">Voto</label>
+            <select id="inputState" class="form-control">
+              <option>Vota...</option>
+              <option>1</option>
+              <option selected>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+            </select>
+          </div>
+        </div>
+      </form>
+
+      <h4 class="my-5">Valutazione sull'appartamento</h4>
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="exampleFormControlTextarea1">Commenta</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">Appartamento pessimo e scadente senza bagno</textarea>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="exampleFormControlSelect2">Voto</label>
+            <select id="inputState" class="form-control">
+              <option>Vota...</option>
+              <option>1</option>
+              <option>2</option>
+              <option selected>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+            </select>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+    <p></p>
+    <!-- fine VALUTAZIONE -->
+
+    <!-- SCRIPT -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript"src="js/bootstrap.bundle.js"></script>
+
+  </body>
+</html>
