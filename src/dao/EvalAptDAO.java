@@ -7,14 +7,16 @@ package dao;
 import model.EvalApt;
 
 import java.sql.*;
+import java.util.Vector;
 
 public class EvalAptDAO {
 
     private static EvalApt ea = null;
     private static Connection conn = null;
     private static Statement stmt = null;
+    private static Vector<EvalApt> results = new Vector<EvalApt>();
 
-    public static EvalApt findByUsr(String user) {
+    public static Vector<EvalApt> findByUsr(String user) {
 
         try {
             conn = ConnectTools.getConnection();
@@ -32,13 +34,15 @@ public class EvalAptDAO {
                         rs.getString("owner"),
                         rs.getString("evalusr")
                 );
+                results.add(ea);
+                System.out.println(ea);
             }
         }
         catch (Exception e) { e.printStackTrace(); }
         finally {
             ConnectTools.closeConnection(stmt, conn);
         }
-        return ea;
+        return results;
     }
 
     public static EvalApt createEvalApt(String text, int stars, int aptid, String owner, String evalusr) {
