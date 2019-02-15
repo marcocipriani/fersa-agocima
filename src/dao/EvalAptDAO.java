@@ -11,18 +11,24 @@ import java.util.Vector;
 
 public class EvalAptDAO {
 
+    private static final String READ_QUERY = "select * from \"EvalApt\" where \"evalusr\" = 'Marco'";
+    private static final String CREATE_QUERY = "insert into \"EvalApt\" values (99,?,?,FALSE,?,?,?)";
+    private static final String DELETE_QUERY = "delete from \"EvalApt\" where \"id\" = ?";
+
     private static EvalApt ea = null;
     private static Connection conn = null;
-    private static Statement stmt = null;
+    private static PreparedStatement stmt = null;
     private static Vector<EvalApt> results = new Vector<EvalApt>();
 
-    public static Vector<EvalApt> findByUsr(String user) {
+    public static Vector<EvalApt> findByUsr() {
+
+        PreparedStatement stmt = null;
 
         try {
             conn = ConnectTools.getConnection();
-            stmt = conn.createStatement();
-            String query = "select * from \"EvalApt\" where \"evalusr\" = " + user;
-            ResultSet rs = stmt.executeQuery(query);
+            stmt = conn.prepareStatement(READ_QUERY);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
 
             while (rs.next()){
                 ea = new EvalApt(
@@ -35,21 +41,45 @@ public class EvalAptDAO {
                         rs.getString("evalusr")
                 );
                 results.add(ea);
-                System.out.println(ea);
             }
         }
         catch (Exception e) { e.printStackTrace(); }
-        finally {
-            ConnectTools.closeConnection(stmt, conn);
-        }
+        finally { ConnectTools.closeConnection(stmt, conn); }
+
         return results;
     }
 
-    public static EvalApt createEvalApt(String text, int stars, int aptid, String owner, String evalusr) {
+    // public static Vector<EvalApt> fin
 
-        String query = "insert into \"EvalApt\" values "+
-                text;
+    // TO_DO ritornare int di successo oppure -1
+    public static void createEvalApt(String text, int stars, int aptid, String owner, String evalusr) {
 
-        return ea;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectTools.getConnection();
+            stmt = conn.prepareStatement(CREATE_QUERY);
+            stmt.setString(1, text);
+            stmt.setInt(2, stars);
+            stmt.setInt(3, aptid);
+            stmt.setString(4, owner);
+            stmt.setString(5, evalusr);
+            stmt.execute();
+        } catch (Exception e) { e.printStackTrace(); }
+        finally { ConnectTools.closeConnection(stmt, conn); }
+
+    }
+
+    public static void deleteEvalApt(int id) {
+
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectTools.getConnection();
+            stmt = conn.prepareStatement(DELETE_QUERY);
+            stmt.setInt(1, id);
+            stmt.execute();
+        } catch (Exception e) { e.printStackTrace(); }
+        finally { ConnectTools.closeConnection(stmt, conn); }
     }
 }
