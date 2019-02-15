@@ -11,22 +11,22 @@ import java.util.Vector;
 
 public class EvalAptDAO {
 
-    private static final String READ_QUERY = "select * from \"EvalApt\" where \"evalusr\" = 'Marco'";
+    private static final String READ_QUERY = "select * from \"EvalApt\" where \"evalusr\" = ?";
     private static final String CREATE_QUERY = "insert into \"EvalApt\" values (99,?,?,FALSE,?,?,?)";
     private static final String DELETE_QUERY = "delete from \"EvalApt\" where \"id\" = ?";
 
-    private static EvalApt ea = null;
     private static Connection conn = null;
-    private static PreparedStatement stmt = null;
     private static Vector<EvalApt> results = new Vector<EvalApt>();
 
-    public static Vector<EvalApt> findByUsr() {
+    public static Vector<EvalApt> findByUsr(String nickname) {
 
         PreparedStatement stmt = null;
+        EvalApt ea = null;
 
         try {
             conn = ConnectTools.getConnection();
             stmt = conn.prepareStatement(READ_QUERY);
+            stmt.setString(1, nickname);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
 

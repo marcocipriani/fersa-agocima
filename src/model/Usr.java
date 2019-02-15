@@ -13,11 +13,20 @@ public class Usr {
     private int[] aptlist;
     private boolean reported; // 0 ok, 1 segnalato
 
-    public Usr(String nickname, String name, String pwd, String[] roles) {
+    public Usr(String nickname, String name, String[] roles, int[] aptlist) {
+        this.nickname = nickname;
+        this.name = name;
+        this.roles = roles;
+        this.aptlist = aptlist;
+    }
+
+    public Usr(String nickname, String name, String pwd, String[] roles, int[] aptlist, boolean reported) {
         this.nickname = nickname;
         this.name = name;
         this.pwd = pwd;
         this.roles = roles;
+        this.aptlist = aptlist;
+        this.reported = reported;
     }
 
     public String getNickname() {
