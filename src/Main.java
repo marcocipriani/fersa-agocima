@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
 
         EvalAptDAO.createEvalApt("Ciao", 4, 105, "Oriolo", "Marco");
-        Vector<EvalApt> ea = EvalAptDAO.findByUsr("Marco");
+        Vector<EvalApt> ea = EvalAptDAO.findEvalMadeByYou("Marco");
         System.out.println(ea);
         EvalAptDAO.deleteEvalApt(99);
 
