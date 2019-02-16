@@ -9,11 +9,15 @@ public class Contract {
     private int id;
     private String renter; // proprietario
     private String tenant; // affittuario
+    private int apt; // appartamento in questione
+    private boolean expired; // 0 in corso, 1 terminato
 
-    public Contract(String renter, String tenant){
-        this.id = 1;
+    public Contract(int id, String renter, String tenant, int apt, boolean expired) {
+        this.id = id;
         this.renter = renter;
         this.tenant = tenant;
+        this.apt = apt;
+        this.expired = expired;
     }
 
     public int getId() {
@@ -38,5 +42,21 @@ public class Contract {
 
     public void setTenant(String tenant) {
         this.tenant = tenant;
+    }
+
+    public int getApt() {
+        return apt;
+    }
+
+    public void setApt(int apt) {
+        this.apt = apt;
+    }
+
+    public boolean isExpired() {
+        return expired;
+    }
+
+    public void setExpired(boolean expired) {
+        this.expired = expired;
     }
 }

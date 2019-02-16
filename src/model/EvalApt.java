@@ -14,16 +14,6 @@ public class EvalApt {
     private String owner; // il proprietario dell'appartamento
     private String evalusr; // l'autore della valutazione
 
-    public EvalApt(String text, int stars, int aptid, String owner, String evalusr) {
-        this.id = 1; // TO_DO incrementali
-        this.text = text;
-        this.stars = stars;
-        this.status = false; // impostata a 0 pending in fase di creazione
-        this.aptid = aptid;
-        this.owner = owner;
-        this.evalusr = evalusr;
-    }
-
     public EvalApt(int id, String text, int stars, boolean status, int aptid, String owner, String evalusr) {
         this.id = id;
         this.text = text;

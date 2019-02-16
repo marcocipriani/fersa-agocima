@@ -13,11 +13,11 @@ public class EvalUsr {
     private String nickname; // il destinatario della valutazione
     private String evalusr; // l'autore della valutazione
 
-    public EvalUsr(String text, int stars, String nickname, String evalusr) {
-        this.id = 1; // TO_DO incrementali
+    public EvalUsr(int id, String text, int stars, boolean status, String nickname, String evalusr) {
+        this.id = id;
         this.text = text;
         this.stars = stars;
-        this.status = false; // impostata a 0 pending in fase di creazione
+        this.status = status;
         this.nickname = nickname;
         this.evalusr = evalusr;
     }
