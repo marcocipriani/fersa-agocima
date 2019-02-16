@@ -45,7 +45,6 @@ public class UsrDAO {
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
 
-        System.out.println(u);
         return u;
 
     }
