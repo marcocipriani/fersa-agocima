@@ -12,7 +12,7 @@ import java.sql.*;
 public class UsrDAO {
 
     private static final String SEARCH_QUERY = "select * from \"Usr\" where \"nickname\" = ? and \"pwd\" = ?";
-    private static final String BAD_QUERY = "select * from ( select * from \"Usr\" where \"reported\" = false ) where \"nickname\" = ? and where \"pwd\" = ?";
+    private static final String TRUSTED_QUERY = "select * from \"Usr\" where \"nickname\" = ? and \"pwd\" = ? and \"reported\" = false";
 
     private static Connection conn = null;
 
