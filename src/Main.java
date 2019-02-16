@@ -20,5 +20,6 @@ public class Main {
 
         // prova login
         ActualUsr au = UsrDAO.findByNickname("gcantone", "fersa", true);
+        System.out.println(au);
     }
 }
