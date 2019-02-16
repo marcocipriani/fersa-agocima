@@ -36,6 +36,8 @@ public class UsrDAO {
                 rs.getArray("aptlist"),
             );
 
+            System.out.println(u);
+
             Array roles = rs.getArray("roles");
             String[] rolesToString = (String[])roles.getArray();
 
