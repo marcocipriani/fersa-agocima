@@ -21,6 +21,13 @@ public class ActualUsr extends Usr{
         this.actualRole = false;
     }
 
+    @Override
+    public String toString() {
+        return "ActualUsr{" +
+                "actualRole=" + actualRole +
+                '}';
+    }
+
     public boolean isActualRole() {
         return actualRole;
     }
