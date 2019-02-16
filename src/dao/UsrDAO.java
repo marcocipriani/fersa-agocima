@@ -6,7 +6,6 @@ package dao;
 
 
 import model.ActualUsr;
-import model.Usr;
 
 import java.sql.*;
 
@@ -17,7 +16,7 @@ public class UsrDAO {
 
     private static Connection conn = null;
 
-    public Usr findByNickname(String nickname, String pwd, boolean isTenant) {
+    public ActualUsr findByNickname(String nickname, String pwd, boolean isTenant) {
 
         PreparedStatement stmt = null;
         ActualUsr u = null;
@@ -40,10 +39,9 @@ public class UsrDAO {
             Array roles = rs.getArray("roles");
             String[] rolesToString = (String[])roles.getArray();
 
-            if(isTenant && (rolesToString[1].equals("Tenant"))){
+            if(isTenant && (rolesToString[1].equals("Tenant")))
                 u.setActualRole(true);
                 System.out.println("Sei un tenant");
-            } else { u.setActualRole(false); System.out.println("Sei un renter"); }
 
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }

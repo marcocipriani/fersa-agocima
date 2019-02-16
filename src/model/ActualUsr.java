@@ -16,6 +16,7 @@ public class ActualUsr extends Usr{
 
     public ActualUsr(String nickname, String name, String[] roles, int[] aptlist) {
         super(nickname, name, roles, aptlist);
+        this.actualRole = false;
     }
 
     public boolean isActualRole() {
