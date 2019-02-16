@@ -29,11 +29,14 @@ public class UsrDAO {
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
 
+            int[] aptlist = new int[2];
+            aptlist[0]=101;
+
             u = new ActualUsr(
                 rs.getString("nickname"),
                 rs.getString("name"),
-                rs.getArray("roles"),
-                rs.getArray("aptlist"),
+                rs.getInt("roles"),
+                aptlist
             );
 
             System.out.println(u);

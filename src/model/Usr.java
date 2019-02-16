@@ -9,18 +9,18 @@ public class Usr {
     private String nickname;
     private String name;
     private String pwd;
-    private String[] roles;
+    private int roles; // 0 renter, 1 tenant, 2 renter + tenant
     private int[] aptlist;
     private boolean reported; // 0 ok, 1 segnalato
 
-    public Usr(String nickname, String name, String[] roles, int[] aptlist) {
+    public Usr(String nickname, String name, int roles, int[] aptlist) {
         this.nickname = nickname;
         this.name = name;
         this.roles = roles;
         this.aptlist = aptlist;
     }
 
-    public Usr(String nickname, String name, String pwd, String[] roles, int[] aptlist, boolean reported) {
+    public Usr(String nickname, String name, String pwd, int roles, int[] aptlist, boolean reported) {
         this.nickname = nickname;
         this.name = name;
         this.pwd = pwd;
@@ -53,11 +53,11 @@ public class Usr {
         this.pwd = pwd;
     }
 
-    public String[] getRoles() {
+    public int getRoles() {
         return roles;
     }
 
-    public void setRoles(String[] roles) {
+    public void setRoles(int roles) {
         this.roles = roles;
     }
 

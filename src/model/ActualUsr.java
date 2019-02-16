@@ -5,6 +5,8 @@
 package model;
 
 
+import java.sql.Array;
+
 public class ActualUsr extends Usr{
 
     private boolean actualRole; // 0 renter, 1 tenant
@@ -14,7 +16,7 @@ public class ActualUsr extends Usr{
         this.actualRole = actualRole;
     }*/
 
-    public ActualUsr(String nickname, String name, String[] roles, int[] aptlist) {
+    public ActualUsr(String nickname, String name, int roles, int[] aptlist) {
         super(nickname, name, roles, aptlist);
         this.actualRole = false;
     }
