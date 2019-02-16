@@ -11,12 +11,12 @@ import java.sql.*;
 
 public class UsrDAO {
 
-    private static final String SEARCH_QUERY = "select * from \"Usr\" where \"nickname\" = ? and where \"pwd\" = ?";
+    private static final String SEARCH_QUERY = "select * from \"Usr\" where \"nickname\" = ? and \"pwd\" = ?";
     private static final String BAD_QUERY = "select * from ( select * from \"Usr\" where \"reported\" = false ) where \"nickname\" = ? and where \"pwd\" = ?";
 
     private static Connection conn = null;
 
-    public ActualUsr findByNickname(String nickname, String pwd, boolean isTenant) {
+    public static ActualUsr findByNickname(String nickname, String pwd, boolean isTenant) {
 
         PreparedStatement stmt = null;
         ActualUsr u = null;
