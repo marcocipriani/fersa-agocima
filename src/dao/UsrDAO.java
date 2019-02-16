@@ -23,28 +23,37 @@ public class UsrDAO {
 
         try {
             conn = ConnectTools.getConnection();
-            stmt = conn.prepareStatement(SEARCH_QUERY);
+            stmt = conn.prepareStatement(SEARCH_QUERY, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             stmt.setString(1, nickname);
             stmt.setString(2, pwd);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
 
+            if (!rs.first()) // rs not empty
+                return null;
+
+            boolean moreThanOne = rs.first() && rs.next();
+
+            rs.first();
+
+            String first = rs.getString("nickname");
+            String second = rs.getString("name");
+            int third = rs.getInt("roles");
+
+
+            // dummy aptlist
             int[] aptlist = new int[2];
             aptlist[0]=101;
 
+            rs.first();
             u = new ActualUsr(
-                rs.getString("nickname"),
-                rs.getString("name"),
-                rs.getInt("roles"),
-                aptlist
+                first, second, third, aptlist
             );
 
+            int roles = u.getRoles();
             System.out.println(u);
 
-            Array roles = rs.getArray("roles");
-            String[] rolesToString = (String[])roles.getArray();
-
-            if(isTenant && (rolesToString[1].equals("Tenant")))
+            if(isTenant)
                 u.setActualRole(true);
                 System.out.println("Sei un tenant");
 

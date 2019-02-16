@@ -3,6 +3,8 @@
  */
 
 import dao.EvalAptDAO;
+import dao.UsrDAO;
+import model.ActualUsr;
 import model.EvalApt;
 
 import java.util.Vector;
@@ -15,5 +17,9 @@ public class Main {
         Vector<EvalApt> ea = EvalAptDAO.findByUsr("Marco");
         System.out.println(ea);
         EvalAptDAO.deleteEvalApt(99);
+
+        // prova login
+        ActualUsr au = UsrDAO.findByNickname("gcantone", "fersa", true);
+        System.out.println(au);
     }
 }
