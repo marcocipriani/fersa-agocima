@@ -23,9 +23,7 @@ public class ActualUsr extends Usr{
 
     @Override
     public String toString() {
-        return "ActualUsr{" +
-                "actualRole=" + actualRole +
-                '}';
+        return super.toString() + "actualRole=" actualRole;
     }
 
     public boolean isActualRole() {

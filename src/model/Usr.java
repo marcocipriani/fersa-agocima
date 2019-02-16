@@ -4,6 +4,8 @@
 
 package model;
 
+import java.util.Arrays;
+
 public class Usr {
 
     private String nickname;
@@ -27,6 +29,18 @@ public class Usr {
         this.roles = roles;
         this.aptlist = aptlist;
         this.reported = reported;
+    }
+
+    @Override
+    public String toString() {
+        return "Usr{" +
+                "nickname='" + nickname + '\'' +
+                ", name='" + name + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", roles=" + roles +
+                ", aptlist=" + Arrays.toString(aptlist) +
+                ", reported=" + reported +
+                '}';
     }
 
     public String getNickname() {

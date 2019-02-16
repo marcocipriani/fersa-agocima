@@ -51,11 +51,10 @@ public class UsrDAO {
             );
 
             int roles = u.getRoles();
-            System.out.println(u);
 
-            if(isTenant)
+            if(isTenant) {
                 u.setActualRole(true);
-                System.out.println("Sei un tenant");
+                System.out.println("Sei un proprietario"); }
 
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
