@@ -5,25 +5,23 @@
 package model;
 
 
-import java.sql.Array;
-
 public class ActualUsr extends Usr{
 
-    private boolean actualRole; // 0 renter, 1 tenant
+    private boolean actualRole = false; // 0 renter, 1 tenant
 
-/*    public ActualUsr(String nickname, String name, String[] roles, int[] aptlist, boolean actualRole) {
-        super(nickname, name, roles, aptlist);
+    public ActualUsr(String nickname, String name, String pwd, int roles, boolean reported, boolean actualRole) {
+        super(nickname, name, pwd, roles, reported);
         this.actualRole = actualRole;
-    }*/
-
-    public ActualUsr(String nickname, String name, int roles, int[] aptlist) {
-        super(nickname, name, roles, aptlist);
-        this.actualRole = false;
     }
 
     @Override
     public String toString() {
-        return super.toString() + "actualRole=" actualRole;
+        String stringRole; // per stampa comprensibile
+
+        if (actualRole) { stringRole = "Tenant";
+        } else { stringRole = "Renter"; }
+
+        return super.toString() + "attualmente loggato come " + stringRole;
     }
 
     public boolean isActualRole() {

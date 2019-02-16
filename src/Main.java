@@ -19,6 +19,6 @@ public class Main {
         EvalAptDAO.deleteEvalApt(99);
 
         // prova login
-        ActualUsr au = UsrDAO.findByNickname("gcantone", "fersa", false);
+        ActualUsr au = UsrDAO.findByNickname("gcantone", "fersa", true);
     }
 }
