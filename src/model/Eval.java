@@ -4,7 +4,7 @@
 
 package model;
 
-public class Eval {
+public abstract class Eval {
 
     protected int id;
     protected String text; // corpo della valutazione
