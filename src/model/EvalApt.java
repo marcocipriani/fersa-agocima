@@ -4,24 +4,15 @@
 
 package model;
 
-public class EvalApt {
+public class EvalApt extends Eval {
 
-    private int id;
-    private String text; // corpo della valutazione
-    private int stars;
-    private boolean status; // 0 pending, 1 published
-    private int aptid;
+    private int aptid; // il codice dell'appartamento
     private String owner; // il proprietario dell'appartamento
-    private String evalusr; // l'autore della valutazione
 
     public EvalApt(int id, String text, int stars, boolean status, int aptid, String owner, String evalusr) {
-        this.id = id;
-        this.text = text;
-        this.stars = stars;
-        this.status = status;
+        super(id, text, stars, status, evalusr);
         this.aptid = aptid;
         this.owner = owner;
-        this.evalusr = evalusr;
     }
 
     @Override
@@ -34,38 +25,6 @@ public class EvalApt {
                 " valutato " + stars + " stelle " +
                 text
                 ;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public int getStars() {
-        return stars;
-    }
-
-    public void setStars(int stars) {
-        this.stars = stars;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
 
     public int getAptid() {
@@ -82,13 +41,5 @@ public class EvalApt {
 
     public void setOwner(String owner) {
         this.owner = owner;
-    }
-
-    public String getEvalusr() {
-        return evalusr;
-    }
-
-    public void setEvalusr(String evalusr) {
-        this.evalusr = evalusr;
     }
 }
