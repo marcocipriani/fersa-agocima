@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="it" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <title>FERSA</title>
+  </head>
+  <body>
+
+    <!-- inizio MENU -->
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login.html">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- fine MENU -->
+
+    <!-- inizio TESTATA -->
+    <div class="jumbotron jumbotron-fluid testata py-4" style="background: url(img/testata.jpg);
+      -webkit-background-size: cover;
+      background-position: center;">
+      <div class="container">
+        <h1 class="display-4">F.E.R.S.A.</h1>
+        <p class="lead">Filter Evaluation Renting System A....</p>
+        <hr class="my-4">
+        <h1 class="display-4">Scrivi una valutazione</h1>
+      </div>
+    </div>
+    <!-- fine TESTATA -->
+
+    <!-- inizio VALUTAZIONE -->
+    <div class="container">
+      <p class="my-3 lead">Dati del contratto</p>
+
+      <div class="row my-5">
+        <div class="col-3 text-center">
+          <i class="fas fa-file-contract" style="font-size: 100px;"></i>
+        </div>
+        <div class="col ml-3">
+          <!-- inizio **CONTENUTO DINAMICO** -->
+          <h3>ID: <span id="idCon">---</span> </h3>
+          <h5>Appartamento: <span id="apartmentName">---</span></h5>
+          <h5>Locatore: <span id="ownerApp">---</span></h5>
+          <h5>Locatari: <span id="renterApp">---</span></h5>
+          <!-- fine **CONTENUTO DINAMICO** -->
+        </div>
+      </div>
+
+
+
+      <!-- inizio      se LOCATORE allora -> Visible -->
+      <form class="my-5">
+        <h4 class="my-5">Modulo contratto: come Locatore</h4>
+        <!-- inizio VALUTA LOCATARIO -->
+        <p class="lead">Valutazione su locatario_1</p>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="formTextArea1">Commenta</label>
+            <textarea class="form-control" id="formTextArea1" rows="3"></textarea>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputStars1">Voto</label>
+            <select id="inputStars1" class="form-control">
+              <option selected>Vota...</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+            </select>
+          </div>
+        </div>
+        <!-- fine VALUTA LOCATARIO -->
+      </form>
+      <!-- fine      se LOCATORE allora -> Visible -->
+
+
+      <!-- inizio      se LOCATARIO allora -> Visible -->
+      <form class="my-5">
+        <h4 class="my-5">Modulo contratto: come Locatario</h4>
+        <!-- inizio VALUTA LOCATARIO -->
+        <p class="lead">Valutazione sul locatore</p>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="formTextArea1">Commenta</label>
+            <textarea class="form-control" id="formTextArea1" rows="3"></textarea>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputStars1">Voto</label>
+            <select id="inputStars1" class="form-control">
+              <option selected>Vota...</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+            </select>
+          </div>
+        </div>
+        <!-- fine VALUTA LOCATARIO -->
+      </form>
+      <!-- fine      se LOCATARIO allora -> Visible -->
+      <input class="btn btn-outline-primary text-center" type="button" value="Conferma">
+    </div>
+    <!-- fine VALUTAZIONE -->
+
+
+    <!-- inizio FOOTER -->
+    <footer class="footer mt-5 py-3 bg-light" style=" height: 50px;">
+      <div class="container">
+        <p class="text-black-50" style="float: right;">Designed by Agostini Cipriani Magnani</p>
+      </div>
+    </footer>
+    <!-- fine FOOTER -->
+
+    <!-- SCRIPT -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript"src="js/bootstrap.bundle.js"></script>
+
+  </body>
+</html>

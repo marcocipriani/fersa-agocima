@@ -4,29 +4,37 @@
 
 package model;
 
+import java.util.Arrays;
+
 public class Usr {
 
     private String nickname;
     private String name;
     private String pwd;
     private int roles; // 0 renter, 1 tenant, 2 renter + tenant
-    private int[] aptlist;
     private boolean reported; // 0 ok, 1 segnalato
 
-    public Usr(String nickname, String name, int roles, int[] aptlist) {
-        this.nickname = nickname;
-        this.name = name;
-        this.roles = roles;
-        this.aptlist = aptlist;
-    }
-
-    public Usr(String nickname, String name, String pwd, int roles, int[] aptlist, boolean reported) {
+    public Usr(String nickname, String name, String pwd, int roles, boolean reported) {
         this.nickname = nickname;
         this.name = name;
         this.pwd = pwd;
         this.roles = roles;
-        this.aptlist = aptlist;
         this.reported = reported;
+    }
+
+    @Override
+    public String toString() {
+        String stringRoles; // per stampa comprensibile
+
+        if (roles == 2) { stringRoles = "Tenant + Renter";
+        } else if (roles == 1) { stringRoles = "Renter";
+        } else { stringRoles = "Tenant"; }
+
+        return "Utente: " + nickname +
+                " (password '" + pwd + "\'" +
+                ", segnalato " + reported + ")" +
+                " di tipo " + stringRoles +
+                ' ';
     }
 
     public String getNickname() {
@@ -59,14 +67,6 @@ public class Usr {
 
     public void setRoles(int roles) {
         this.roles = roles;
-    }
-
-    public int[] getAptlist() {
-        return aptlist;
-    }
-
-    public void setAptlist(int[] aptlist) {
-        this.aptlist = aptlist;
     }
 
     public boolean isReported() {
