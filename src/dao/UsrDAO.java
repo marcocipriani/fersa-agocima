@@ -29,6 +29,12 @@ public class UsrDAO {
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
 
+            if (!rs.first()) // rs not empty
+                return null;
+            
+            boolean moreThanOne = rs.first() && rs.next();
+            assert !moreThanOne;
+            
             rs.first();
             String nick = rs.getString("nickname");
             String name = rs.getString("name");
@@ -36,6 +42,7 @@ public class UsrDAO {
             int roles = rs.getInt("roles");
             boolean reported = rs.getBoolean("reported");
             u = new ActualUsr(nick, name, pass, roles, reported, false);
+            System.out.println(u);
 
             if(isTenant) {
                 u.setActualRole(true);
