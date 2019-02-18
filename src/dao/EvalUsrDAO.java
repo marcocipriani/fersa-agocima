@@ -81,7 +81,7 @@ public class EvalUsrDAO {
         return results;
     }
 
-    public static void createEvalUsr(String text, int stars, String nickname, String evalusr) {
+    public static void createEval(String text, int stars, String nickname, String evalusr) {
 
         try {
             conn = ConnectTools.getConnection();
@@ -96,7 +96,7 @@ public class EvalUsrDAO {
 
     }
 
-    public static void updateEvalUsr(String text, int stars, int id) {
+    public static void updateEval(String text, int stars, int id) {
 
         try {
             conn = ConnectTools.getConnection();
@@ -110,7 +110,7 @@ public class EvalUsrDAO {
 
     }
 
-    public static void deleteEvalUsr(int id) {
+    public static void deleteEval(int id) {
 
         try {
             conn = ConnectTools.getConnection();

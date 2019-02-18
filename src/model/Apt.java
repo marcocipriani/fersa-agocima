@@ -21,8 +21,9 @@ public class Apt {
         return "Appartamento numero " + id +
                 ", in " + address +
                 ", di prorietà di " + owner +
-                '}';
+                '.';
     }
+
 
     public int getId() {
         return id;

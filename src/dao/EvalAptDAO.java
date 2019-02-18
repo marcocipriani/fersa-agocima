@@ -82,7 +82,7 @@ public class EvalAptDAO {
         return results;
     }
 
-    public static void createEvalApt(String text, int stars, int aptid, String owner, String evalusr) {
+    public static void createEval(String text, int stars, int aptid, String owner, String evalusr) {
 
         try {
             conn = ConnectTools.getConnection();
@@ -98,7 +98,7 @@ public class EvalAptDAO {
 
     }
 
-    public static void updateEvalApt(String text, int stars, int id) {
+    public static void updateEval(String text, int stars, int id) {
 
         try {
             conn = ConnectTools.getConnection();
@@ -112,7 +112,7 @@ public class EvalAptDAO {
 
     }
 
-    public static void deleteEvalApt(int id) {
+    public static void deleteEval(int id) {
 
         try {
             conn = ConnectTools.getConnection();
