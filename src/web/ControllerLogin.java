@@ -34,9 +34,8 @@ public class ControllerLogin /*extends HttpServlet*/ {
             ActualUsr user = new ActualUsr();
             
             ActualUsr = UsrDAO.findByNickname(nick, pass, checkboxValues);
-           /* user = UsrDAO.findByNickname(nick, pass, checkboxValues);*/
 
-            if (/*user.isReported()*/ ActualUsr == null) {
+            if (user.isReported()) {
             	response.sendRedirect("homepage.jsp");
             	System.out.println("login errato");
             	} 
