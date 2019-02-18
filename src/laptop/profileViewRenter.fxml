@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="1052.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="laptop.LoginController">
+   <children>
+      <TableView fx:id="table" layoutY="231.0" prefHeight="488.0" prefWidth="1052.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="231.0">
+         <columns>
+            <TableColumn fx:id="tenantColumn" prefWidth="75.0" text="Tenant" />
+            <TableColumn fx:id="renterColumn" prefWidth="75.0" text="Renter" />
+            <TableColumn fx:id="appColumn" prefWidth="75.0" text="Appartamento" />
+            <TableColumn fx:id="actionContract" prefWidth="75.0" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Label layoutX="47.0" layoutY="24.0" prefHeight="63.0" prefWidth="204.0" text="Nome Utente:">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="nicknameRenter" layoutX="251.0" layoutY="24.0" prefHeight="63.0" prefWidth="602.0" textFill="#1e24e4">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="87.0" prefHeight="63.0" prefWidth="238.0" text="Registrato come:">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="285.0" layoutY="87.0" prefHeight="63.0" prefWidth="125.0" text="Renter" textFill="#e82b17">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="viewEval" layoutX="619.0" layoutY="94.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="138.0" text="Vedi Recensioni" />
+      <Button fx:id="showContract" layoutX="801.0" layoutY="94.0" mnemonicParsing="false" onAction="#viewContract" prefHeight="47.0" prefWidth="138.0" text="Vedi Contratti" />
+   </children>
+</AnchorPane>
