@@ -1,4 +1,4 @@
-/*package web;*/
+package web;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,11 +14,17 @@ import model.Usr;
 import java.io.IOException;
 
 @WebServlet(name = "ControllerLogin")
-public class ControllerLogin extends HttpServlet {
+public class ControllerLogin /*extends HttpServlet*/ {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
             System.out.println("Creo utente");
+            /*
+             * UserBean user = new UserBean();
+            user.setNickname(request.getParameter("nickname"));
+            user.setPwd(request.getParameter("password"));
+            checkboxValues = request.getParameter("ceckTenant");
+            */
             String nick = request.getParameter("nickname");
             String pass = request.getParameter("password");
             boolean checkboxValues;
@@ -27,10 +33,9 @@ public class ControllerLogin extends HttpServlet {
             
             ActualUsr user = new ActualUsr();
             
-            /*ActualUsr = UsrDAO.findByNickname(nick, pass, checkboxValues);*/
-            user = UsrDAO.findByNickname(nick, pass, checkboxValues);
+            ActualUsr = UsrDAO.findByNickname(nick, pass, checkboxValues);
 
-            if (user == null) {
+            if (user.isReported()) {
             	response.sendRedirect("homepage.jsp");
             	System.out.println("login errato");
             	} 
