@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-	<!-- Si dichiara la variabile loginBean e istanzia un oggetto LoginBean -->
-	<jsp:useBean id="ActualUsr" scope="request" class="model.ActualUsr"/>
+	<!-- Si dichiara la variabile ActualUsr e istanzia un oggetto ActualUsr -->
+	<jsp:useBean id="actualUsr" scope="request" class="model.ActualUsr"/>
 	
-	<!-- Mappa automaticamente tutti gli attributi dell'oggetto loginBean e le proprietà JSP -->
-<jsp:setProperty name="ActualUsr" property="*"/>
+	<!-- Mappa automaticamente tutti gli attributi dell'oggetto ActualUsr e le proprietà JSP -->
+	<jsp:setProperty name="actualUsr" property="*"/>
 
 <%
     if (request.getParameter("login") != null) {
-        if (ActualUsr.validate()) {
+        if (this.nickname.equals("") || this.password.equals("")) {
             %>
             <!-- Passa il controllo alla nuova pagina -->
             <jsp:forward page="RiassuntoLogin.jsp"/>
@@ -80,8 +80,8 @@
               <% out.println("Ciao Mondo!"); %>
               
               <%
-              	ActualUsr au = UsrDAO.findByNickname("gcantone", "fersa", true);
-        		System.out.println(au);
+              	/*ActualUsr au = UsrDAO.findByNickname("gcantone", "fersa", true);
+        		System.out.println(au);*/
         		 %>
         		 
         		 <input class="btn btn-lg btn-block btn-primary" name="login" type="submit" id="login" value="login" class="btn btn-info">
