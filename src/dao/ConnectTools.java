@@ -11,7 +11,7 @@ public class ConnectTools {
     private static final String DRIVER_CLASS_NAME = "org.postgresql.Driver";
     private static final String URL = "jdbc:postgresql://localhost:5432/agocimadb";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "postgres";
+    private static final String PASSWORD = "galaxy070592";
 
     private static Connection conn = null;
 

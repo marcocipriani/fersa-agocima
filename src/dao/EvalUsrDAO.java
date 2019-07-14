@@ -13,7 +13,7 @@ public class EvalUsrDAO {
 
     private static final String SEARCH_AUTHOR_QUERY = "select * from \"EvalUsr\" where \"evalusr\" = ?";
     private static final String SEARCH_NICKNAME_QUERY = "select * from \"EvalUsr\" where \"nickname\" = ?";
-    private static final String CREATE_QUERY = "insert into \"EvalUsr\" values (99,?,?,FALSE,?,?)";
+    private static final String CREATE_QUERY = "insert into \"EvalUsr\" values (98,?,?,FALSE,?,?)";
     private static final String UPDATE_QUERY = "update \"EvalUsr\" set \"text\" = ?, \"stars\" = ?, \"status\" = FALSE where \"id\" = ?";
     private static final String DELETE_QUERY = "delete from \"EvalUsr\" where \"id\" = ?";
 

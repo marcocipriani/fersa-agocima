@@ -1,7 +1,6 @@
 package laptop;
 
 import java.io.IOException;
-import java.util.ResourceBundle;
 
 import dao.UsrDAO;
 import model.ActualUsr;
@@ -13,21 +12,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import laptop.ControllerViewRenter;
 
 
 public class LoginController {
 	
-	@FXML
-    private ResourceBundle resources;
-
     @FXML
     private TextField nickname;
     
     @FXML
-    private TextField pwd;
+    private PasswordField pwd;
     
     @FXML
     private Button accedi;
@@ -40,41 +38,53 @@ public class LoginController {
 
     @FXML
     private Label txtStatus;
+        
     
     @FXML
     void EffLogin(ActionEvent event) {
-    	String user;
-    	String password;
-    	user=nickname.getText();
-    	password=pwd.getText();
+    	String user =nickname.getText();
+    	String password=pwd.getText();
     	ActualUsr d;
-    	d = UsrDAO.findByNickname(user, password, false);
-    	if( d != null ) {
-    		try {
-    			
-        		FXMLLoader loader=new FXMLLoader(getClass().getResource("profileViewRenter"));
-        		Parent root=(Parent) loader.load();
-        		
-        		ControllerViewRenter addcontroller=loader.getController();
-        		addcontroller.idowner(user);
-        		
-        		Stage stage=new Stage();
-        		stage.setScene(new Scene(root));
-        		stage.show();
-    		}catch(IOException e) {
-    			e.printStackTrace();
+    	d = UsrDAO.findByNickname(user, password, false); 
+    	if (isTenant.isSelected()==false) {
+    		System.out.println(password);
+    		System.out.println(d.getPwd());
+    		if (password.equals(d.getPwd())) {
+    			System.out.println(password);
+		    	try {
+		    		FXMLLoader loader=new FXMLLoader(getClass().getResource("profileViewRenter.fxml"));
+		        	Parent root=(Parent) loader.load();
+		        	
+		        	ControllerViewRenter addcontroller=loader.getController();
+		        	addcontroller.setRentername(d.getName());
+		        	addcontroller.getRentername(d.getName());
+		        	
+		       		Stage stage=new Stage();
+		       		stage.setScene(new Scene(root));
+		        	stage.show();
+		    		}
+		    	catch(IOException e) {
+		    		e.printStackTrace();
+		    	}
     		}
-    	}
+		    else {
+		    	System.out.println("Nessuna corrispondenza neva trovata");
+		    }
+    		}
     	else {
-    		txtStatus.setText("Accesso non avvenuto!");
+    		if(pwd.getText()==d.getPwd()) {
+    			System.out.println("fai vista locatario");
+    		}
+    		else {
+		    	System.out.println("Nessuna corrispondenza mai trovata");
+		    }
     	}
-
     }
 
-	@FXML
+    
+    @FXML
     void initialize() {
         assert nickname != null : "fx:id=\"nickname\" was not injected: check your FXML file 'Login.fxml'.";
-        assert pwd != null : "fx:id=\"pwd\" was not injected: check your FXML file 'Login.fxml'.";
         assert accedi != null : "fx:id=\"accedi\" was not injected: check your FXML file 'Login.fxml'.";
         assert txtStatus != null : "fx:id=\"txtStatus\" was not injected: check your FXML file 'Login.fxml'.";
 
