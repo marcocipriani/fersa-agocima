@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="1052.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="laptop.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="1052.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="laptop.ControllerViewRenter">
    <children>
-      <TableView fx:id="table" layoutY="231.0" prefHeight="488.0" prefWidth="1052.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="231.0">
+      <TableView fx:id="table" layoutY="316.0" prefHeight="403.0" prefWidth="1052.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="316.0">
          <columns>
-            <TableColumn fx:id="tenantColumn" prefWidth="75.0" text="Tenant" />
-            <TableColumn fx:id="renterColumn" prefWidth="75.0" text="Renter" />
-            <TableColumn fx:id="appColumn" prefWidth="75.0" text="Appartamento" />
-            <TableColumn fx:id="actionContract" prefWidth="75.0" />
+            <TableColumn fx:id="fattadaColumn" prefWidth="75.0" text="Fatta da" />
+            <TableColumn fx:id="votoColumn" prefWidth="75.0" text="Voto" />
+            <TableColumn fx:id="evaltextColumn" prefWidth="75.0" text="Valutazione" />
+            <TableColumn fx:id="evalAction" prefWidth="75.0" text="Azioni" />
          </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -40,7 +40,19 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <Button fx:id="viewEval" layoutX="619.0" layoutY="94.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="138.0" text="Vedi Recensioni" />
-      <Button fx:id="showContract" layoutX="801.0" layoutY="94.0" mnemonicParsing="false" onAction="#viewContract" prefHeight="47.0" prefWidth="138.0" text="Vedi Contratti" />
+      <Button fx:id="createeval" layoutX="619.0" layoutY="94.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="187.0" text="Scrivi Recensione">
+         <font>
+            <Font size="17.0" />
+         </font></Button>
+      <Label layoutX="28.0" layoutY="240.0" prefHeight="47.0" prefWidth="364.0" text="Visualizza le recensioni su di te:">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Button fx:id="viewEval" layoutX="411.0" layoutY="232.0" mnemonicParsing="false" onAction="#EffVisualizza" prefHeight="47.0" prefWidth="110.0" text="Visualizza">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
