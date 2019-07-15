@@ -20,6 +20,15 @@ public class Contract {
         this.expired = expired;
     }
 
+    @Override
+    public String toString() {
+        return "Contratto numero " + id +
+                ", Affittuario è stato " + renter +
+                ", Proprietario è " + tenant +
+                ", terminato? " + expired +
+                '.';
+    }
+
     public int getId() {
         return id;
     }
