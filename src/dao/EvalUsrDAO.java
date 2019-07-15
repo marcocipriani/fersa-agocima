@@ -11,11 +11,11 @@ import java.util.Vector;
 
 public class EvalUsrDAO {
 
-    private static final String SEARCH_AUTHOR_QUERY = "select * from \"EvalUsr\" where \"evalusr\" = ?";
-    private static final String SEARCH_NICKNAME_QUERY = "select * from \"EvalUsr\" where \"nickname\" = ?";
-    private static final String CREATE_QUERY = "insert into \"EvalUsr\" values (98,?,?,FALSE,?,?)";
-    private static final String UPDATE_QUERY = "update \"EvalUsr\" set \"text\" = ?, \"stars\" = ?, \"status\" = FALSE where \"id\" = ?";
-    private static final String DELETE_QUERY = "delete from \"EvalUsr\" where \"id\" = ?";
+    private static final String SEARCH_AUTHOR_QUERY = "select * from EvalUsr where \"evalusr\" = ?";
+    private static final String SEARCH_NICKNAME_QUERY = "select * from EvalUsr where \"nickname\" = ?";
+    private static final String CREATE_QUERY = "insert into EvalUsr values (?,?,?,FALSE,?,?)";
+    private static final String UPDATE_QUERY = "update EvalUsr set \"text\" = ?, \"stars\" = ?, \"status\" = FALSE where \"id\" = ?";
+    private static final String DELETE_QUERY = "delete from EvalUsr where \"id\" = ?";
 
     private static Connection conn = null;
     private static PreparedStatement stmt = null;
@@ -83,13 +83,16 @@ public class EvalUsrDAO {
 
     public static void createEval(String text, int stars, String nickname, String evalusr) {
 
+        Integer id = Indexing.askForIndex("EvalUsr");
+
         try {
             conn = ConnectTools.getConnection();
             stmt = conn.prepareStatement(CREATE_QUERY);
-            stmt.setString(1, text);
-            stmt.setInt(2, stars);
-            stmt.setString(3, nickname);
-            stmt.setString(4, evalusr);
+            stmt.setInt(1, id);
+            stmt.setString(2, text);
+            stmt.setInt(3, stars);
+            stmt.setString(4, nickname);
+            stmt.setString(5, evalusr);
             stmt.execute();
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }

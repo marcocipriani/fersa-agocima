@@ -11,11 +11,11 @@ import java.util.Vector;
 
 public class EvalAptDAO {
 
-    private static final String SEARCH_AUTHOR_QUERY = "select * from \"EvalApt\" where \"evalusr\" = ?";
-    private static final String SEARCH_OWNER_QUERY = "select * from \"EvalApt\" where \"owner\" = ?";
-    private static final String CREATE_QUERY = "insert into \"EvalApt\" values (98,?,?,FALSE,?,?,?)";
-    private static final String UPDATE_QUERY = "update \"EvalApt\" set \"text\" = ?, \"stars\" = ?, \"status\" = FALSE where \"id\" = ?";
-    private static final String DELETE_QUERY = "delete from \"EvalApt\" where \"id\" = ?";
+    private static final String SEARCH_AUTHOR_QUERY = "select * from EvalApt where \"evalusr\" = ?";
+    private static final String SEARCH_OWNER_QUERY = "select * from EvalApt where \"owner\" = ?";
+    private static final String CREATE_QUERY = "insert into EvalApt values (?,?,?,FALSE,?,?,?)";
+    private static final String UPDATE_QUERY = "update EvalApt set \"text\" = ?, \"stars\" = ?, \"status\" = FALSE where \"id\" = ?";
+    private static final String DELETE_QUERY = "delete from EvalApt where \"id\" = ?";
 
     private static Connection conn = null;
     private static PreparedStatement stmt = null;
@@ -84,14 +84,18 @@ public class EvalAptDAO {
 
     public static void createEval(String text, int stars, int aptid, String owner, String evalusr) {
 
+        Integer id = Indexing.askForIndex("EvalApt");
+
         try {
             conn = ConnectTools.getConnection();
+
             stmt = conn.prepareStatement(CREATE_QUERY);
-            stmt.setString(1, text);
-            stmt.setInt(2, stars);
-            stmt.setInt(3, aptid);
-            stmt.setString(4, owner);
-            stmt.setString(5, evalusr);
+            stmt.setInt(1, id);
+            stmt.setString(2, text);
+            stmt.setInt(3, stars);
+            stmt.setInt(4, aptid);
+            stmt.setString(5, owner);
+            stmt.setString(6, evalusr);
             stmt.execute();
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
