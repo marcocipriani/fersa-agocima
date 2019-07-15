@@ -49,12 +49,12 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <Button fx:id="viewEval" layoutX="411.0" layoutY="232.0" mnemonicParsing="false" onAction="#EffVisualizza" prefHeight="47.0" prefWidth="110.0" text="Visualizza">
+      <Button fx:id="evaltue" layoutX="618.0" layoutY="127.0" mnemonicParsing="false" onAction="#StoricoEval" prefHeight="47.0" prefWidth="187.0" text="Storico Recensioni">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="evaltue" layoutX="618.0" layoutY="127.0" mnemonicParsing="false" onAction="#StoricoEval" prefHeight="47.0" prefWidth="187.0" text="Storico Recensioni">
+      <Button fx:id="viewEval" layoutX="392.0" layoutY="240.0" mnemonicParsing="false" onAction="#EffVisualizza" prefHeight="47.0" prefWidth="187.0" text="View">
          <font>
             <Font size="17.0" />
          </font>

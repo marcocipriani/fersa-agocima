@@ -11,7 +11,7 @@ import java.util.Vector;
 
 public class ContractDAO {
 
-    private static final String SEARCH_QUERY = "select * from Contract where ? = ?";
+    private static final String SEARCH_QUERY = "select * from \"Contract\" where ? = ?";
 
     private static Connection conn = null;
     private static Vector<Contract> results = new Vector<Contract>();
