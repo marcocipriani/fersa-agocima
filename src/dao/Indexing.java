@@ -15,7 +15,6 @@ public class Indexing {
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             String sql = "select * from " + table + " order by id desc LIMIT 1";
-            System.out.println(sql);
             ResultSet rs = stmt.executeQuery(sql);
 
             if (!rs.first()) // rs not empty
@@ -31,7 +30,6 @@ public class Indexing {
         } catch (SQLException se) { System.out.println("Errore in SQL askForIndex"); se.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
 
-        System.out.println(index);
         return index;
     }
 }
