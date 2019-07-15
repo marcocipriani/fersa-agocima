@@ -22,37 +22,7 @@ public class EvalUsr extends Eval {
                 ", con voto: " + stars + '.';
         }
 
-    public String getNickname() {
-        return nickname;
-    }
+    public String getNickname() { return nickname; }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-    
-    public String getEvalusr() {
-        return evalusr;
-    }
-
-    public void setEvalusr(String evalusr) {
-        this.evalusr = evalusr;
-    }
-    
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-    
-    public int getStars() {
-        return stars;
-    }
-
-    public void setStars(int stars) {
-        this.stars = stars;
-    }
-    
-    
+    public void setNickname(String nickname) { this.nickname = nickname; }
 }
