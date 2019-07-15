@@ -1,6 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
+    
+	<jsp:useBean id="user" scope="request" class="model.ActualUsr"/>
+             
+    
+	<jsp:setProperty name="user" property="*"/>
+    
+    <%
+    if (request.getParameter("login") != null) {
+        if (user.Controller.login(request.getParameter("nickname"), request.getParameter("password"))) {
+            %>
+            <!-- Passa il controllo alla nuova pagina -->
+            <jsp:forward page="RiassuntoLogin.jsp"/>
+            <%
+        } else {
+            %>
+            <p style="text-color:red;">Dati errati</p>
+            <%
+        }
+    } else {
+        %>
+        <p class="text-info">Accesso non effettuato</p>
+        <%
+    }
+%>
 
 
 <!doctype html>
@@ -40,6 +64,7 @@
             <p class="lead text-center" style="font-weight: 400;">Vuoi vedere le recensioni come guest?</p>
             <button id="buttonSearch" class="btn btn-lg btn-primary" type="submit" onclick="window.location.href='searchView.html'">Cerca</button>
           </div>
+          
           <div class="col-6">
             <form class="form-signin" action="ControllerLogin.java">
               <h1 class="display-4 mb-3 font-weight-normal text-center">Login</h1>
@@ -48,10 +73,11 @@
               <label for="password" class="sr-only">Password</label>
               <input type="text" id="password" name="password" class="form-control" placeholder="password" required>
               <div class="form-check form-check-inline my-3">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="ceckTenant" value="tenant">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="checkTenant" value="tenant">
                 <label class="form-check-label" for="inlineCheckbox1">Login come locatore</label>
               </div>
-              <button id="buttonLogin" class="btn btn-lg btn-block btn-primary" type="submit" value="submit" <!--  action="ControllerLogin.java"-->>Entra</button>
+              <% out.println("Ciao Mondo!"); %>
+              <button class="btn btn-lg btn-block btn-primary" type="submit" value="submit" id="login" value="login">Entra</button>
             </form>
           </div>
         </div>

@@ -1,4 +1,4 @@
-package web;
+
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class searchServlet
  */
-@WebServlet("/searchServlet")
+@WebServlet(name = "searchServlet", urlPatterns = {"/searchServlet"})
 public class searchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,8 +27,8 @@ public class searchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { /* viene eseguito ogni volta che la servlet riceve la richiesta di tipo Get*/
 		// TODO Auto-generated method stub
-		/*response.getWriter().append("Served at: ").append(request.getContextPath());*/
-		request.setAttribute("me", "test");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setAttribute("me", "Eros");
 		request.getRequestDispatcher("searchView.jsp").forward(request, response);
 	}
 

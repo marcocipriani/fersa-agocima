@@ -47,6 +47,20 @@
     <div class="container">
       <p class="lead mt-5">Utilizza la barra di ricerca per trovare recensioni su utenti ed appartamenti</p>
       <div class="row">
+        <div class="col-auto">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="searchRadios" id="searchRadios1" value="searchUser" checked>
+                <label class="form-check-label" for="searchRadios1">
+                    Locatori/Locatari
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="searchRadios" id="searchRadios2" value="searchAppartment">
+                <label class="form-check-label" for="searchRadios2">
+                    Appartamenti
+                </label>
+            </div>
+        </div>
         <div class="col">
           <input id="inputTextSearch" class="form-control mr-sm-2" type="search" placeholder="Inserisci" aria-label="Search">
         </div>
