@@ -14,7 +14,7 @@ public class Indexing {
             conn = ConnectTools.getConnection();
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
-            String sql = "select * from " + table + " order by id desc LIMIT 1";
+            String sql = "select id from " + table + " order by id desc LIMIT 1";
             ResultSet rs = stmt.executeQuery(sql);
 
             if (!rs.first()) // rs not empty
