@@ -11,11 +11,11 @@ import java.util.Vector;
 
 public class EvalUsrDAO {
 
-    private static final String SEARCH_AUTHOR_QUERY = "select * from EvalUsr where \"evalusr\" = ?";
-    private static final String SEARCH_NICKNAME_QUERY = "select * from EvalUsr where \"nickname\" = ?";
-    private static final String CREATE_QUERY = "insert into EvalUsr values (?,?,?,FALSE,?,?)";
-    private static final String UPDATE_QUERY = "update EvalUsr set \"text\" = ?, \"stars\" = ?, \"status\" = FALSE where \"id\" = ?";
-    private static final String DELETE_QUERY = "delete from EvalUsr where \"id\" = ?";
+    private static final String SEARCH_AUTHOR_QUERY = "select * from \"EvalUsr\" where \"evalusr\" = ?";
+    private static final String SEARCH_NICKNAME_QUERY = "select * from \"EvalUsr\" where \"nickname\" = ?";
+    private static final String CREATE_QUERY = "insert into \"EvalUsr\" values (?,?,?,FALSE,?,?)";
+    private static final String UPDATE_QUERY = "update \"EvalUsr\" set \"text\" = ?, \"stars\" = ?, \"status\" = FALSE where \"id\" = ?";
+    private static final String DELETE_QUERY = "delete from \"EvalUsr\" where \"id\" = ?";
 
     private static Connection conn = null;
     private static PreparedStatement stmt = null;

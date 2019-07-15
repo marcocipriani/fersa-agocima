@@ -25,15 +25,15 @@ import model.EvalUsr;
 public class ControllerOwnEval {
 	
 	@FXML
-	private TableView<Eval> tabella;
+	private TableView<EvalUsr> tabella;
     @FXML
-    private TableColumn<Eval, String> targetColumn;
+    private TableColumn<EvalUsr, String> targetColumn;
     @FXML
-    private TableColumn<Eval, String> starsColumn;
+    private TableColumn<EvalUsr, String> starsColumn;
     @FXML
-    private TableColumn<Eval, String> evalAzioni;
+    private TableColumn<EvalUsr, Void> evalAzioni;
     @FXML
-    private TableColumn<Eval, String> evaltestoColumn;
+    private TableColumn<EvalUsr, String> evaltestoColumn;
     @FXML
     private Button perUtente;
     @FXML
@@ -47,7 +47,8 @@ public class ControllerOwnEval {
     	tabella.setEditable(true); 
         
         Vector<EvalUsr> evusr = EvalUsrDAO.findEvalMadeByYou(owner.getText());
-        ObservableList<Eval> valutazioni = FXCollections.observableArrayList();
+        System.out.println(owner.getText());
+        ObservableList<EvalUsr> valutazioni = FXCollections.observableArrayList();
         for(int i=0;i < evusr.size();i++) {
         	valutazioni.add(evusr.get(i));
         }
@@ -57,14 +58,14 @@ public class ControllerOwnEval {
 
        starsColumn.setCellValueFactory( new PropertyValueFactory("stars") );
 
-       evalAzioni.setCellFactory(param -> new TableCell<Eval,String>() {
-            private final Button deleteButton = new Button("Rimuovi");
+       evalAzioni.setCellFactory(param -> new TableCell<EvalUsr,Void>() {
+            private final Button deleteButton = new Button("Modifica");
             private final Button viewButton = new Button("Visualizza");
             HBox pane = new HBox(deleteButton,viewButton);
 
 
             @Override
-            protected void updateItem(String patient, boolean empty) {
+            protected void updateItem(Void patient, boolean empty) {
                 super.updateItem(patient, empty);
 
                 if (empty) {
@@ -81,6 +82,21 @@ public class ControllerOwnEval {
                  
                  viewButton.setOnAction(event -> {
                	  EvalUsr valuser= (EvalUsr) getTableView().getItems().get(getIndex());
+               	  
+               	try {
+        			
+            		FXMLLoader loader=new FXMLLoader(getClass().getResource("OwnUsrRecensioni.fxml"));
+            		Parent root=(Parent) loader.load();
+            		ControllerOwnUsrRecensioni addcontroller=loader.getController();
+            		addcontroller.setVal(valuser);
+
+            		
+            		Stage stage=new Stage();
+            		stage.setScene(new Scene(root));
+            		stage.show();
+        		}catch(IOException e) {
+        			e.printStackTrace();
+        		}
                      
                  });
                  

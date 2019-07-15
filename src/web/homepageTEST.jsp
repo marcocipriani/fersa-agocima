@@ -1,34 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"   %>
     
-	<!-- Si dichiara la variabile ActualUsr e istanzia un oggetto ActualUsr -->
-	<jsp:useBean id="actualUsr" scope="request" class="model.ActualUsr"/>
-	
-	<!-- Mappa automaticamente tutti gli attributi dell'oggetto ActualUsr e le proprietà JSP -->
-	<jsp:setProperty name="actualUsr" property="*"/>
+<%@ page import="dao.UsrDAO" %>
+<%@ page import="model.ActualUsr" %>
 
-<%
+<%@ page import="java.io.*,java.util.*"%>
+<%@ page import="javax.activation.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+
+   <!-- Si dichiara la variabile viewBean2 e istanzia un oggetto viewBean -->
+   <jsp:useBean id="homeBean2" scope="request" class="Controller.homeBean"/> 
+   
+	<!-- Mappa tutti gli elementi dell'oggetto viewBean2 e le proprietà JSP -->
+	  <jsp:setProperty name="homeBean2" property="nickname" />
+	  <jsp:setProperty name="homeBean2" property="username" />
+	  <jsp:setProperty name="homeBean2" property="password" />
+	  
+	  
+	<%
     if (request.getParameter("login") != null) {
-        if (this.nickname.equals("") || this.password.equals("")) {
+        if (homeBean2.ConvalidaLogin().equals("Locatore")|| homeBean2.ConvalidaLogin().equals("Locatario") ) {
             %>
             <!-- Passa il controllo alla nuova pagina -->
-            <jsp:forward page="RiassuntoLogin.jsp"/>
+            <jsp:forward page="profileView.jsp"/>
             <%
         } else {
             %>
             <p style="text-color:red;">Dati errati</p>
             <%
         }
-    } else {
-        %>
-        <p class="text-info">Accesso non effettuato</p>
-        <%
+      
     }
-%>
+
+  %>
+    
     
 
-
-<!doctype html>
 <html lang="it">
   <head>
     <meta charset="utf-8">
@@ -41,9 +47,25 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <title>FERSA - login</title>
+
   </head>
 
   <body>
+  
+	  <script type="text/javascript">
+		  public void findUsr()
+			{
+			  String user = request.getParameter("nickname");
+			  String password= request.getParameter("password");
+			  ActualUsr d;
+			  d = UsrDAO.findByNickname(user, password, false); 
+			  
+			  if (request.getParameter("checkTenant")=="tenant") {
+				  out.println("login come locatario!");
+			  }
+			  else{out.println("login come locatore!");}
+			}
+	  </script>
 
     <!-- inizio NAV TOP -->
     <div class="container">
@@ -67,12 +89,15 @@
           </div>
           
           <div class="col-6">
-            <form class="form-signin" action="ControllerLogin.java">
+            <form class="form-signin" action="homepageTEST.jsp">
               <h1 class="display-4 mb-3 font-weight-normal text-center">Login</h1>
+              
               <label for="nickname" class="sr-only">Nickname</label>
               <input type="text" id="nickname" name="nickname" class="form-control" placeholder="nickname" required autofocus>
+              
               <label for="password" class="sr-only">Password</label>
               <input type="text" id="password" name="password" class="form-control" placeholder="password" required>
+              
               <div class="form-check form-check-inline my-3">
                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="checkTenant" value="tenant">
                 <label class="form-check-label" for="inlineCheckbox1">Login come locatore</label>
@@ -84,9 +109,9 @@
         		System.out.println(au);*/
         		 %>
         		 
-        		 <input class="btn btn-lg btn-block btn-primary" name="login" type="submit" id="login" value="login" class="btn btn-info">
+        		 <!--  <input class="btn btn-lg btn-block btn-primary" name="login" type="submit" id="login" value="login" class="btn btn-info">-->
         		 
-              <!--  --><button class="btn btn-lg btn-block btn-primary" type="submit" value="submit" id="login" value="login">Entra</button>-->
+              <!--  --><button class="btn btn-lg btn-block btn-primary" type="submit" value="submit" id="login" value="login" onclick="findUsr()">Entra</button>
             </form>
           </div>
         </div>

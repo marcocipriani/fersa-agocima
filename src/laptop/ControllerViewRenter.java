@@ -35,7 +35,7 @@ public class ControllerViewRenter {
     @FXML
     private TableColumn<EvalUsr, String> votoColumn;
     @FXML
-    private TableColumn<EvalUsr, String> evalAction;
+    private TableColumn<EvalUsr, Void> evalAction;
     @FXML
     private TableColumn<EvalUsr, String> evaltextColumn;
     @FXML
@@ -59,7 +59,6 @@ public class ControllerViewRenter {
         ObservableList<EvalUsr> valutazioni = FXCollections.observableArrayList();
         for(int i=0;i < evusr.size();i++) {
         	valutazioni.add(evusr.get(i));
-        	System.out.println(valutazioni);
         }
 
        fattadaColumn.setCellValueFactory( new PropertyValueFactory("evalusr") );
@@ -67,14 +66,14 @@ public class ControllerViewRenter {
 
        votoColumn.setCellValueFactory( new PropertyValueFactory("stars") );
 
-       evalAction.setCellFactory(param -> new TableCell<EvalUsr,String>() {
+       evalAction.setCellFactory(param -> new TableCell<EvalUsr,Void>() {
             private final Button deleteButton = new Button("Rimuovi");
             private final Button viewButton = new Button("Visualizza");
             HBox pane = new HBox(deleteButton,viewButton);
 
 
             @Override
-            protected void updateItem(String patient, boolean empty) {
+            protected void updateItem(Void patient, boolean empty) {
                 super.updateItem(patient, empty);
 
                 if (empty) {
