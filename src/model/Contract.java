@@ -36,25 +36,17 @@ public class Contract {
         this.renter = renter;
     }
 
-    public String getTenant() {
-        return tenant;
-    }
+    public String getTenant() { return tenant; }
 
     public void setTenant(String tenant) {
         this.tenant = tenant;
     }
 
-    public int getApt() {
-        return apt;
-    }
+    public int getApt() { return apt; }
 
-    public void setApt(int apt) {
-        this.apt = apt;
-    }
+    public void setApt(int apt) { this.apt = apt; }
 
-    public boolean isExpired() {
-        return expired;
-    }
+    public boolean isExpired() { return expired; }
 
     public void setExpired(boolean expired) {
         this.expired = expired;
