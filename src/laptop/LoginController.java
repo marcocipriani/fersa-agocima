@@ -81,12 +81,4 @@ public class LoginController {
     	}
     }
 
-    
-    @FXML
-    void initialize() {
-        assert nickname != null : "fx:id=\"nickname\" was not injected: check your FXML file 'Login.fxml'.";
-        assert accedi != null : "fx:id=\"accedi\" was not injected: check your FXML file 'Login.fxml'.";
-        assert txtStatus != null : "fx:id=\"txtStatus\" was not injected: check your FXML file 'Login.fxml'.";
-
-    }
 }

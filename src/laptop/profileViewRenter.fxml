@@ -40,7 +40,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <Button fx:id="createeval" layoutX="619.0" layoutY="94.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="187.0" text="Scrivi Recensione">
+      <Button fx:id="createeval" layoutX="618.0" layoutY="48.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="187.0" text="Scrivi Recensione">
          <font>
             <Font size="17.0" />
          </font></Button>
@@ -50,6 +50,11 @@
          </font>
       </Label>
       <Button fx:id="viewEval" layoutX="411.0" layoutY="232.0" mnemonicParsing="false" onAction="#EffVisualizza" prefHeight="47.0" prefWidth="110.0" text="Visualizza">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="evaltue" layoutX="618.0" layoutY="127.0" mnemonicParsing="false" onAction="#StoricoEval" prefHeight="47.0" prefWidth="187.0" text="Storico Recensioni">
          <font>
             <Font size="17.0" />
          </font>

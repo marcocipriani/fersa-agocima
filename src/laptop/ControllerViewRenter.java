@@ -9,9 +9,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 import model.Contract;
 import model.EvalUsr;
@@ -42,6 +44,8 @@ public class ControllerViewRenter {
     private Button viewEval;
     @FXML
     private Button createeval;
+    @FXML
+    private Button evaltue;
     
     private String nomeRenter;
     
@@ -52,7 +56,6 @@ public class ControllerViewRenter {
         
 
         Vector<EvalUsr> evusr = EvalUsrDAO.findYourEvals(nomeRenter);
-    	//ArrayList<BasicAppartament> a=d.read(idpro.getText());
         ObservableList<EvalUsr> valutazioni = FXCollections.observableArrayList();
         for(int i=0;i < evusr.size();i++) {
         	valutazioni.add(evusr.get(i));
@@ -64,15 +67,14 @@ public class ControllerViewRenter {
 
        votoColumn.setCellValueFactory( new PropertyValueFactory("stars") );
 
-        /*buttonsColumn.setCellFactory(param -> new TableCell<BasicAppartament, Void>() {
-            private final Button editButton = new Button("Modifica");
+       evalAction.setCellFactory(param -> new TableCell<EvalUsr,String>() {
             private final Button deleteButton = new Button("Rimuovi");
             private final Button viewButton = new Button("Visualizza");
-            HBox pane = new HBox(deleteButton, editButton,viewButton);
+            HBox pane = new HBox(deleteButton,viewButton);
 
 
             @Override
-            protected void updateItem(Void patient, boolean empty) {
+            protected void updateItem(String patient, boolean empty) {
                 super.updateItem(patient, empty);
 
                 if (empty) {
@@ -82,63 +84,22 @@ public class ControllerViewRenter {
                 }
 
                 deleteButton.setOnAction(event -> {
-                   BasicAppartament basicApp= getTableView().getItems().get(getIndex());
+                   EvalUsr valuser= getTableView().getItems().get(getIndex());
                    //System.out.println(basicApp.getId().getId());
-                   new BasicAppartament().RemoveAppartament(basicApp);
-                   table.getItems().remove(basicApp);
+                   EvalUsrDAO.deleteEval(valuser.getId());
+                   table.getItems().remove(valuser);
                 });
                 
                 viewButton.setOnAction(event -> {
-              	  BasicAppartament basicApp= getTableView().getItems().get(getIndex());
+              	  EvalUsr valuser= getTableView().getItems().get(getIndex());
                     
               	  try {
             			
-                		FXMLLoader loader=new FXMLLoader(getClass().getResource("View.fxml"));
+                		FXMLLoader loader=new FXMLLoader(getClass().getResource("Recensione.fxml"));
                 		Parent root=(Parent) loader.load();
-                		
-              
-                		ControllerView addcontroller=loader.getController();
-                	
-                		
-                		addcontroller.idowner(idpro.getText());
-                		addcontroller.instace(basicApp);
-                		
-                		Stage stage=new Stage();
-                		stage.setScene(new Scene(root));
-                		stage.show();
-            		}catch(IOException e) {
-            			e.printStackTrace();
-            		}
-                });
+                		ViewEvalUsrController addcontroller=loader.getController();
+                		addcontroller.setEval(valuser);
 
-                editButton.setOnAction(event -> {
-                    BasicAppartament basicApp= getTableView().getItems().get(getIndex());
-                    
-              	  try {
-            			
-                		FXMLLoader loader=new FXMLLoader(getClass().getResource("Edit.fxml"));
-                		Parent root=(Parent) loader.load();
-                		
-              
-                		ControllerEdit addcontroller=loader.getController();
-                	
-                		
-                		addcontroller.idowner(idpro.getText());
-                		addcontroller.idappartament(basicApp.getId().getId());
-                		addcontroller.ShortD(basicApp.getDes().getShortDescription());
-                		addcontroller.FullD(basicApp.getDes().getFullDescription());
-                		addcontroller.surface(Double.toString(basicApp.getSurface()));
-                		addcontroller.address(basicApp.getAddress().getIndrizzo());
-                		addcontroller.floor(basicApp.getAddress().getPiano());
-                		addcontroller.scale(basicApp.getAddress().getScala());
-                		addcontroller.interno(basicApp.getAddress().getInterno());
-                		addcontroller.Lat(basicApp.getCs().getLatitudine());
-                		addcontroller.Log(basicApp.getCs().getLongitudine());
-                		addcontroller.pathImage(basicApp.getImg().getPathImage());
-                		addcontroller.pathPlant(basicApp.getPlant().getPathImage());
-                		
-                		
-            
                 		
                 		Stage stage=new Stage();
                 		stage.setScene(new Scene(root));
@@ -147,19 +108,34 @@ public class ControllerViewRenter {
             			e.printStackTrace();
             		}
                 });
+                
 
                 setGraphic(pane);//<<<---------------add button 1
 
             }
-        });*/
+        });
 
         table.setItems(valutazioni);
     	
     }
     
-    
-    
-    
+    @FXML
+    void StoricoEval(ActionEvent event) {
+    	try {
+			
+    		FXMLLoader loader=new FXMLLoader(getClass().getResource("OwnRecensioni.fxml"));
+    		Parent root=(Parent) loader.load();
+    		ControllerOwnEval addcontroller=loader.getController();
+    		addcontroller.setOwnName(nomeRenter);
+    		Stage stage=new Stage();
+    		stage.setScene(new Scene(root));
+    		stage.show();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+    	
+    }
+        
     
     public String getRentername(String name) {
     	return nomeRenter = name;
