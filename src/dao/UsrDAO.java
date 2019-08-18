@@ -28,7 +28,7 @@ public class UsrDAO {
             stmt.setString(2, pwd);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
-
+            
             rs.first();
             String nick = rs.getString("nickname");
             String name = rs.getString("name");

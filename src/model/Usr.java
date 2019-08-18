@@ -27,8 +27,8 @@ public class Usr {
         String stringRoles; // per stampa comprensibile
 
         if (roles == 2) { stringRoles = "Tenant + Renter";
-        } else if (roles == 1) { stringRoles = "Renter";
-        } else { stringRoles = "Tenant"; }
+        } else if (roles == 1) { stringRoles = "Tenant";
+        } else { stringRoles = "Renter"; }
 
         return "Utente: " + nickname +
                 " (password '" + pwd + "\'" +

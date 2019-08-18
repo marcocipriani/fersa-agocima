@@ -1,5 +1,5 @@
 /*
- * Marco Cipriani (c) 2019.
+  * Marco Cipriani (c) 2019.
  */
 
 package model;
@@ -20,6 +20,15 @@ public class Contract {
         this.expired = expired;
     }
 
+    @Override
+    public String toString() {
+        return "Contratto numero " + id +
+                ", Affittuario è stato " + renter +
+                ", Proprietario è " + tenant +
+                ", terminato? " + expired +
+                '.';
+    }
+
     public int getId() {
         return id;
     }
@@ -36,25 +45,17 @@ public class Contract {
         this.renter = renter;
     }
 
-    public String getTenant() {
-        return tenant;
-    }
+    public String getTenant() { return tenant; }
 
     public void setTenant(String tenant) {
         this.tenant = tenant;
     }
 
-    public int getApt() {
-        return apt;
-    }
+    public int getApt() { return apt; }
 
-    public void setApt(int apt) {
-        this.apt = apt;
-    }
+    public void setApt(int apt) { this.apt = apt; }
 
-    public boolean isExpired() {
-        return expired;
-    }
+    public boolean isExpired() { return expired; }
 
     public void setExpired(boolean expired) {
         this.expired = expired;

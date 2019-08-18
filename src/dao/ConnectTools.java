@@ -11,13 +11,13 @@ public class ConnectTools {
     private static final String DRIVER_CLASS_NAME = "org.postgresql.Driver";
     private static final String URL = "jdbc:postgresql://localhost:5432/agocimadb";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "postgres";
+    private static final String PASSWORD = "galaxy070592";
 
     private static Connection conn = null;
 
     public static Connection getConnection(){
         try {
-            Class.forName(DRIVER_CLASS_NAME);
+            Class.forName(DRIVER_CLASS_NAME); // si chiede dinamicamente al ClassLoader di caricare la classe
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
         }

@@ -3,23 +3,13 @@
  */
 
 import dao.EvalAptDAO;
-import dao.UsrDAO;
-import model.ActualUsr;
 import model.EvalApt;
-
-import java.util.Vector;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        EvalAptDAO.createEvalApt("Ciao", 4, 105, "Oriolo", "Marco");
-        Vector<EvalApt> ea = EvalAptDAO.findEvalMadeByYou("Marco");
+        EvalApt ea = EvalAptDAO.findByUsr("'Eros'");
         System.out.println(ea);
-        EvalAptDAO.deleteEvalApt(99);
-
-        // prova login
-        ActualUsr au = UsrDAO.findByNickname("gcantone", "fersa", true);
-        System.out.println(au);
     }
 }

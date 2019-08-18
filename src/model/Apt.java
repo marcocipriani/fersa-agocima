@@ -10,11 +10,20 @@ public class Apt {
     private String owner;
     private String address;
 
-    public Apt(String owner, String address){
-        this.id = 1;  // TO_DO incrementali
+    public Apt(int id, String owner, String address) {
+        this.id = id;
         this.owner = owner;
         this.address = address;
     }
+
+    @Override
+    public String toString() {
+        return "Appartamento numero " + id +
+                ", in " + address +
+                ", di prorietà di " + owner +
+                '.';
+    }
+
 
     public int getId() {
         return id;

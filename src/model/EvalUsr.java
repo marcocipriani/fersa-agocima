@@ -12,12 +12,17 @@ public class EvalUsr extends Eval {
         super(id, text, stars, status, evalusr);
         this.nickname = nickname;
     }
+    
+    @Override
+    public String toString() {
+        return "Valutazione numero " + id +
+                ", fatta da " + evalusr +
+                ", di prorietà di " + nickname +
+                ", che dice: " + text + 
+                ", con voto: " + stars + '.';
+        }
 
-    public String getNickname() {
-        return nickname;
-    }
+    public String getNickname() { return nickname; }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
+    public void setNickname(String nickname) { this.nickname = nickname; }
 }
