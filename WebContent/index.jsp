@@ -78,7 +78,7 @@
             <form class="form-signin" action="index.jsp">
               <h1 class="display-4 mb-3 font-weight-normal text-center">Login</h1>
               
-              <label for="nickname" class="sr-only">Nickname</label>
+              <label for="username" class="sr-only">Username</label>
               <input type="text" id="nickname" name="nickname" class="form-control" placeholder="nickname" required autofocus>
               
               <label for="password" class="sr-only">Password</label>
