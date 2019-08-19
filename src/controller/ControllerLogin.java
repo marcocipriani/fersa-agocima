@@ -2,27 +2,26 @@ package controller;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpSession;
+/*import javax.servlet.http.HttpSession;*/
 
 import controller.ControllerLogin;
 import dao.UsrDAO;
+import model.Usr;
 import model.ActualUsr;
 
 public class ControllerLogin {
 	
 	
 	
-	
-	
 	/*inizio codice alternativo*/
 	
-	public static boolean ricercaLogin(String username,String password) {
+	public static boolean ricercaLogin(String nickname,String password) {
 		
 		try {
 	        System.out.println("Creo utente");
 		
 	        /*ActualUsr user = new ActualUsr();*/
-	        ActualUsr user = UsrDAO.findByNickname(username, password, false); //false=locatario
+	        ActualUsr user = UsrDAO.findByNickname(nickname, password, false); //false=locatario
         
 	        if (user == null) {
 	        	/*response.sendRedirect("homepage.jsp");*/
@@ -36,6 +35,8 @@ public class ControllerLogin {
 	        	return true;
 	        } 
 			} catch (Throwable e) { System.out.println(e);}
+		
+		return false;
 		}
 	
 /*fine codice alternativo*/

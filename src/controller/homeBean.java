@@ -5,7 +5,7 @@ import controller.ControllerLogin;
 public class homeBean {
 	
 	public static String username;
-	/*public static String nickname;*/
+	public static String nickname;
 	private String password;
     public static String tipo;
     
@@ -17,7 +17,7 @@ public class homeBean {
 		this.setTipo(tipo);
 		return tipo;*/
     	
-    	if(ControllerLogin.ricercaLogin(username, password)) return "Locatario";
+    	if(ControllerLogin.ricercaLogin(nickname, password)) return "Locatario";
     	else return "errore";
 	}
     
