@@ -21,8 +21,8 @@ public class ControllerLogin {
 		try {
 	        System.out.println("Creo utente");
 		
-	        ActualUsr user = new ActualUsr();
-	        user = UsrDAO.findByNickname(username, password, false); //false=locatario
+	        /*ActualUsr user = new ActualUsr();*/
+	        ActualUsr user = UsrDAO.findByNickname(username, password, false); //false=locatario
         
 	        if (user == null) {
 	        	/*response.sendRedirect("homepage.jsp");*/
