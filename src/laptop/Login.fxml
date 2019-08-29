@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="laptop.LoginController">
+   <children>
+      <Label layoutX="193.0" layoutY="14.0" prefHeight="109.0" prefWidth="222.0" text="FERSA" textFill="#4613d3">
+         <font>
+            <Font size="75.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nickname" layoutX="146.0" layoutY="169.0" promptText="Nickname" />
+      <CheckBox fx:id="isTenant" layoutX="359.0" layoutY="217.0" mnemonicParsing="false" text="Entra come Proprietario">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </CheckBox>
+      <Label layoutX="146.0" layoutY="123.0" prefHeight="31.0" prefWidth="276.0" text="Inserire Nickname e Password">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="accedi" layoutX="202.0" layoutY="254.0" mnemonicParsing="false" onAction="#EffLogin" prefHeight="43.0" prefWidth="76.0" text="Accedi" />
+      <PasswordField fx:id="pwd" layoutX="146.0" layoutY="209.0" promptText="Password" />
+   </children>
+</AnchorPane>
