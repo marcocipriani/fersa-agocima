@@ -1,3 +1,5 @@
 .idea/
 .gradle/
 /bin/
+.settings/
+./fersa-agocima.iml
