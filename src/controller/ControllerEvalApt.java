@@ -8,6 +8,8 @@ import dao.EvalAptDAO;
 
 public class ControllerEvalApt {
 	
+	
+	
 	private ArrayList<EvalApt> eval;
 	private static ControllerEvalApt instance;
 	public static ControllerEvalApt getInstance() {
