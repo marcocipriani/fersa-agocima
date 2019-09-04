@@ -11,38 +11,34 @@ import java.util.Vector;
 
 public class ContractDAO {
 
-    private static final String SEARCH_QUERY = "select * from Contract where \"expired\" = true"; // where ? = ? and
+    private static final String SEARCH_QUERY = "select * from contract where ? = ? and expired = true";
 
     private static Connection conn = null;
-    private static Statement stmt = null; //Prepared
+    private static PreparedStatement stmt = null;
 
-    public static Vector<Contract> findByNickname(String nickname, boolean actualRole) {
+    public static Vector<Contract> findReadyToEvaluate(String nickname, boolean actualRole) {
+        // if actualRole == true, search will be performed in tenant column
+        // otherwise in renter
 
         Vector<Contract> results = new Vector<Contract>();
         Contract c;
 
+
         try {
             conn = ConnectTools.getConnection();
-            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY);
-
-            /*stmt = conn.prepareStatement(SEARCH_QUERY);
+            stmt = conn.prepareStatement(SEARCH_QUERY, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                                                        // unnecessary if rs is not scrolled
 
             if (actualRole) {
-                stmt.setString(1, "\"tenant\"");
-            } else { stmt.setString(1, "\"renter\""); }
+                stmt.setString(1, "tenant");
+            } else { stmt.setString(1, "renter"); }
+            stmt.setString(2, "'" + nickname + "'");
+            System.out.println(stmt);
 
-            stmt.setString(2, "\'" + nickname + "\'");
-            stmt.execute();*/
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
 
-            ResultSet rs = stmt.executeQuery(SEARCH_QUERY);
-
-            if (!rs.first())
-            return null;
-
-            boolean moreThanOne = rs.first() && rs.next();
-            assert !moreThanOne;
-            rs.first();
+            rs.first(); // is it worth it?
 
             while (rs.next()) {
                 c = new Contract(
