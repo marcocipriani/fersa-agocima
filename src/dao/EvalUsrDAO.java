@@ -24,7 +24,7 @@ public class EvalUsrDAO {
     public static Vector<EvalUsr> findEvalMadeByYou(String nickname) {
 
         Vector<EvalUsr> results = new Vector<EvalUsr>();
-        EvalUsr eu = null;
+        EvalUsr eu;
 
         try {
             conn = ConnectTools.getConnection();
