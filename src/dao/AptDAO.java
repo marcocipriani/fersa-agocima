@@ -11,9 +11,9 @@ import java.util.Vector;
 
 public class AptDAO {
 
-    private static final String SEARCH_ID_QUERY = "select * from Apt where \"id\" = ?";
-    private static final String SEARCH_ADDRESS_QUERY = "select * from Apt where \"address\" = ?";
-    private static final String SEARCH_OWNER_QUERY = "select * from Apt where \"owner\" = ?";
+    private static final String SEARCH_ID_QUERY = "select * from Apt where id = ?";
+    private static final String SEARCH_ADDRESS_QUERY = "select * from Apt where address = ?";
+    private static final String SEARCH_OWNER_QUERY = "select * from Apt where owner = ?";
 
     private static Connection conn = null;
     private static PreparedStatement stmt = null;

@@ -11,16 +11,16 @@ import java.util.Vector;
 
 public class EvalUsrDAO {
 
-    private static final String SEARCH_AUTHOR_QUERY = "select * from \"EvalUsr\" where \"evalusr\" = ?";
-    private static final String SEARCH_NICKNAME_QUERY = "select * from \"EvalUsr\" where \"nickname\" = ?";
-    private static final String CREATE_QUERY = "insert into \"EvalUsr\" values (?,?,?,FALSE,?,?)";
-    private static final String UPDATE_QUERY = "update \"EvalUsr\" set \"text\" = ?, \"stars\" = ?, \"status\" = FALSE where \"id\" = ?";
-    private static final String DELETE_QUERY = "delete from \"EvalUsr\" where \"id\" = ?";
+    private static final String SEARCH_AUTHOR_QUERY = "select * from EvalUsr where evalusr = ?";
+    private static final String SEARCH_NICKNAME_QUERY = "select * from EvalUsr where nickname = ?";
+    private static final String CREATE_QUERY = "insert into EvalUsr values (?,?,?,FALSE,?,?)";
+    private static final String UPDATE_QUERY = "update EvalUsr set text = ?, stars = ?, status = FALSE where id = ?";
+    private static final String DELETE_QUERY = "delete from EvalUsr where id = ?";
 
     private static Connection conn = null;
     private static PreparedStatement stmt = null;
 
-    // valutazioni fatte da te
+    // evaluations where evalusr is nickname
     public static Vector<EvalUsr> findEvalMadeByYou(String nickname) {
 
         Vector<EvalUsr> results = new Vector<EvalUsr>();
@@ -51,7 +51,7 @@ public class EvalUsrDAO {
         return results;
     }
 
-    // valutazioni su di te
+    // evaluations where owner is nickname
     public static Vector<EvalUsr> findYourEvals(String nickname) {
 
         Vector<EvalUsr> results = new Vector<EvalUsr>();
@@ -124,5 +124,4 @@ public class EvalUsrDAO {
         finally { ConnectTools.closeConnection(stmt, conn); }
 
     }
-    // TO_DO ritornare int di successo oppure -1
 }

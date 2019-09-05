@@ -27,7 +27,7 @@ public class Indexing {
             index = rs.getInt("id");
             index ++;
 
-        } catch (SQLException se) { System.out.println("Errore in SQL askForIndex"); se.printStackTrace(); }
+        } catch (SQLException se) { System.out.println("Error in SQL askForIndex"); se.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
 
         return index;
