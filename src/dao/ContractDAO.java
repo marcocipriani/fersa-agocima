@@ -41,15 +41,15 @@ public class ContractDAO {
             rs.first(); // is it worth it?
 
             while (rs.next()) {
-                c = new Contract(
-                        rs.getInt("id"),
-                        rs.getString("renter"),
-                        rs.getString("tenant"),
-                        rs.getInt("apt"),
-                        rs.getBoolean("expired")
-                        );
-                results.add(c);
-                System.out.println(c);
+                    c = new Contract(
+                            rs.getInt("id"),
+                            rs.getString("renter"),
+                            rs.getString("tenant"),
+                            rs.getInt("apt"),
+                            rs.getBoolean("expired")
+                    );
+                    results.add(c);
+                    System.out.println(c);
             }
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
