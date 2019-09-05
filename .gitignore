@@ -3,4 +3,5 @@
 /bin/
 .settings/
 ./fersa-agocima.iml
+./pwd.txt
 ./src/Test.java
