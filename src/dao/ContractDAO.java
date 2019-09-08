@@ -32,7 +32,7 @@ public class ContractDAO {
             if (actualRole) {
                 stmt.setString(1, "tenant");
             } else { stmt.setString(1, "renter"); }
-            stmt.setString(2, nickname);
+            stmt.setString(2, "'" + nickname + "'");
             System.out.println(stmt);
 
             stmt.execute();
