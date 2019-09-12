@@ -3,12 +3,14 @@
 
 
 <!-- Si dichiara la variabile loginBean e istanzia un oggetto LoginBean -->
-<jsp:useBean id="loginBean" scope="session"
-             class="bean.LoginBean"/>
+<jsp:useBean id="loginBean" scope="session" class="bean.LoginBean"/>
+<jsp:useBean id="searchBean" scope="session" class="bean.SearchBean" />
              
 
 <!-- Mappa automaticamente tutti gli attributi dell'oggetto loginBean e le proprietà JSP -->
-<jsp:setProperty name="loginBean" property="*"/>
+<jsp:setProperty name="loginBean" property="username"/>
+<jsp:setProperty name="loginBean" property="password"/>
+<jsp:setProperty name="searchBean" property="searchKeyWord"/>
 
 <%
     if (request.getParameter("login") != null) {
@@ -20,12 +22,12 @@
             <%
         } else {
             %>
-            <p style="text-color:red;">Dati errati</p>
+            <p style="text-color:red; text-align: center;">Dati errati</p>
             <%
         }
     } else {
         %>
-        <p class="text-info">Accesso non effettuato</p>
+        <p class="text-info" style="text-align: right;">Accesso non effettuato</p>
         <%
     }
 %>
@@ -42,7 +44,7 @@
     <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body class="homepage">
-    <div class="container login">
+    <div class="container text-center login">
 
             <h2>Accesso all'area riservata</h2>
             <form action="HomePage.jsp" name="loginForm" method="POST">
@@ -50,13 +52,13 @@
                 <div class="row">
                     <div class="col-lg-4 form-group">
                         <label for="username">Username</label>
-                        <input id="username" name="username" type="text">
+                        <input id="username" name="username" type="text" placeholder="gcantone">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 form-group">
                         <label for="password">Password</label>
-                        <input id="password" name="password" type="password">
+                        <input id="password" name="password" type="password" placeholder="fersa">
                     </div>
                 </div>
                 <div class="row">
@@ -73,9 +75,14 @@
         <h2>Ricerca di appartamenti o utenti</h2>
         <form action="SearchView.jsp" name="searchForm" method="get">
             <div class="row">
-                <input id="searchKeyword" name="searchKeyWord" type="text">
-                <input id="" name="search" type="radio">
+                <input id="searchKeyword" name="searchKeyWord" type="text" placeholder="Digitare indirizzo o username">
             </div>
+            <div class="row">
+                <input id="userRadio" name="searchUser" type="radio">
+                <input id="aptRadio" name="searchApt" type="radio">
+            </div>
+
+<%--            IF TRUE APT, FALSE USR--%>
             <div class="row">
                 <input name="searchButton" type="submit" id="search" value="Cerca">
             </div>
