@@ -1,9 +1,9 @@
-<%@ page import="Dao.UsrDAO" %>
+<%@ page import="dao.UsrDAO" %>
 <%@ page import="model.ActualUsr" %>
 <%@ page import="model.EvalUsr" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.Vector" %>
-<%@ page import="Dao.EvalUsrDAO" %>
+<%@ page import="dao.EvalUsrDAO" %>
 <%@ page import= "java.util.Iterator" %>
 
 
