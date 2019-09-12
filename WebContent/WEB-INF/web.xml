@@ -5,12 +5,7 @@
          version="3.1">
          
     <welcome-file-list>
-        <welcome-file>LoginPage.jsp</welcome-file>
-        <welcome-file>RiassuntoLogin.jsp</welcome-file>
-        <welcome-file>index.html</welcome-file>
-        <welcome-file>altraPagina.html</welcome-file>
+        <welcome-file>HomePage.jsp</welcome-file>
 
     </welcome-file-list>
-    
-    
 </web-app>

@@ -13,7 +13,7 @@
 
 
 
-<% ActualUsr au = UsrDAO.findByNickname(loginBean.getUsername(), loginBean.getPassword(), false);
+<% ActualUsr au = UsrDAO.findByUsername(loginBean.getUsername(), loginBean.getPassword(), false);
 	loginBean.setNome(au.getName());
 
 	
@@ -55,7 +55,7 @@
             <tr> <!--  a row for each result -->
                 <td><%= eu.getId() %></td>
                 <td><%= eu.getEvalusr() %></td>
-                <td><%= eu.getNickname() %></td>
+                <td><%= eu.getUsername() %></td>
                 <td><%= eu.getStars() %></td>
                 <td><%= eu.getText() %></td>
             </tr>
