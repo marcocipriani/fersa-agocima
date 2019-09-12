@@ -68,7 +68,7 @@ public class AptDAO {
         return results;
     }
 
-    public static Vector<Apt> findByOwner(String nickname) {
+    public static Vector<Apt> findByOwner(String username) {
 
         Vector<Apt> results = new Vector<Apt>();
         Apt a = null;
@@ -76,7 +76,7 @@ public class AptDAO {
         try {
             conn = ConnectTools.getConnection();
             stmt = conn.prepareStatement(SEARCH_OWNER_QUERY);
-            stmt.setString(1, nickname);
+            stmt.setString(1, username);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
 

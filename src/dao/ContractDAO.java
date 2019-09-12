@@ -16,7 +16,7 @@ public class ContractDAO {
     private static Connection conn = null;
     private static PreparedStatement stmt = null;
 
-    public static Vector<Contract> findReadyToEvaluate(String nickname, boolean actualRole) {
+    public static Vector<Contract> findReadyToEvaluate(String username, boolean actualRole) {
         // if actualRole == true, search will be performed in tenant column
         // otherwise in renter
 
@@ -32,7 +32,7 @@ public class ContractDAO {
             if (actualRole) {
                 stmt.setString(1, "tenant");
             } else { stmt.setString(1, "renter"); }
-            stmt.setString(2, "'" + nickname + "'");
+            stmt.setString(2, "'" + username + "'");
             System.out.println(stmt);
 
             stmt.execute();

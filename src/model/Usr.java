@@ -8,14 +8,14 @@ import java.util.Arrays;
 
 public class Usr {
 
-    private String nickname;
+    private String username;
     private String name;
     private String pwd;
     private int roles; // 0 renter, 1 tenant, 2 renter + tenant
     private boolean reported; // 0 ok, 1 segnalato
 
-    public Usr(String nickname, String name, String pwd, int roles, boolean reported) {
-        this.nickname = nickname;
+    public Usr(String username, String name, String pwd, int roles, boolean reported) {
+        this.username = username;
         this.name = name;
         this.pwd = pwd;
         this.roles = roles;
@@ -30,19 +30,19 @@ public class Usr {
         } else if (roles == 1) { stringRoles = "Tenant";
         } else { stringRoles = "Renter"; }
 
-        return "Utente: " + nickname +
+        return "Utente: " + username +
                 " (password '" + pwd + "\'" +
                 ", segnalato " + reported + ")" +
                 " di tipo " + stringRoles +
                 ' ';
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {

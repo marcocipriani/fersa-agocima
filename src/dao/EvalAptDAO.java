@@ -20,8 +20,8 @@ public class EvalAptDAO {
     private static Connection conn = null;
     private static PreparedStatement stmt = null;
 
-    // evaluations where evalusr is nickname
-    public static Vector<EvalApt> findEvalMadeByYou(String nickname) {
+    // evaluations where evalusr is username
+    public static Vector<EvalApt> findEvalMadeByYou(String username) {
 
         Vector<EvalApt> results = new Vector<EvalApt>();
         EvalApt ea;
@@ -29,7 +29,7 @@ public class EvalAptDAO {
         try {
             conn = ConnectTools.getConnection();
             stmt = conn.prepareStatement(SEARCH_AUTHOR_QUERY);
-            stmt.setString(1, nickname);
+            stmt.setString(1, username);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
 
@@ -51,8 +51,8 @@ public class EvalAptDAO {
         return results;
     }
 
-    // evaluations where owner is nickname
-    public static Vector<EvalApt> findYourApts(String nickname) {
+    // evaluations where owner is username
+    public static Vector<EvalApt> findYourApts(String username) {
 
         Vector<EvalApt> results = new Vector<EvalApt>();
         EvalApt ea = null;
@@ -60,7 +60,7 @@ public class EvalAptDAO {
         try {
             conn = ConnectTools.getConnection();
             stmt = conn.prepareStatement(SEARCH_OWNER_QUERY);
-            stmt.setString(1, nickname);
+            stmt.setString(1, username);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
 

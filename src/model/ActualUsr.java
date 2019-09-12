@@ -9,8 +9,8 @@ public class ActualUsr extends Usr{
 
     private boolean actualRole = false; // 0 renter, 1 tenant
 
-    public ActualUsr(String nickname, String name, String pwd, int roles, boolean reported, boolean actualRole) {
-        super(nickname, name, pwd, roles, reported);
+    public ActualUsr(String username, String name, String pwd, int roles, boolean reported, boolean actualRole) {
+        super(username, name, pwd, roles, reported);
         this.actualRole = actualRole;
     }
 
