@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<jsp:useBean id="">
+
 <html>
 <head>
     <title>SearchView</title>

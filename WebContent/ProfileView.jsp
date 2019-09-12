@@ -8,7 +8,7 @@
 
 
 
-<jsp:useBean id="loginBean" scope="session" type="model.LoginBean"/>
+<jsp:useBean id="loginBean" scope="session" type="bean.LoginBean"/>
 <!--  jsp:useBean id="userLogged" scope="session" class="model.ActualUsr"/> -->
 
 
