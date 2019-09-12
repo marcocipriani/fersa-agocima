@@ -1,6 +1,7 @@
-package model;
+package controller;
 
 import dao.UsrDAO;
+import model.Usr;
 
 public class LoginController {
 
@@ -23,7 +24,6 @@ public class LoginController {
      * @return l'utente loggato oppure null se nessun utente corrisponde alla coppia username/password
      */
     public Usr login(String username, String password) {
-        //Utente u = UtendeDao.findByNameAndPassword(username, password);
         Usr u = UsrDAO.findByUsername(username, password, false);
         return u;
     }
