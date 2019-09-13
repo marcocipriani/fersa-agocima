@@ -10,11 +10,10 @@
 <!-- Mappa automaticamente tutti gli attributi dell'oggetto loginBean e le proprietà JSP -->
 <jsp:setProperty name="loginBean" property="username"/>
 <jsp:setProperty name="loginBean" property="password"/>
-<jsp:setProperty name="searchBean" property="searchKeyWord"/>
+<jsp:setProperty name="searchBean" property="searchkeyword"/>
 
 <%
     if (request.getParameter("login") != null) {
-    	System.out.println("inizio validate");
     	if (loginBean.validate()) {
             %>
             <!-- Passa il controllo alla nuova pagina -->
@@ -30,6 +29,11 @@
         <p class="text-info" style="text-align: right;">Accesso non effettuato</p>
         <%
     }
+
+	if (request.getParameter("search") != null) {
+		System.out.println(searchBean.getSearchkeyword());
+	  	  %><jsp:forward page="SearchView.jsp"/><% 	
+	} else {}
 %>
 
 <!DOCTYPE html>
@@ -52,13 +56,13 @@
                 <div class="row">
                     <div class="col-lg-4 form-group">
                         <label for="username">Username</label>
-                        <input id="username" name="username" type="text" placeholder="gcantone">
+                        <input id="username" name="username" type="text" placeholder="utente">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 form-group">
                         <label for="password">Password</label>
-                        <input id="password" name="password" type="password" placeholder="fersa">
+                        <input id="password" name="password" type="password" placeholder="password">
                     </div>
                 </div>
                 <div class="row">
@@ -73,9 +77,9 @@
     <div class="container text-center search">
 
         <h2>Ricerca di appartamenti o utenti</h2>
-        <form action="SearchView.jsp" name="searchForm" method="get">
+        <form action="SearchView.jsp" name="searchForm" method="POST">
             <div class="row">
-                <input id="searchKeyword" name="searchKeyWord" type="text" placeholder="Digitare indirizzo o username">
+                <input id="searchkeyword" name="searchkeyword" type="text"  style="width: 250px" placeholder="Digitare indirizzo o username">
             </div>
             <div class="row">
                 <input id="userRadio" name="searchUser" type="radio">
@@ -84,7 +88,7 @@
 
 <%--            IF TRUE APT, FALSE USR--%>
             <div class="row">
-                <input name="searchButton" type="submit" id="search" value="Cerca">
+                <input name="searchButton" type="submit" id="search" value="Cerca" class="btn btn-info">
             </div>
 
         </form>

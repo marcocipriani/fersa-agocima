@@ -4,20 +4,20 @@ import controller.LoginController;
 import model.Usr;
 
 public class SearchBean {
-	private String searchKeyword;
+	private String searchkeyword;
 	private boolean choice;
 
 	public SearchBean() {
-		this.searchKeyword = "";
+		this.searchkeyword = "";
 		this.choice = false;
 	}
 
-	public String getSearchKeyword() {
-		return searchKeyword;
+	public String getSearchkeyword() {
+		return searchkeyword;
 	}
 
-	public void setSearchKeyword(String searchKeyword) {
-		this.searchKeyword = searchKeyword;
+	public void setSearchkeyword(String searchkeyword) {
+		this.searchkeyword = searchkeyword;
 	}
 
 	public boolean isChoice() {

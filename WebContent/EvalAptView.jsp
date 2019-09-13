@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:useBean id="ea" scope="page" class="model.EvalApt">
-<jsp:useBean id="apt" scope="session" class="model.Apt">
+<jsp:useBean id="ea" scope="page" class="model.EvalApt"/>
+<jsp:useBean id="apt" scope="session" class="model.Apt"/>
 
 <html>
 <head>

@@ -1,26 +1,57 @@
 <%@ page import="model.EvalApt" %>
+<%@ page import="model.Eval" %>
 <%@ page import="dao.EvalUsrDAO" %>
 <%@ page import="java.util.Vector" %>
+<%@ page import="java.util.Arrays" %>
 <%@ page import="dao.EvalAptDAO" %>
-<%@ page import="model.Eval" %>
+<%@ page import="model.EvalUsr" %>
+<%@ page import="bean.SearchBean" %>
+<%@ page import="controller.SearchController" %>
+
+
+
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:useBean id="apt" scope="session" type="model.Apt">
+<jsp:useBean id="searchBean" scope="session" type="bean.SearchBean"/>
 
-<jsp:useBean id="ea" scope="session" class="model.EvalApt">
-<jsp:useBean id="apt" scope="session" type="model.Apt">
+
+
+
+
+<!-- jsp:useBean id="apt" scope="session" type="model.Apt" -->
+<!-- jsp:useBean id="ea" scope="session" class="model.EvalApt" -->
 
 
 <%-- if searchBean.coiche == searchApt
         find --%>
 <%
-    Vector<Eval> evalList;
+	
+	Eval[] e;
+	e = SearchController.searchList(searchBean.isChoice(), searchBean.getSearchkeyword());
+	System.out.println(e);
+	System.out.println(searchBean.getSearchkeyword());
 
-    if (searchBean.choice){
-        evalList = EvalAptDAO.findEvalMadeByYou(loginBean.getNome());
-    } else {
-        evalList = EvalUsrDAO.findEvalMadeByYou(loginBean.getNome());
-    }
+	
+
+
+
+
+	//Vector evalList;
+	//Eval [] e;
+	
+
+    /*if (searchBean.isChoice()){
+    	Vector evalList= EvalAptDAO.findEvalMadeByYou(searchBean.getSearchkeyword());
+    	EvalApt[] e = new EvalApt[evalList.size()];
+    	evalList.toArray(e);
+    	return e;
+    	}
+    else {
+    	evalList= EvalUsrDAO.findEvalMadeByYou(loginBean.getNome());
+    	e = new EvalUsr[evalList.size()];
+    	evalList.toArray(e);
+    }*/
 %>
 
 <html>
@@ -35,21 +66,19 @@
     <hr>
 
     <%
-        for (int i = 0; i < evalList.size(); i++) {
-    %>
-    <div>
+        for (int i = 0; i < e.length; i++) {
+    
+    
 
-        Valutazione #: <%= evalList.get(i).getId(); %>
-        Voto: <%= evalList.get(i).getStars(); %>
-        <p>Testo: <%= evalList.get(i).getText(); %></p>
-        Autore: <%= evalList.get(i).getEvalusr(); %>
+       System.out.println(e[i].getId());
+       System.out.println(e[i].getStars()); 
+       System.out.println(e[i].getText());
+       System.out.println(e[i].getEvalusr());
 
-    </div>
 
-    <%
+
         }
     %>
-
-
+    
 </body>
 </html>

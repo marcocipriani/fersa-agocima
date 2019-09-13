@@ -9,13 +9,12 @@
 
 
 <jsp:useBean id="loginBean" scope="session" type="bean.LoginBean"/>
-<!--  jsp:useBean id="userLogged" scope="session" class="model.ActualUsr"/> -->
+<jsp:useBean id="searchBean" scope="session" type="bean.SearchBean"/>
 
 
 
 <% ActualUsr au = UsrDAO.findByUsername(loginBean.getUsername(), loginBean.getPassword(), false);
 	loginBean.setNome(au.getName());
-
 	
 	//UsrDAO.findByNickname(loginBean.getUsername(), loginBean.getPassword(), false);
 	//String firstName = userLogged.getName();	
@@ -47,10 +46,11 @@
         <tbody>
         <%
             Vector evalList = EvalUsrDAO.findEvalMadeByYou(loginBean.getNome()); // firstName = au.something HEREEEEEEEEEEEEEEEE
+            System.out.println(searchBean.getSearchkeyword());
             Iterator evalListIterator = evalList.iterator();
-            EvalUsr eu;
+            //EvalUsr eu;
             while (evalListIterator.hasNext()){
-                eu = (EvalUsr) evalListIterator.next();
+               EvalUsr eu = (EvalUsr) evalListIterator.next();
         %>
             <tr> <!--  a row for each result -->
                 <td><%= eu.getId() %></td>

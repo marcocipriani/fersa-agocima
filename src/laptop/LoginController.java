@@ -22,7 +22,7 @@ import laptop.ControllerViewRenter;
 public class LoginController {
 	
     @FXML
-    private TextField nickname;
+    private TextField username;
     
     @FXML
     private PasswordField pwd;
@@ -42,10 +42,10 @@ public class LoginController {
     
     @FXML
     void EffLogin(ActionEvent event) {
-    	String user =nickname.getText();
+    	String user =username.getText();
     	String password=pwd.getText();
     	ActualUsr d;
-    	d = UsrDAO.findByNickname(user, password, false); 
+    	d = UsrDAO.findByUsername(user, password, false); 
     	if (isTenant.isSelected()==false) {
     		System.out.println(password);
     		System.out.println(d.getPwd());
