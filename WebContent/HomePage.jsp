@@ -24,7 +24,7 @@
         }
     } else {
         %>
-        <p class="text-info" style="text-align: right;">Accesso non effettuato</p>
+        <p class="text-info" style="text-align: center;">Accesso non effettuato</p>
         <%
     }
 %>
@@ -57,46 +57,56 @@
 <body class="homepage">
     <div class="container text-center login">
 
-            <h2>Accesso all'area riservata</h2>
-            <form action="HomePage.jsp" name="loginForm" method="POST">
+        <h2>Accesso all'area riservata</h2>
 
-                <div class="row">
-                    <div class="col-lg-4 form-group">
-                        <label for="username">Username</label>
-                        <input id="username" name="username" type="text" placeholder="utente">
-                    </div>
+        <form action="HomePage.jsp" name="loginForm" method="POST" align="center">
+            <div class="row">
+                <div class="col-8 offset-2 form-group">
+                    <label for="username">Username</label>
+                    <input id="username" name="username" type="text" placeholder="username" class="form-control">
                 </div>
-                <div class="row">
-                    <div class="col-lg-4 form-group">
-                        <label for="password">Password</label>
-                        <input id="password" name="password" type="password" placeholder="password">
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-8 offset-2 form-group">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" placeholder="password" class="form-control">
                 </div>
-                <div class="row">
-                    <div class="col-lg-4 text-center">
-                        <input name="login" type="submit" id="login" value="Accedi" class="btn btn-info">
-                        <input name="reset" type="reset" id="reset" class="btn btn-warning">
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <input id="login" type="submit" name="login" value="Accedi" class="btn btn-info">
+                    <input type="reset" name="reset" class="btn btn-outline-info">
                 </div>
-            </form>
+            </div>
+        </form>
 
     </div>
+
     <div class="container text-center search">
 
         <h2>Ricerca di appartamenti o utenti</h2>
+
         <form action="HomePage.jsp" name="searchForm" method="POST">
             <div class="row">
-                <input id="searchKeyword" name="searchKeyword" type="text"  value="" style="width: 250px" placeholder="Digitare indirizzo o username">
+                <div class="col-8 offset-2 text-center form-group">
+                    <input id="searchKeyword" name="searchKeyword" type="text"  value="" placeholder="Digitare indirizzo o username" class="form-control">
+                </div>
             </div>
             <div class="row">
-                <%-- if false apt, true usr --%>
-                <label for="aptRadio">Ricerca appartamento</label><input id="aptRadio" type="radio" name="choice" value="false">
-                <label for="userRadio">Ricerca utente</label><input id="userRadio" type="radio" name="choice" value="true">
+                <div class="col-4 offset-2 form-group">
+                    <%-- if false apt, true usr --%>
+                    <label for="aptRadio">Ricerca appartamento</label><input id="aptRadio" type="radio" name="choice" value="false" checked>
+                </div>
+                <div class="col-4 form-group">
+                    <%-- if false apt, true usr --%>
+                    <label for="userRadio">Ricerca utente</label><input id="userRadio" type="radio" name="choice" value="true">
+                </div>
             </div>
-
-
             <div class="row">
-                <input id="searchButton" type="submit" name="search" value="Cerca" class="btn btn-info">
+                <div class="col text-center">
+                    <input id="searchButton" type="submit" name="search" value="Cerca" class="btn btn-success">
+                    <input type="reset" name="reset" class="btn btn-outline-success">
+                </div>
             </div>
 
         </form>
