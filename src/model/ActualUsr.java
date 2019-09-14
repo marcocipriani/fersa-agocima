@@ -5,7 +5,7 @@
 package model;
 
 
-public class ActualUsr extends Usr{
+public class ActualUsr extends Usr {
 
     private boolean actualRole = false; // 0 renter, 1 tenant
 
