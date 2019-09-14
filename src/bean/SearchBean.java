@@ -1,31 +1,28 @@
 package bean;
 
-import controller.LoginController;
-import model.Usr;
-
 public class SearchBean {
-	private String searchkeyword;
+	private String searchKeyword;
 	private boolean choice;
 
 	public SearchBean() {
-		this.searchkeyword = "";
-		this.choice = false;
+		this.searchKeyword = "";
+		this.choice = false; // default searching for apt
 	}
 
-	public String getSearchkeyword() {
-		return searchkeyword;
+	public String getSearchKeyword() {
+		return searchKeyword;
 	}
 
-	public void setSearchkeyword(String searchkeyword) {
-		this.searchkeyword = searchkeyword;
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
 	}
 
 	public boolean isChoice() {
 		return choice;
 	}
 
-	public void setChoice(boolean coiche) {
-		this.choice = coiche;
+	public void setChoice(boolean choice) {
+		this.choice = choice;
 	}
 
 }
