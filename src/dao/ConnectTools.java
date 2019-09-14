@@ -12,7 +12,7 @@ public class ConnectTools {
     private static final String DRIVER_CLASS_NAME = "org.postgresql.Driver";
     private static final String URL = "jdbc:postgresql://localhost:5432/agocimadb";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "galaxy070592"; //getPassword(); retrieve pwd from pwd.txt in root project directory
+    private static final String PASSWORD = getPassword(); // retrieve pwd from pwd.txt in root project directory
 
     private static Connection conn = null;
 
@@ -45,7 +45,7 @@ public class ConnectTools {
         String s = null;
 
         try {
-            in = new BufferedReader( new FileReader("./pwd.txt"));
+            in = new BufferedReader( new FileReader("pwd.txt"));
         } catch (FileNotFoundException fnfe) { System.out.println("File pwd.txt not found\n"); fnfe.printStackTrace(); }
 
 
