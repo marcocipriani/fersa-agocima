@@ -77,18 +77,12 @@
     <div class="container text-center search">
 
         <h2>Ricerca di appartamenti o utenti</h2>
-        <form action="SearchView.jsp" name="searchForm" method="POST">
+        <form action="HomePage.jsp" name="searchForm" method="POST">
             <div class="row">
                 <input id="searchkeyword" name="searchkeyword" type="text"  style="width: 250px" placeholder="Digitare indirizzo o username">
             </div>
             <div class="row">
-                <input id="userRadio" name="searchUser" type="radio">
-                <input id="aptRadio" name="searchApt" type="radio">
-            </div>
-
-<%--            IF TRUE APT, FALSE USR--%>
-            <div class="row">
-                <input name="searchButton" type="submit" id="search" value="Cerca" class="btn btn-info">
+                <input name="search" type="submit" id="search" value="Cerca" class="btn btn-info">
             </div>
 
         </form>

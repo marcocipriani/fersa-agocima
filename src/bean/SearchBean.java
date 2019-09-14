@@ -1,7 +1,7 @@
 package bean;
 
-import controller.LoginController;
-import model.Usr;
+import controller.SearchController;
+
 
 public class SearchBean {
 	private String searchkeyword;
@@ -16,8 +16,8 @@ public class SearchBean {
 		return searchkeyword;
 	}
 
-	public void setSearchkeyword(String searchkeyword) {
-		this.searchkeyword = searchkeyword;
+	public void setSearchkeyword(String keyword) {
+		this.searchkeyword = keyword;
 	}
 
 	public boolean isChoice() {

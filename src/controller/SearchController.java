@@ -16,7 +16,7 @@ public class SearchController {
 	
 	public static Eval[] searchList(boolean choice, String keyword ) {
         if (choice == false) {
-        	Vector evalList= EvalAptDAO.findEvalMadeByYou(keyword);
+        	Vector evalList= EvalAptDAO.findByAddress(keyword);
         	EvalApt[] e = new EvalApt[evalList.size()];
         	evalList.toArray(e);
         	return e;       	
