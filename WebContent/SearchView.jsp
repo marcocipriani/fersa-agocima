@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+
 <%@ page import="model.EvalApt" %>
 <%@ page import="model.Eval" %>
 <%@ page import="dao.EvalUsrDAO" %>
@@ -8,16 +10,7 @@
 <%@ page import="bean.SearchBean" %>
 <%@ page import="controller.SearchController" %>
 
-
-
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <jsp:useBean id="searchBean" scope="session" type="bean.SearchBean"/>
-
-
-
-
 
 <!-- jsp:useBean id="apt" scope="session" type="model.Apt" -->
 <!-- jsp:useBean id="ea" scope="session" class="model.EvalApt" -->
@@ -25,24 +18,20 @@
 
 <%-- if searchBean.coiche == searchApt
         find --%>
+
+
 <%
-	
-	Eval[] e;
-	e = SearchController.searchList(searchBean.isChoice(), searchBean.getSearchkeyword());
-	System.out.println(e);
-	System.out.println(searchBean.getSearchkeyword());
-
-	
-
-
-
+    System.out.println("Parola chiave: " + searchBean.getSearchKeyword());
+    System.out.println("Selezione: " + searchBean.isChoice());
+	Vector<Eval> resultList = SearchController.searchList(searchBean.isChoice(), searchBean.getSearchKeyword());
+	System.out.println(resultList);
 
 	//Vector evalList;
 	//Eval [] e;
 	
 
     /*if (searchBean.isChoice()){
-    	Vector evalList= EvalAptDAO.findEvalMadeByYou(searchBean.getSearchkeyword());
+    	Vector evalList= EvalAptDAO.findEvalMadeByYou(searchBean.getSearchKeyword());
     	EvalApt[] e = new EvalApt[evalList.size()];
     	evalList.toArray(e);
     	return e;
@@ -56,29 +45,75 @@
 
 <html>
 <head>
-    <title>SearchView</title>
+    <title>SearchView.jsp</title>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+    <div class="container text-center">
 
-    <h1>Ricerca di appartamenti e utenti</h1>
-    <p>Hai cercato ' SEARCH_KEYWORD '</p>
-    <p>NUMBER risultati</p>
-    <hr>
+<%
+    if (!searchBean.isChoice()) {
+%>
+        <h1>Ricerca di appartamenti</h1>
+<%
+    } else {
+%>
+        <h1>Ricerca di utenti</h1>
+<%
+    }
+%>
 
-    <%
-        for (int i = 0; i < e.length; i++) {
-    
-    
+        <p>Hai cercato "<%= searchBean.getSearchKeyword() %>"</p>
+        <p>
+<%
+            if(resultList.size() == 0) {
+%>
+            Nessun risultato. <a href="HomePage.jsp">Riprova</a>
+<%
+            } else if (resultList.size() == 1) {
+%>
+            1 risultato
+<%
+            } else {
+%>
+            <%= resultList.size() %> risultati
+<%
+            }
+%>
+        </p>
+        <hr>
 
-       System.out.println(e[i].getId());
-       System.out.println(e[i].getStars()); 
-       System.out.println(e[i].getText());
-       System.out.println(e[i].getEvalusr());
+<%
+            for (int i = 0; i < resultList.size(); i++) {
+%>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Stelle</th>
+                        <th scope="col">Testo</th>
+                        <th scope="col">Autore della valutazione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><%= resultList.elementAt(i).getId() %></th>
+                        <td><%= resultList.elementAt(i).getStars() %></th>
+                        <td><%= resultList.elementAt(i).getText() %></th>
+                        <td><%= resultList.elementAt(i).getEvalusr() %></th>
+                    </tr>
+                </tbody>
+            </table>
 
 
 
-        }
-    %>
-    
+<%
+            }
+%>
+
+    </div>
 </body>
 </html>
