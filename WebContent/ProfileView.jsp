@@ -1,67 +1,78 @@
-<%@ page import="dao.UsrDAO" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+
 <%@ page import="model.ActualUsr" %>
-<%@ page import="model.EvalUsr" %>
-<%@ page import="java.sql.*" %>
+<%@ page import="model.Eval" %>
+<%@ page import="dao.UsrDAO" %>
 <%@ page import="java.util.Vector" %>
-<%@ page import="dao.EvalUsrDAO" %>
-<%@ page import= "java.util.Iterator" %>
 
-
+<%@ page import="controller.ProfileController" %>
 
 <jsp:useBean id="loginBean" scope="session" type="bean.LoginBean"/>
 
-
-
 <% ActualUsr au = UsrDAO.findByUsername(loginBean.getUsername(), loginBean.getPassword(), false);
 	loginBean.setNome(au.getName());
-	
-	//UsrDAO.findByNickname(loginBean.getUsername(), loginBean.getPassword(), false);
-	//String firstName = userLogged.getName();	
-	 %>	
-	 
 
+    Vector<Eval> evalAboutYouList = ProfileController.getList(loginBean.getNome());
+%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>OK</title>
+    <title>ProfileView.jsp</title>
+
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
- 	
- 	Welcome <jsp:getProperty property="nome" name="loginBean"/> <jsp:getProperty property="username" name="loginBean"/>
-	
-	Tabella delle valutazioni fatte da te
-    <table>
-        <thead>
+    <div class="container text-center">
+
+        <h2>Bentornato <jsp:getProperty property="nome" name="loginBean"/></h2>
+        <p>Ti sei loggato come
+<%
+        if(!au.isActualRole()) {
+%>
+                tenant (pezzente)
+<%
+        } else {
+%>
+            renter (proprietario)
+<%
+        }
+%>
+        </p>
+
+    <hr>
+
+    <p>Valutazioni su di te</p>
+    <table class="table">
+        <thead class="thead-light">
             <tr>
-                <th>ID</th>
-                <th>Autore della valutazione</th>
-                <th>Soggetto della valutazione</th>
-                <th>Stelle</th>
-                <th>Testo</th>
+                <th scope="col">ID</th>
+                <th scope="col">Stelle</th>
+                <th scope="col">Testo</th>
+                <th scope="col">Autore della valutazione</th>
             </tr>
         </thead>
         <tbody>
-        <%
-            Vector evalList = EvalUsrDAO.findEvalMadeByYou(loginBean.getNome());
-            Iterator evalListIterator = evalList.iterator();
-            //EvalUsr eu;
-            while (evalListIterator.hasNext()){
-               EvalUsr eu = (EvalUsr) evalListIterator.next();
-        %>
-            <tr> <!--  a row for each result -->
-                <td><%= eu.getId() %></td>
-                <td><%= eu.getEvalusr() %></td>
-                <td><%= eu.getUsername() %></td>
-                <td><%= eu.getStars() %></td>
-                <td><%= eu.getText() %></td>
+<%
+            for (int i = 0; i < evalAboutYouList.size(); i++) {
+%>
+        <!--  a row for each result -->
+            <tr>
+                <td><%= evalAboutYouList.elementAt(i).getId() %></td>
+                <td><%= evalAboutYouList.elementAt(i).getStars() %></td>
+                <td><%= evalAboutYouList.elementAt(i).getText() %></td>
+                <td><%= evalAboutYouList.elementAt(i).getEvalusr() %></td>
             </tr>
-        <%
+<%
             }
-        %>
+%>
         </tbody>
     </table>
+
+    </div>
 
 </body>
 </html>

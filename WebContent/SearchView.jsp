@@ -1,46 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 
-<%@ page import="model.EvalApt" %>
 <%@ page import="model.Eval" %>
-<%@ page import="dao.EvalUsrDAO" %>
-<%@ page import="java.util.Vector" %>
-<%@ page import="java.util.Arrays" %>
-<%@ page import="dao.EvalAptDAO" %>
-<%@ page import="model.EvalUsr" %>
 <%@ page import="bean.SearchBean" %>
 <%@ page import="controller.SearchController" %>
+<%@ page import="java.util.Vector" %>
 
 <jsp:useBean id="searchBean" scope="session" type="bean.SearchBean"/>
-
-<!-- jsp:useBean id="apt" scope="session" type="model.Apt" -->
-<!-- jsp:useBean id="ea" scope="session" class="model.EvalApt" -->
-
-
-<%-- if searchBean.coiche == searchApt
-        find --%>
-
 
 <%
     System.out.println("Parola chiave: " + searchBean.getSearchKeyword());
     System.out.println("Selezione: " + searchBean.isChoice());
 	Vector<Eval> resultList = SearchController.searchList(searchBean.isChoice(), searchBean.getSearchKeyword());
-	System.out.println(resultList);
-
-	//Vector evalList;
-	//Eval [] e;
-	
-
-    /*if (searchBean.isChoice()){
-    	Vector evalList= EvalAptDAO.findEvalMadeByYou(searchBean.getSearchKeyword());
-    	EvalApt[] e = new EvalApt[evalList.size()];
-    	evalList.toArray(e);
-    	return e;
-    	}
-    else {
-    	evalList= EvalUsrDAO.findEvalMadeByYou(loginBean.getNome());
-    	e = new EvalUsr[evalList.size()];
-    	evalList.toArray(e);
-    }*/
 %>
 
 <html>
@@ -107,8 +77,6 @@
                     </tr>
                 </tbody>
             </table>
-
-
 
 <%
             }

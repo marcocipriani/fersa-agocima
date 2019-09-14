@@ -37,11 +37,7 @@
         %>
             <jsp:forward page="SearchView.jsp"/>
         <%
-	}//  else {
-        %>
-            <!-- <p class="text-info" style="text-align: right;">Immettere parola chiave</p> -->
-        <%
-    // }
+	}
 %>
 
 <!DOCTYPE html>
@@ -73,6 +69,12 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-8 offset-2 form-group">
+                    <label for="isTenant">Entrare come proprietario?</label>
+                    <input id="isTenant" name="isTenant" type="checkbox" class="form-check-input"  value="true">
+                </div>
+            </div>
+            <div class="row">
                 <div class="col text-center">
                     <input id="login" type="submit" name="login" value="Accedi" class="btn btn-info">
                     <input type="reset" name="reset" class="btn btn-outline-info">
@@ -93,12 +95,11 @@
                 </div>
             </div>
             <div class="row">
+                <%-- if false apt, true usr --%>
                 <div class="col-4 offset-2 form-group">
-                    <%-- if false apt, true usr --%>
                     <label for="aptRadio">Ricerca appartamento</label><input id="aptRadio" type="radio" name="choice" value="false" checked>
                 </div>
                 <div class="col-4 form-group">
-                    <%-- if false apt, true usr --%>
                     <label for="userRadio">Ricerca utente</label><input id="userRadio" type="radio" name="choice" value="true">
                 </div>
             </div>
