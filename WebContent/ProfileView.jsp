@@ -9,7 +9,6 @@
 
 
 <jsp:useBean id="loginBean" scope="session" type="bean.LoginBean"/>
-<jsp:useBean id="searchBean" scope="session" type="bean.SearchBean"/>
 
 
 
@@ -45,8 +44,7 @@
         </thead>
         <tbody>
         <%
-            Vector evalList = EvalUsrDAO.findEvalMadeByYou(loginBean.getNome()); // firstName = au.something HEREEEEEEEEEEEEEEEE
-            System.out.println(searchBean.getSearchkeyword());
+            Vector evalList = EvalUsrDAO.findEvalMadeByYou(loginBean.getNome());
             Iterator evalListIterator = evalList.iterator();
             //EvalUsr eu;
             while (evalListIterator.hasNext()){

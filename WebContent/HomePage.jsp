@@ -1,22 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 
-
-<!-- Si dichiara la variabile loginBean e istanzia un oggetto LoginBean -->
+<!-- Creating LoginBean and SearchBean -->
 <jsp:useBean id="loginBean" scope="session" class="bean.LoginBean"/>
 <jsp:useBean id="searchBean" scope="session" class="bean.SearchBean" />
-             
 
-<!-- Mappa automaticamente tutti gli attributi dell'oggetto loginBean e le proprietà JSP -->
+<!-- Mapping JSP properties -->
 <jsp:setProperty name="loginBean" property="username"/>
 <jsp:setProperty name="loginBean" property="password"/>
-<jsp:setProperty name="searchBean" property="searchkeyword"/>
+<jsp:setProperty name="searchBean" property="searchKeyword"/>
+<jsp:setProperty name="searchBean" property="choice"/>
 
+<!-- Check on loginForm -->
 <%
     if (request.getParameter("login") != null) {
     	if (loginBean.validate()) {
             %>
-            <!-- Passa il controllo alla nuova pagina -->
             <jsp:forward page="ProfileView.jsp"/>
             <%
         } else {
@@ -29,11 +27,21 @@
         <p class="text-info" style="text-align: right;">Accesso non effettuato</p>
         <%
     }
+%>
 
+<!-- Check on searchForm -->
+<%
 	if (request.getParameter("search") != null) {
-		System.out.println(searchBean.getSearchkeyword());
-	  	  %><jsp:forward page="SearchView.jsp"/><% 	
-	} else {}
+		System.out.println(searchBean.getSearchKeyword());
+        System.out.println(searchBean.isChoice());
+        %>
+            <jsp:forward page="SearchView.jsp"/>
+        <%
+	}//  else {
+        %>
+            <!-- <p class="text-info" style="text-align: right;">Immettere parola chiave</p> -->
+        <%
+    // }
 %>
 
 <!DOCTYPE html>
@@ -42,10 +50,9 @@
     <title>Homepage.jsp</title>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="libs/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body class="homepage">
     <div class="container text-center login">
@@ -77,18 +84,19 @@
     <div class="container text-center search">
 
         <h2>Ricerca di appartamenti o utenti</h2>
-        <form action="SearchView.jsp" name="searchForm" method="POST">
+        <form action="HomePage.jsp" name="searchForm" method="POST">
             <div class="row">
-                <input id="searchkeyword" name="searchkeyword" type="text"  style="width: 250px" placeholder="Digitare indirizzo o username">
+                <input id="searchKeyword" name="searchKeyword" type="text"  value="" style="width: 250px" placeholder="Digitare indirizzo o username">
             </div>
             <div class="row">
-                <input id="userRadio" name="searchUser" type="radio">
-                <input id="aptRadio" name="searchApt" type="radio">
+                <%-- if false apt, true usr --%>
+                <label for="aptRadio">Ricerca appartamento</label><input id="aptRadio" type="radio" name="choice" value="false">
+                <label for="userRadio">Ricerca utente</label><input id="userRadio" type="radio" name="choice" value="true">
             </div>
 
-<%--            IF TRUE APT, FALSE USR--%>
+
             <div class="row">
-                <input name="searchButton" type="submit" id="search" value="Cerca" class="btn btn-info">
+                <input id="searchButton" type="submit" name="search" value="Cerca" class="btn btn-info">
             </div>
 
         </form>
