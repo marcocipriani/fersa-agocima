@@ -52,7 +52,7 @@ public class EvalUsrDAO {
     }
 
     // evaluations where owner is usernmae
-    public static Vector<EvalUsr> findYourEvals(String username) {
+    public static Vector<EvalUsr> findEvalAboutYou(String username) {
 
         Vector<EvalUsr> results = new Vector<EvalUsr>();
         EvalUsr eu = null;
