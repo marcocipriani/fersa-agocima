@@ -1,18 +1,17 @@
 package bean;
 
+import model.ActualUsr;
 import controller.LoginController;
-import model.Usr;
 
 public class LoginBean {
 	private String username;
 	private String password;
-	private String nome;
-	private String cognome;
+	private Boolean loginRole;
 
 	public LoginBean() {
 		this.username = "";
 		this.password = "";
-		this.nome = "";
+		this.loginRole = false;
 	}
 
 	public void setUsername(String user) {
@@ -31,28 +30,16 @@ public class LoginBean {
 		return this.password;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+	public Boolean getLoginRole() { return loginRole; }
 
-	public String getNome() {
-		return this.nome;
-	}
-
-	public void setCognome(String cogn) {
-		this.cognome = cogn;
-	}
-
-	public String getCognome() {
-		return this.cognome;
-	}
+	public void setLoginRole(Boolean loginRole) { this.loginRole = loginRole; }
 
 	public boolean validate() {
 		if (this.username.equals("") || this.password.equals("")) {
 			return false;
 		}
 		LoginController controller = LoginController.getInstance();
-		Usr found = controller.login(this.username, this.password);
+		ActualUsr found = controller.login(this.username, this.password, this.loginRole);
 		return  (found != null);
 	}
 
