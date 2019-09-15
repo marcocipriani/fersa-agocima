@@ -40,11 +40,11 @@ public class UsrDAO {
 
             if(isTenant && (roles == 1 || roles == 2)){
                 u.setActualRole(true);
-                System.out.println("@UsrDAO - Sei un proprietario tenant");
+                System.out.println("@UsrDAO.java - Sei un proprietario tenant");
             } else if (!isTenant && (roles == 0)){
-                System.out.println("@UsrDAO - Sei un inquilino renter");
+                System.out.println("@UsrDAO.java - Sei un inquilino renter");
             } else {
-                System.out.println("@UsrDAO - Non hai i privilegi necessari");
+                System.out.println("@UsrDAO.java - Non hai i privilegi necessari");
             }
 
         } catch (Exception e) { e.printStackTrace(); }

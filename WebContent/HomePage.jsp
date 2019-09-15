@@ -33,8 +33,8 @@
 <!-- Check on searchForm -->
 <%
 	if (request.getParameter("search") != null) {
-		System.out.println(searchBean.getSearchKeyword());
-        System.out.println(searchBean.isChoice());
+		System.out.println("@Homepage.jsp - Chiave di ricerca: " + searchBean.getSearchKeyword());
+        System.out.println("@Homepage.jsp - Selezione apt[false]/usr[true]: " + searchBean.isChoice());
 %>
             <jsp:forward page="SearchView.jsp"/>
 <%

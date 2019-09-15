@@ -8,8 +8,8 @@
 <jsp:useBean id="searchBean" scope="session" type="bean.SearchBean"/>
 
 <%
-    System.out.println("Parola chiave: " + searchBean.getSearchKeyword());
-    System.out.println("Selezione: " + searchBean.isChoice());
+    System.out.println("@SearchView.jsp - Chiave di ricerca: " + searchBean.getSearchKeyword());
+    System.out.println("@SearchView.jsp - Selezione apt[false]/usr[true]: " + searchBean.isChoice());
 	Vector<Eval> resultList = SearchController.searchList(searchBean.isChoice(), searchBean.getSearchKeyword());
 %>
 

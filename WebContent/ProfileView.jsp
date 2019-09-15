@@ -10,7 +10,7 @@
 
 <%
     ActualUsr au = UsrDAO.findByUsername(loginBean.getUsername(), loginBean.getPassword(), loginBean.getLoginRole());
-    System.out.println("@ProfileView.jsp - Username: " +loginBean.getUsername() + " pwd: " + loginBean.getPassword() + " role: " + loginBean.getLoginRole());
+    System.out.println("@ProfileView.jsp - Username: " +loginBean.getUsername() + " pwd: " + loginBean.getPassword() + " ruolo di login: " + loginBean.getLoginRole());
 
     Vector<Contract> contractsList = ProfileController.getContracts(au.getUsername(), au.isActualRole());
     Vector<Eval> evalAboutYouList = ProfileController.getEvalAboutYou(au.getUsername());
