@@ -16,6 +16,10 @@ body {
     margin-top: 10px;
 }
 
+.login > form > div > div > label {
+    margin-right: 30px;
+}
+
 .search > form > div > div > label {
     margin-right: 10px;
 }
