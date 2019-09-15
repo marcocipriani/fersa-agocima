@@ -4,7 +4,6 @@
 
 package dao;
 
-
 import model.ActualUsr;
 
 import java.sql.*;
@@ -37,9 +36,15 @@ public class UsrDAO {
             boolean reported = rs.getBoolean("reported");
             u = new ActualUsr(user, name, pass, roles, reported, false);
 
-            if(isTenant) {
+
+
+            if(isTenant && (roles == 1 || roles == 2)){
                 u.setActualRole(true);
-                System.out.println("Sei un proprietario");
+                System.out.println("@UsrDAO - Sei un proprietario tenant");
+            } else if (!isTenant && (roles == 0)){
+                System.out.println("@UsrDAO - Sei un inquilino renter");
+            } else {
+                System.out.println("@UsrDAO - Non hai i privilegi necessari");
             }
 
         } catch (Exception e) { e.printStackTrace(); }

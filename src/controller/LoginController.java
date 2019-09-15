@@ -1,6 +1,6 @@
 package controller;
 
-import model.Usr;
+import model.ActualUsr;
 import dao.UsrDAO;
 
 public class LoginController {
@@ -16,8 +16,8 @@ public class LoginController {
     private LoginController() {
     }
 
-    public Usr login(String username, String password) {
-        Usr u = UsrDAO.findByUsername(username, password, false);
-        return u;
+    public ActualUsr login(String username, String password, boolean loginRole) {
+        ActualUsr au = UsrDAO.findByUsername(username, password, loginRole);
+        return au;
     }
 }

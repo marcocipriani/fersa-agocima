@@ -7,6 +7,7 @@
 <!-- Mapping JSP properties -->
 <jsp:setProperty name="loginBean" property="username"/>
 <jsp:setProperty name="loginBean" property="password"/>
+<jsp:setProperty name="loginBean" property="loginRole"/>
 <jsp:setProperty name="searchBean" property="searchKeyword"/>
 <jsp:setProperty name="searchBean" property="choice"/>
 
@@ -14,18 +15,18 @@
 <%
     if (request.getParameter("login") != null) {
     	if (loginBean.validate()) {
-            %>
+%>
             <jsp:forward page="ProfileView.jsp"/>
-            <%
+<%
         } else {
-            %>
+%>
             <p style="text-color:red; text-align: center;">Dati errati</p>
-            <%
+<%
         }
     } else {
-        %>
+%>
         <p class="text-info" style="text-align: center;">Accesso non effettuato</p>
-        <%
+<%
     }
 %>
 
@@ -34,9 +35,9 @@
 	if (request.getParameter("search") != null) {
 		System.out.println(searchBean.getSearchKeyword());
         System.out.println(searchBean.isChoice());
-        %>
+%>
             <jsp:forward page="SearchView.jsp"/>
-        <%
+<%
 	}
 %>
 
@@ -70,8 +71,8 @@
             </div>
             <div class="row">
                 <div class="col-8 offset-2 form-group">
-                    <label for="isTenant">Entrare come proprietario?</label>
-                    <input id="isTenant" name="isTenant" type="checkbox" class="form-check-input"  value="true">
+                    <label for="tenantCheck">Entrare come proprietario?</label>
+                    <input id="tenantCheck" name="loginRole" type="checkbox" class="form-check-input"  value="true">
                 </div>
             </div>
             <div class="row">
