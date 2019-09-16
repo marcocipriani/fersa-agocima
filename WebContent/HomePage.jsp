@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 
 <!-- Creating LoginBean and SearchBean -->
-<jsp:useBean id="loginBean" scope="session" class="bean.LoginBean"/>
+<jsp:useBean id="loginBean" scope="request" class="bean.LoginBean"/>
 <jsp:useBean id="searchBean" scope="session" class="bean.SearchBean" />
 
 <!-- Mapping JSP properties -->
@@ -15,9 +15,15 @@
 <%
     if (request.getParameter("login") != null) {
     	if (loginBean.validate()) {
-%>
-            <jsp:forward page="ProfileView.jsp"/>
+			if (loginBean.checkRole()) {
+%>		
+            	<jsp:forward page="ProfileView.jsp"/>
 <%
+			} else {
+%>
+				<p style="text-color:red; text-align: center;">Non hai i privilegi necessari</p>
+<%
+			}
         } else {
 %>
             <p style="text-color:red; text-align: center;">Dati errati</p>

@@ -2,14 +2,14 @@
 
 <%@ page import="dao.UsrDAO" %>
 <%@ page import="java.util.Vector" %>
-
+<%@ page import="controller.LoginController" %>
 <%@ page import="controller.ProfileController" %>
 <%@ page import="model.*" %>
 
-<jsp:useBean id="loginBean" scope="session" type="bean.LoginBean"/>
+<jsp:useBean id="loginBean" scope="request" type="bean.LoginBean"/>
 
 <%
-    ActualUsr au = UsrDAO.findByUsername(loginBean.getUsername(), loginBean.getPassword(), loginBean.getLoginRole());
+    ActualUsr au = ProfileController.getUser(loginBean.getUsername(), loginBean.getPassword(), loginBean.getLoginRole());
     System.out.println("@ProfileView.jsp - Username: " +loginBean.getUsername() + " pwd: " + loginBean.getPassword() + " ruolo di login: " + loginBean.getLoginRole());
 
     Vector<Contract> contractsList = ProfileController.getContracts(au.getUsername(), au.isActualRole());
@@ -36,13 +36,17 @@
         <h2>Bentornato <%= au.getName() %></h2>
         <p>Hai eseguito l'accesso come
 <%
-        if(!au.isActualRole()) {
+        if(au.isActualRole()) {
 %>
-            inquilino (renter)
+            proprietario
+<%
+        } else if (!au.isActualRole()) {
+%>
+            renter
 <%
         } else {
 %>
-            proprietario (tenant)
+		errore
 <%
         }
 %>
