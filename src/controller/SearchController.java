@@ -21,4 +21,8 @@ public class SearchController {
 			return usrList;
         }
     }
+
+    public static double getAvg(int aptid){
+		return (EvalAptDAO.getAvg(aptid));
+	}
 }

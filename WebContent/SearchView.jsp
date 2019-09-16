@@ -14,10 +14,11 @@
     System.out.println("@SearchView.jsp - Chiave di ricerca: " + searchBean.getSearchKeyword());
     System.out.println("@SearchView.jsp - Selezione apt[false]/usr[true]: " + searchBean.isChoice());
 	Vector<Eval> resultList = SearchController.searchList(searchBean.isChoice(), searchBean.getSearchKeyword());
+	Double average = 0.0, sum = 0.0;
 %>
 
 <%
-    if (request.getParameter("id") != null) {
+    if (request.getParameter("view") != null) {
         if (viewBean.view()) {
 %>
             <jsp:forward page="EvalAptView.jsp"/>
@@ -70,6 +71,7 @@
             }
 %>
         </p>
+        <p> Media valutazioni: <%= average %></p>
         <hr>
 
 
@@ -85,23 +87,27 @@
             </thead>
             <tbody>
 <%
-                for (int i = 0; i < resultList.size(); i++) {
+                int i;
+                for (i = 0; i < resultList.size(); i++) {
 %>
                 <tr>
                     <td><%= resultList.elementAt(i).getId() %></th>
                     <td><%= resultList.elementAt(i).getStars() %></th>
                     <td><%= resultList.elementAt(i).getText() %></th>
                     <td><%= resultList.elementAt(i).getEvalusr() %></th>
-                    <th>
+                    <td>
                         <form action="SearchView.jsp" name="viewForm">
                             <input name="view" type="submit" placeholder="" value="Dettaglio" class="form-control">
                             <input name="id" type="hidden" value="<%= resultList.elementAt(i).getId() %>">
                         </form>
-                    </th>
+                    </td>
                 </tr>
 <%
+                    sum = sum + resultList.elementAt(i).getStars();
                 }
+                average = sum/i;
 %>
+
             </tbody>
         </table>
 

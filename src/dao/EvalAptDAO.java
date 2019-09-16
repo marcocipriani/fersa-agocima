@@ -19,6 +19,7 @@ public class EvalAptDAO {
     private static final String CREATE_QUERY = "insert into EvalApt values (?,?,?,FALSE,?,?,?)";
     private static final String UPDATE_QUERY = "update EvalApt set text = ?, stars = ?, status = FALSE where id = ?";
     private static final String DELETE_QUERY = "delete from EvalApt where id = ?";
+    private static final String AVG_QUERY = "select avg(stars) from EvalApt where aptid = ? and status = true";
 
     private static Connection conn = null;
     private static PreparedStatement stmt = null;
@@ -186,6 +187,26 @@ public class EvalAptDAO {
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
 
+    }
+
+    public static double getAvg(int aptid){
+        Double avg = 0.0;
+
+        try {
+            conn = ConnectTools.getConnection();
+            stmt = conn.prepareStatement(AVG_QUERY);
+            stmt.setInt(1, aptid);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+
+            if(rs.next()) {
+                avg = rs.getDouble("avg");
+            }
+
+        } catch (Exception e) { e.printStackTrace(); }
+        finally { ConnectTools.closeConnection(stmt, conn); }
+
+        return avg;
     }
 
 }
