@@ -34,20 +34,20 @@ public class ProfileController {
     }
     
     private static Vector getList(String username, int type){
-        Vector resulList = null;
+        Vector resultList = null;
         if (type == 0) {
-            resulList = EvalUsrDAO.findEvalAboutYou(username);
+            resultList = EvalUsrDAO.findEvalAboutYou(username);
         } else if (type == 1) {
-            resulList = EvalUsrDAO.findEvalMadeByYou(username);
+            resultList = EvalUsrDAO.findEvalMadeByYou(username);
         } else if (type == 2){
-            resulList = EvalAptDAO.findYourApts(username); // not available for renter
+            resultList = EvalAptDAO.findYourApts(username); // not available for renter
         } else if (type == 3) {
-            resulList = ContractDAO.findAsRenter(username);
+            resultList = ContractDAO.findAsRenter(username);
         } else if (type == 4) {
-            resulList = ContractDAO.findAsTenant(username);
+            resultList = ContractDAO.findAsTenant(username);
         }
-        System.out.println("@ProfileController.java - " + resulList.size() + " risultati");
-        return resulList;
+        System.out.println("@ProfileController.java - " + resultList.size() + " risultati");
+        return resultList;
     };
 
     public static Vector getEvalAboutYou(String username) {
