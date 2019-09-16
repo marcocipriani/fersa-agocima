@@ -82,30 +82,35 @@ public class ContractDAO {
         return results;
     }
 
-    /*public static Vector<Contract> findReadyToEvaluate(String username, boolean isTenant) {
+    //TODO sostituire questa alle versioni singole
+    public static Vector<Contract> findYourContracts(String username, boolean isTenant, boolean isExpired) {
         // if isTenant search will be performed in tenant column
         // otherwise in renter
 
         Vector<Contract> results = new Vector<Contract>();
         Contract c;
+        String colName, expiredString;
+        if (isTenant) {
+            colName = "tenant";
+        } else { colName = "renter"; }
+        if (isExpired) {
+            expiredString = "true";
+        } else { expiredString = "false"; }
+        String searchQuery = "select * from contract where " + colName + " = '" + username + "' and expired = " + expiredString;
 
 
         try {
             conn = ConnectTools.getConnection();
-            stmt = conn.prepareStatement("select * from contract where ? = ? and expired = true";, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            Statement stmt2 = conn.createStatement();
             // unnecessary if rs is not scrolled
 
-            if (isTenant) {
-                stmt.setString(1, "tenant");
-            } else { stmt.setString(1, "renter"); }
-            stmt.setString(2, username);
-            //stmt.setString(2, "'" + username + "'");
-            System.out.println(stmt);
 
-            stmt.execute();
-            ResultSet rs = stmt.getResultSet();
+            System.out.println(searchQuery);
 
-            rs.first(); // is it worth it?
+            stmt2.execute(searchQuery);
+            ResultSet rs = stmt2.getResultSet();
+
+            //rs.first(); // is it worth it?
 
             while (rs.next()) {
                 c = new Contract(
@@ -116,11 +121,10 @@ public class ContractDAO {
                         rs.getBoolean("expired")
                 );
                 results.add(c);
-                System.out.println(c);
             }
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
 
         return results;
-    }*/
+    }
 }

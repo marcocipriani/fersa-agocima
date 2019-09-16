@@ -43,7 +43,8 @@ public class LoginBean {
 		ActualUsr found = controller.login(this.username, this.password, this.loginRole);
 		return  (found != null);
 	}
-	
+
+	//TODO fondere con validate()
 	public boolean checkRole() {
 		ActualUsr au = UsrDAO.findByUsername(this.username, this.password, this.loginRole);
     	
