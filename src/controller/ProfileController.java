@@ -3,6 +3,9 @@ package controller;
 import dao.ContractDAO;
 import dao.EvalAptDAO;
 import dao.EvalUsrDAO;
+import dao.UsrDAO;
+
+import model.ActualUsr;
 
 import java.util.Vector;
 
@@ -11,6 +14,25 @@ public class ProfileController {
     public ProfileController() {
     }
 
+    public static ActualUsr getUser(String username, String pwd, boolean loginRole ) {
+    	ActualUsr au = UsrDAO.findByUsername(username, pwd, loginRole);
+    	
+    	if(loginRole && (au.getRoles() == 1 || au.getRoles() == 2)){
+            au.setActualRole(true);
+            System.out.println("@UsrDAO.java - Sei un proprietario tenant");
+        } else if (!loginRole && (au.getRoles() == 0 || au.getRoles() == 2) ){
+            System.out.println("@UsrDAO.java - Sei un inquilino renter");
+        } else if (!loginRole && (au.getRoles() == 1)) {
+            System.out.println("@UsrDAO.java - Hai provato come renter, Non hai i privilegi necessari");
+        } else if (loginRole && (au.getRoles() == 0)) {
+            System.out.println("@UsrDAO.java - Hai provato come tenant, Non hai i privilegi necessari");
+        } else {
+        	System.out.println("@UsrDAO.java - Altro caso");
+        }
+    	
+    	return au;
+    }
+    
     private static Vector getList(String username, int type){
         Vector resulList = null;
         if (type == 0) {

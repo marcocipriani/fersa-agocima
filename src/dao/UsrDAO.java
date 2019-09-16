@@ -19,6 +19,8 @@ public class UsrDAO {
 
         PreparedStatement stmt = null;
         ActualUsr u = null;
+        
+        System.out.println("stampa");
 
         try {
             conn = ConnectTools.getConnection();
