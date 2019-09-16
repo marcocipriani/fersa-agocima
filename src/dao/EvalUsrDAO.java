@@ -5,7 +5,7 @@
 package dao;
 
 import model.EvalUsr;
-
+import org.postgresql.util.PSQLException;
 import java.sql.*;
 import java.util.Vector;
 
@@ -13,6 +13,7 @@ public class EvalUsrDAO {
 
     private static final String SEARCH_AUTHOR_QUERY = "select * from EvalUsr where evalusr = ?";
     private static final String SEARCH_USERNAME_QUERY = "select * from EvalUsr where username = ?";
+    private static final String SEARCH_ID_QUERY = "select * from EvalUsr where id = ?";
     private static final String CREATE_QUERY = "insert into EvalUsr values (?,?,?,FALSE,?,?)";
     private static final String UPDATE_QUERY = "update EvalUsr set text = ?, stars = ?, status = FALSE where id = ?";
     private static final String DELETE_QUERY = "delete from EvalUsr where id = ?";
@@ -79,6 +80,32 @@ public class EvalUsrDAO {
         finally { ConnectTools.closeConnection(stmt, conn); }
 
         return results;
+    }
+
+    public static EvalUsr findById(int id){
+        EvalUsr ea = null;
+
+        try {
+            conn = ConnectTools.getConnection();
+            stmt = conn.prepareStatement(SEARCH_ID_QUERY);
+            stmt.setInt(1, id);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            if(rs.next()) {
+                ea = new EvalUsr(
+                        rs.getInt("id"),
+                        rs.getString("text"),
+                        rs.getInt("stars"),
+                        rs.getBoolean("status"),
+                        rs.getString("username"),
+                        rs.getString("evalusr")
+                );
+            }
+        } catch (PSQLException psqle) { System.out.println("@EvalUsrDAO.java - ID non corretto"); }
+        catch (Exception e) { e.printStackTrace(); }
+        finally { ConnectTools.closeConnection(stmt, conn); }
+
+        return ea;
     }
 
     public static void createEval(String text, int stars, String username, String evalusr) {
