@@ -31,8 +31,6 @@ public class ContractDAO {
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
 
-            rs.first(); // is it worth it?
-
             while (rs.next()) {
                     c = new Contract(
                             rs.getInt("id"),
