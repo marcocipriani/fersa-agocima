@@ -10,4 +10,9 @@ public class ViewBean {
 	public int getId() { return id; }
 
 	public void setId(int id) { this.id = id; }
+
+	public boolean view() {
+		if (this.id == 0) { return false; }
+		return true;
+	}
 }

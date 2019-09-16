@@ -1,7 +1,13 @@
+<%@ page import="model.EvalApt" %>
+<%@ page import="dao.EvalAptDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:useBean id="ea" scope="page" class="model.EvalApt"/>
-<jsp:useBean id="apt" scope="session" class="model.Apt"/>
+<jsp:useBean id="viewBean" scope="page" type="bean.ViewBean"/>
+
+<%
+    EvalApt ea = EvalAptDAO
+
+%>
 
 <html>
 <head>

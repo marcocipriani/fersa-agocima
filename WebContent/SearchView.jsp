@@ -6,11 +6,24 @@
 <%@ page import="java.util.Vector" %>
 
 <jsp:useBean id="searchBean" scope="session" type="bean.SearchBean"/>
+<jsp:useBean id="viewBean" scope="session" class="bean.ViewBean"/>
+
+<jsp:setProperty name="viewBean" property="id"/>
 
 <%
     System.out.println("@SearchView.jsp - Chiave di ricerca: " + searchBean.getSearchKeyword());
     System.out.println("@SearchView.jsp - Selezione apt[false]/usr[true]: " + searchBean.isChoice());
 	Vector<Eval> resultList = SearchController.searchList(searchBean.isChoice(), searchBean.getSearchKeyword());
+%>
+
+<%
+    if (request.getParameter("id") != null) {
+        if (viewBean.view()) {
+%>
+            <jsp:forward page="EvalAptView.jsp"/>
+<%
+        }
+    }
 %>
 
 <html>
@@ -59,31 +72,40 @@
         </p>
         <hr>
 
-<%
-            for (int i = 0; i < resultList.size(); i++) {
-%>
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Stelle</th>
-                        <th scope="col">Testo</th>
-                        <th scope="col">Autore della valutazione</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><%= resultList.elementAt(i).getId() %></th>
-                        <td><%= resultList.elementAt(i).getStars() %></th>
-                        <td><%= resultList.elementAt(i).getText() %></th>
-                        <td><%= resultList.elementAt(i).getEvalusr() %></th>
-                    </tr>
-                </tbody>
-            </table>
 
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Stelle</th>
+                    <th scope="col">Testo</th>
+                    <th scope="col">Autore della valutazione</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
 <%
-            }
+                for (int i = 0; i < resultList.size(); i++) {
 %>
+                <tr>
+                    <td><%= resultList.elementAt(i).getId() %></th>
+                    <td><%= resultList.elementAt(i).getStars() %></th>
+                    <td><%= resultList.elementAt(i).getText() %></th>
+                    <td><%= resultList.elementAt(i).getEvalusr() %></th>
+                    <th>
+                        <form action="SearchView.jsp" name="viewForm">
+                            <input name="view" type="submit" placeholder="" value="Dettaglio" class="form-control">
+                            <input name="id" type="hidden" value="<%= resultList.elementAt(i).getId() %>">
+                        </form>
+                    </th>
+                </tr>
+<%
+                }
+%>
+            </tbody>
+        </table>
+
+
 
     </div>
 </body>
