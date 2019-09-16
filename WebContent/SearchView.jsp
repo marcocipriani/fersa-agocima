@@ -6,7 +6,7 @@
 <%@ page import="java.util.Vector" %>
 
 <jsp:useBean id="searchBean" scope="session" type="bean.SearchBean"/>
-<jsp:useBean id="viewBean" scope="session" class="bean.ViewBean"/>
+<jsp:useBean id="viewBean" scope="request" class="bean.ViewBean"/>
 
 <jsp:setProperty name="viewBean" property="id"/>
 

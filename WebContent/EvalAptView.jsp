@@ -1,12 +1,13 @@
-<%@ page import="model.EvalApt" %>
-<%@ page import="dao.EvalAptDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:useBean id="viewBean" scope="page" type="bean.ViewBean"/>
+<%@ page import="model.EvalApt" %>
+<%@ page import="controller.ViewController" %>
+<%@ page import="model.Eval" %>
+
+<jsp:useBean id="viewBean" scope="request" type="bean.ViewBean"/>
 
 <%
-    EvalApt ea = EvalAptDAO
-
+    Eval eval = ViewController.getEval(viewBean.getId(), false);
 %>
 
 <html>
@@ -21,21 +22,20 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container text-center">
 
         <h1>Dettaglio della valutazione</h1>
-
+<%--        <p>Apppartamento in via <%= viewBean.getAux() %></p>--%>
+<%
+    //TODO visualizzare
+%>
         <hr>
-
-        Apppartamento in via <%= apt.getAddress() %>
-        <br>
-        Voto: <%= ea.getStars() %>
-        <br>
+        <p>Stelle: <%= eval.getStars() %></p>
         Testo della valutazione:
         <p>
-            <%= ea.getText() %>
+            <%= eval.getText() %>
         </p>
-<%--        Autore della valutazione: <%= ea.getEvalusr() %>--%>
+        <p>Autore della valutazione: <%= eval.getEvalusr() %></p>
 
     </div>
 
