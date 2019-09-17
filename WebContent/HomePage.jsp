@@ -2,7 +2,7 @@
 
 <!-- Creating LoginBean and SearchBean -->
 <jsp:useBean id="loginBean" scope="request" class="bean.LoginBean"/>
-<jsp:useBean id="searchBean" scope="session" class="bean.SearchBean" />
+<jsp:useBean id="searchBean" scope="request" class="bean.SearchBean" />
 
 <!-- Mapping JSP properties -->
 <jsp:setProperty name="loginBean" property="username"/>
