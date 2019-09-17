@@ -4,7 +4,6 @@
 <%@ page import="controller.ViewController" %>
 <%@ page import="model.Eval" %>
 
-<%--<jsp:useBean id="viewBean" scope="request" class="bean.ViewBean"/>--%>
 
 <%
     System.out.println(request.getParameter("id"));

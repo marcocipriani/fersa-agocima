@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%--<jsp:useBean id="viewBean" type="bean.ViewBean" scope="page"/>--%>
 
 <html>
 <head>
@@ -17,6 +16,9 @@
     <div class="container">
 
 <%
+if(request.getParameter("create")!=null) {
+	System.out.println(request.getParameter("id"));
+}
 %>
 
     </div>

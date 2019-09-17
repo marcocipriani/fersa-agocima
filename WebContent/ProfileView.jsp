@@ -25,26 +25,6 @@
 			contractsReadyList.add(c);
 		}
 	}
-	
-	
-
-
-	/*contractsList.forEach((n) -> 
-    contractsReadyList.add(ProfileController.compare(n,evalMadeByYouList)));
-
-
-	for (int i = 0; i < contractsList.size(); i++){
-        for (int j = 0; j < evalMadeByYouList.size(); j++){
-            if (evalMadeByYouList.elementAt(j).getContractid() != contractsList.elementAt(i).getId()) {
-                contractsReadyList.add(contractsList.elementAt(i));
-                System.out.println(evalMadeByYouList.elementAt(j).getContractid());
-                System.out.println(contractsList.elementAt(i).getId());
-                break;
-            }
-        }
-    }
-    System.out.println(contractsList);*/
-
 %>
 
 <!DOCTYPE html>
@@ -93,6 +73,7 @@
                 <th scope="col">ID</th>
                 <th scope="col"># Appartamento</th>
                 <th scope="col">Terminato?</th>
+                <th scope="col">Azione</th>
             </tr>
             </thead>
             <tbody>
@@ -104,6 +85,22 @@
                 <td><%= contractsReadyList.elementAt(i).getId() %></td>
                 <td><%= contractsReadyList.elementAt(i).getApt() %></td>
                 <td><%= contractsReadyList.elementAt(i).isExpired() %></td>
+                <td>
+<%
+                    if(contractsReadyList.elementAt(i).isExpired()){
+%>
+                    <form action="CreateView.jsp" name="viewForm">
+                        <input name="create" type="submit" value="Create" class="form-control">
+                        <input name="id" type="hidden" value="<%= contractsReadyList.elementAt(i).getId() %>">
+                    </form>
+<%
+                    } else {
+%>
+                    Contratto in corso
+<%
+                    }
+%>
+                </td>	
             </tr>
             <%
                 }
@@ -127,6 +124,7 @@
                     <th scope="col">Stelle</th>
                     <th scope="col">Testo</th>
                     <th scope="col">Autore della valutazione</th>
+                    <th scope="col">Azioni</th>
                 </tr>
             </thead>
             <tbody>
@@ -139,6 +137,12 @@
                     <td><%= evalAboutYouList.elementAt(i).getStars() %></td>
                     <td><%= evalAboutYouList.elementAt(i).getText() %></td>
                     <td><%= evalAboutYouList.elementAt(i).getEvalusr() %></td>
+                    <td>                         
+		                <form action="EvalUsrView.jsp" name="viewForm">
+		                    <input name="view" type="submit" value="View" class="form-control">
+		                    <input name="id" type="hidden" value="<%= evalAboutYouList.elementAt(i).getId() %>">
+		                </form>             	                
+                	</td>
                 </tr>
             <%
                 }
@@ -154,6 +158,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Stelle</th>
                 <th scope="col">Testo</th>
+                <th scope="col">Azioni</th>
             </tr>
             </thead>
             <tbody>
@@ -165,6 +170,26 @@
                 <td><%= evalMadeByYouList.elementAt(i).getId() %></td>
                 <td><%= evalMadeByYouList.elementAt(i).getStars() %></td>
                 <td><%= evalMadeByYouList.elementAt(i).getText() %></td>
+    			<td> 
+<%
+    			if(evalMadeByYouList.elementAt(i).getClass().toString().equals("class model.EvalUsr")){
+%>                                    
+	                <form action="EvalUsrView.jsp" name="viewForm">
+	                    <input name="view" type="submit" value="View" class="form-control">
+	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">
+	                </form>
+<%
+        		} else {
+%>
+        			<form action="EvalAptView.jsp" name="viewForm">
+	                    <input name="view" type="submit" value="View" class="form-control">
+	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">	                    
+	                </form>
+<%
+        		}
+%>	                
+	                
+                </td>
             </tr>
             <%
                 }
@@ -185,6 +210,7 @@
                 <th scope="col">Stelle</th>
                 <th scope="col">Testo</th>
                 <th scope="col">Autore della valutazione</th>
+                <th scope="col">Azioni</th>
             </tr>
             </thead>
             <tbody>
@@ -197,6 +223,12 @@
                 <td><%= evalAboutYourAptsList.elementAt(i).getStars() %></td>
                 <td><%= evalAboutYourAptsList.elementAt(i).getText() %></td>
                 <td><%= evalAboutYourAptsList.elementAt(i).getEvalusr() %></td>
+                <td>                         
+		                <form action="EvalAptView.jsp" name="viewForm">
+		                    <input name="view" type="submit" value="View" class="form-control">
+		                    <input name="id" type="hidden" value="<%= evalAboutYourAptsList.elementAt(i).getId() %>">
+		                </form>             	                
+                	</td>
             </tr>
             <%
                 }
