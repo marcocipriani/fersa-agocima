@@ -23,3 +23,7 @@ body {
 .search > form > div > div > label {
     margin-right: 10px;
 }
+
+.starsRadio > input {
+    margin-right: 20px;
+}

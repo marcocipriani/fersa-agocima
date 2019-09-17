@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 
-<%@ page import="dao.UsrDAO" %>
 <%@ page import="java.util.Vector" %>
-<%@ page import="controller.LoginController" %>
-<%@ page import="controller.ProfileController" %>
 <%@ page import="model.*" %>
+<%@ page import="controller.ProfileController" %>
 
 <jsp:useBean id="loginBean" scope="request" type="bean.LoginBean"/>
 
@@ -63,7 +61,7 @@
 
         <hr>
 
-        <h3>Tuoi contratti</h3>
+        <h3>I tuoi contratti</h3>
 <%
         if(contractsList.size() != 0){
 %>
@@ -73,20 +71,24 @@
                 <th scope="col">ID</th>
                 <th scope="col"># Appartamento</th>
                 <th scope="col">Terminato?</th>
+<<<<<<< HEAD
                 <th scope="col">Azione</th>
+=======
+                <th></th>
+>>>>>>> branch 'cid' of https://github.com/marcocipriani/fersa-agocima
             </tr>
             </thead>
             <tbody>
             <%
                 for (int i = 0; i < contractsReadyList.size(); i++) {
             %>
-            <!--  a row for each result -->
             <tr>
                 <td><%= contractsReadyList.elementAt(i).getId() %></td>
                 <td><%= contractsReadyList.elementAt(i).getApt() %></td>
                 <td><%= contractsReadyList.elementAt(i).isExpired() %></td>
                 <td>
 <%
+<<<<<<< HEAD
                     if(contractsReadyList.elementAt(i).isExpired()){
 %>
                     <form action="CreateView.jsp" name="viewForm">
@@ -101,6 +103,24 @@
                     }
 %>
                 </td>	
+=======
+                if(contractsReadyList.elementAt(i).isExpired()){
+%>
+                    <form action="CreateView.jsp" name="viewForm">
+                        <input name="view" type="submit" placeholder="" value="Crea valutazione" class="form-control">
+                        <input name="id" type="hidden" value="<%= contractsReadyList.elementAt(i).getId() %>">
+                        <input name="role" type="hidden" value="<%= au.isActualRole() %>">
+                    </form>
+<%
+                } else {
+%>
+                    Contratto ancora in corso
+<%
+                }
+%>
+                </td>
+
+>>>>>>> branch 'cid' of https://github.com/marcocipriani/fersa-agocima
             </tr>
             <%
                 }
@@ -131,7 +151,6 @@
             <%
                 for (int i = 0; i < evalAboutYouList.size(); i++) {
             %>
-            <!--  a row for each result -->
                 <tr>
                     <td><%= evalAboutYouList.elementAt(i).getId() %></td>
                     <td><%= evalAboutYouList.elementAt(i).getStars() %></td>
