@@ -16,7 +16,7 @@ public class EvalAptDAO {
     private static final String SEARCH_OWNER_QUERY = "select * from EvalApt where owner = ?";
     private static final String SEARCH_ADDRESS_QUERY = "select evalapt.id, text, stars, status, aptid, evalapt.owner, evalusr, address from EvalApt join Apt on evalapt.aptid = apt.id where status = true and address = ?";
     private static final String SEARCH_ID_QUERY = "select * from EvalApt where id = ?";
-    private static final String CREATE_QUERY = "insert into EvalApt values (?,?,?,FALSE,?,?,?)";
+    private static final String CREATE_QUERY = "insert into EvalApt values (?,?,?,FALSE,?,?,?,?)";
     private static final String UPDATE_QUERY = "update EvalApt set text = ?, stars = ?, status = FALSE where id = ?";
     private static final String DELETE_QUERY = "delete from EvalApt where id = ?";
     private static final String AVG_QUERY = "select avg(stars) from EvalApt where aptid = ? and status = true";
@@ -45,7 +45,8 @@ public class EvalAptDAO {
                         rs.getBoolean("status"),
                         rs.getInt("aptid"),
                         rs.getString("owner"),
-                        rs.getString("evalusr")
+                        rs.getString("evalusr"),
+                        rs.getInt("contractid")
                 );
                 results.add(ea);
             }
@@ -77,7 +78,8 @@ public class EvalAptDAO {
                         rs.getBoolean("status"),
                         rs.getInt("aptid"),
                         rs.getString("owner"),
-                        rs.getString("evalusr")
+                        rs.getString("evalusr"),
+                        rs.getInt("contractid")
                 );
                 results.add(ea);
             }
@@ -106,7 +108,8 @@ public class EvalAptDAO {
                         rs.getBoolean("status"),
                         rs.getInt("aptid"),
                         rs.getString("owner"),
-                        rs.getString("evalusr")
+                        rs.getString("evalusr"),
+                        rs.getInt("contractid")
                 );
                 results.add(ea);
             }
@@ -133,7 +136,8 @@ public class EvalAptDAO {
                         rs.getBoolean("status"),
                         rs.getInt("aptid"),
                         rs.getString("owner"),
-                        rs.getString("evalusr")
+                        rs.getString("evalusr"),
+                        rs.getInt("contractid")
                 );
             }
         } //TODO intercept NullPointerException
@@ -144,7 +148,7 @@ public class EvalAptDAO {
     }
 
     //TODO test as boolean or make it void
-    public static void createEval(String text, int stars, int aptid, String owner, String evalusr) {
+    public static void createEval(String text, int stars, int aptid, String owner, String evalusr, int contractid) {
 
         Integer id = Indexing.askForIndex("EvalApt");
 
@@ -158,6 +162,7 @@ public class EvalAptDAO {
             stmt.setInt(4, aptid);
             stmt.setString(5, owner);
             stmt.setString(6, evalusr);
+            stmt.setInt(7, contractid);
             stmt.execute();
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }

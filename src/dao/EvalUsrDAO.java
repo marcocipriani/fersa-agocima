@@ -14,7 +14,7 @@ public class EvalUsrDAO {
     private static final String SEARCH_AUTHOR_QUERY = "select * from EvalUsr where evalusr = ?";
     private static final String SEARCH_USERNAME_QUERY = "select * from EvalUsr where username = ?";
     private static final String SEARCH_ID_QUERY = "select * from EvalUsr where id = ?";
-    private static final String CREATE_QUERY = "insert into EvalUsr values (?,?,?,FALSE,?,?)";
+    private static final String CREATE_QUERY = "insert into EvalUsr values (?,?,?,FALSE,?,?,?)";
     private static final String UPDATE_QUERY = "update EvalUsr set text = ?, stars = ?, status = FALSE where id = ?";
     private static final String DELETE_QUERY = "delete from EvalUsr where id = ?";
 
@@ -41,7 +41,8 @@ public class EvalUsrDAO {
                         rs.getInt("stars"),
                         rs.getBoolean("status"),
                         rs.getString("username"),
-                        rs.getString("evalusr")
+                        rs.getString("evalusr"),
+                        rs.getInt("contractid")
                 );
                 results.add(eu);
             }
@@ -72,7 +73,8 @@ public class EvalUsrDAO {
                         rs.getInt("stars"),
                         rs.getBoolean("status"),
                         rs.getString("username"),
-                        rs.getString("evalusr")
+                        rs.getString("evalusr"),
+                        rs.getInt("contractid")
                 );
                 results.add(eu);
             }
@@ -98,7 +100,8 @@ public class EvalUsrDAO {
                         rs.getInt("stars"),
                         rs.getBoolean("status"),
                         rs.getString("username"),
-                        rs.getString("evalusr")
+                        rs.getString("evalusr"),
+                        rs.getInt("contractid")
                 );
             }
         } catch (PSQLException psqle) { System.out.println("@EvalUsrDAO.java - ID non corretto"); }
@@ -109,7 +112,7 @@ public class EvalUsrDAO {
     }
 
     //TODO test as boolean or make it void
-    public static void createEval(String text, int stars, String username, String evalusr) {
+    public static void createEval(String text, int stars, String username, String evalusr, int contractid) {
 
         Integer id = Indexing.askForIndex("EvalUsr");
 
@@ -121,6 +124,7 @@ public class EvalUsrDAO {
             stmt.setInt(3, stars);
             stmt.setString(4, username);
             stmt.setString(5, evalusr);
+            stmt.setInt(6, contractid);
             stmt.execute();
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }

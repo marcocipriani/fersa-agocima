@@ -18,6 +18,19 @@
     // evalAboutYourApts is in html body
 %>
 
+<%
+    Vector<Contract> contractsReadyList = new Vector<Contract>();
+    for (int i = 0; i < contractsList.size(); i++){
+        for (int j = 0; j < evalMadeByYouList.size(); j++){
+            if (!(evalMadeByYouList.elementAt(j).getContractid() == contractsList.elementAt(i).getId())){
+                contractsReadyList.add(contractsList.elementAt(i));
+
+            }
+            break;
+        }
+    }
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,13 +81,13 @@
             </thead>
             <tbody>
             <%
-                for (int i = 0; i < contractsList.size(); i++) {
+                for (int i = 0; i < contractsReadyList.size(); i++) {
             %>
             <!--  a row for each result -->
             <tr>
-                <td><%= contractsList.elementAt(i).getId() %></td>
-                <td><%= contractsList.elementAt(i).getApt() %></td>
-                <td><%= contractsList.elementAt(i).isExpired() %></td>
+                <td><%= contractsReadyList.elementAt(i).getId() %></td>
+                <td><%= contractsReadyList.elementAt(i).getApt() %></td>
+                <td><%= contractsReadyList.elementAt(i).isExpired() %></td>
             </tr>
             <%
                 }

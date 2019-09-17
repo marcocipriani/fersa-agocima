@@ -45,17 +45,24 @@ public class ProfileController {
             resultList = ContractDAO.findAsRenter(username);
         } else if (type == 4) {
             resultList = ContractDAO.findAsTenant(username);
+        } else  if (type == 5){
+            resultList = EvalAptDAO.findEvalMadeByYou(username);
         }
         System.out.println("@ProfileController.java - " + resultList.size() + " risultati");
         return resultList;
     };
 
-    public static Vector getEvalAboutYou(String username) {
-        return (getList(username, 0));
+    public static Vector getEvalAboutYou(String username) { return (getList(username, 0));
     }
 
     public static Vector getEvalMadeByYou(String username) {
-        return (getList(username, 1));
+        Vector result = new Vector();
+        Vector a = getList(username, 1);
+        Vector b = getList(username, 5);
+        result.addAll(a);
+        result.addAll(b);
+
+        return result;
     }
 
     public static Vector getEvalAboutYourApts(String username){
