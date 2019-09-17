@@ -33,7 +33,8 @@ public class AptDAO {
             int aptId = rs.getInt("id");
             String owner = rs.getString("owner");
             String addr = rs.getString("address");
-            a = new Apt(aptId, owner, addr);
+            int num = rs.getInt("number");
+            a = new Apt(aptId, owner, addr, num);
 
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
@@ -57,7 +58,8 @@ public class AptDAO {
                 a = new Apt(
                         rs.getInt("id"),
                         rs.getString("owner"),
-                        rs.getString("address")
+                        rs.getString("address"),
+                        rs.getInt("number")
                 );
                 results.add(a);
             }
@@ -84,7 +86,8 @@ public class AptDAO {
                 a = new Apt(
                         rs.getInt("id"),
                         rs.getString("owner"),
-                        rs.getString("address")
+                        rs.getString("address"),
+                        rs.getInt("number")
                 );
                 results.add(a);
             }
