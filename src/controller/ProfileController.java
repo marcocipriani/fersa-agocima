@@ -6,7 +6,11 @@ import dao.EvalUsrDAO;
 import dao.UsrDAO;
 
 import model.ActualUsr;
+import model.Contract;
+import model.Eval;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 
 public class ProfileController {
@@ -75,4 +79,17 @@ public class ProfileController {
         }
         return (getList(username, 4));
     }
+    
+    public static boolean selectId(Contract c, Vector<Eval> v) {
+    	Set<Integer> uniqueId = new HashSet<Integer>();
+    	for (int i=0; i<v.size();i++) {
+    		uniqueId.add(v.elementAt(i).getContractid());
+    		}
+    	if(uniqueId.contains(c.getId())) {
+    		return true;
+    	}else {
+		return false;	
+    	}
+    }
+    	
 }

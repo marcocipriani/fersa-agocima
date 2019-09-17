@@ -20,15 +20,31 @@
 
 <%
     Vector<Contract> contractsReadyList = new Vector<Contract>();
-    for (int i = 0; i < contractsList.size(); i++){
-        for (int j = 0; j < evalMadeByYouList.size(); j++){
-            if (!(evalMadeByYouList.elementAt(j).getContractid() == contractsList.elementAt(i).getId())){
-                contractsReadyList.add(contractsList.elementAt(i));
+	for (Contract c : contractsList){
+		if (!ProfileController.selectId(c,evalMadeByYouList)){
+			contractsReadyList.add(c);
+		}
+	}
+	
+	
 
+
+	/*contractsList.forEach((n) -> 
+    contractsReadyList.add(ProfileController.compare(n,evalMadeByYouList)));
+
+
+	for (int i = 0; i < contractsList.size(); i++){
+        for (int j = 0; j < evalMadeByYouList.size(); j++){
+            if (evalMadeByYouList.elementAt(j).getContractid() != contractsList.elementAt(i).getId()) {
+                contractsReadyList.add(contractsList.elementAt(i));
+                System.out.println(evalMadeByYouList.elementAt(j).getContractid());
+                System.out.println(contractsList.elementAt(i).getId());
+                break;
             }
-            break;
         }
     }
+    System.out.println(contractsList);*/
+
 %>
 
 <!DOCTYPE html>
