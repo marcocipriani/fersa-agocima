@@ -5,10 +5,10 @@
 <%@ page import="controller.SearchController" %>
 <%@ page import="java.util.Vector" %>
 
-<jsp:useBean id="searchBean" scope="session" type="bean.SearchBean"/>
-<jsp:useBean id="viewBean" scope="request" class="bean.ViewBean"/>
+<jsp:useBean id="searchBean" scope="request" type="bean.SearchBean"/>
+<%--<jsp:useBean id="viewBean" scope="request" class="bean.ViewBean"/>--%>
 
-<jsp:setProperty name="viewBean" property="id"/>
+<%--<jsp:setProperty name="viewBean" property="id"/>--%>
 
 <%
     System.out.println("@SearchView.jsp - Chiave di ricerca: " + searchBean.getSearchKeyword());
@@ -17,15 +17,7 @@
 	Double average = 0.0, sum = 0.0;
 %>
 
-<%
-    if (request.getParameter("view") != null) {
-        if (viewBean.view()) {
-%>
-            <jsp:forward page="EvalAptView.jsp"/>
-<%
-        }
-    }
-%>
+
 
 <html>
 <head>
@@ -96,9 +88,10 @@
                     <td><%= resultList.elementAt(i).getText() %></th>
                     <td><%= resultList.elementAt(i).getEvalusr() %></th>
                     <td>
-                        <form action="SearchView.jsp" name="viewForm">
+                        <form action="EvalAptView.jsp" name="viewForm">
                             <input name="view" type="submit" placeholder="" value="Dettaglio" class="form-control">
                             <input name="id" type="hidden" value="<%= resultList.elementAt(i).getId() %>">
+                            <input name="aux" type="hidden" value="pippo">
                         </form>
                     </td>
                 </tr>
