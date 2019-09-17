@@ -143,6 +143,7 @@ public class EvalAptDAO {
         return ea;
     }
 
+    //TODO test as boolean or make it void
     public static void createEval(String text, int stars, int aptid, String owner, String evalusr) {
 
         Integer id = Indexing.askForIndex("EvalApt");
@@ -160,7 +161,6 @@ public class EvalAptDAO {
             stmt.execute();
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
-
     }
 
     public static void updateEval(String text, int stars, int id) {

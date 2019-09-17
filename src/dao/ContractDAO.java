@@ -13,6 +13,7 @@ public class ContractDAO {
 
     private static final String SEARCH_RENTER_QUERY = "select * from contract where renter = ?";
     private static final String SEARCH_TENANT_QUERY = "select * from contract where tenant = ?";
+    private static final String GET_DETAILS_QUERY = "select renter, tenant, apt from contract where id = ?";
 
     private static Connection conn = null;
     private static PreparedStatement stmt = null;
@@ -124,5 +125,32 @@ public class ContractDAO {
         finally { ConnectTools.closeConnection(stmt, conn); }
 
         return results;
+    }
+
+    public static String[] getDetails(int id){
+
+        String[] result = new String[3];
+
+        try {
+            conn = ConnectTools.getConnection();
+            stmt = conn.prepareStatement(GET_DETAILS_QUERY, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                                                            // unnecessary if rs is not scrolled
+            stmt.setInt(1, id);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+
+            //rs.first(); // is it worth it?
+
+            rs.first();
+            result[0] = rs.getString("renter");
+            result[1] = rs.getString("tenant");
+            result[2] = rs.getString("id");
+
+
+
+        } catch (Exception e) { e.printStackTrace(); }
+        finally { ConnectTools.closeConnection(stmt, conn); }
+
+        return result;
     }
 }

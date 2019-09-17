@@ -108,6 +108,7 @@ public class EvalUsrDAO {
         return ea;
     }
 
+    //TODO test as boolean or make it void
     public static void createEval(String text, int stars, String username, String evalusr) {
 
         Integer id = Indexing.askForIndex("EvalUsr");
@@ -123,7 +124,6 @@ public class EvalUsrDAO {
             stmt.execute();
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
-
     }
 
     public static void updateEval(String text, int stars, int id) {
