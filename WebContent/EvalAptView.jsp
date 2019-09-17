@@ -4,10 +4,14 @@
 <%@ page import="controller.ViewController" %>
 <%@ page import="model.Eval" %>
 
-<jsp:useBean id="viewBean" scope="request" type="bean.ViewBean"/>
+<%--<jsp:useBean id="viewBean" scope="request" class="bean.ViewBean"/>--%>
 
 <%
-    Eval eval = ViewController.getEval(viewBean.getId(), false);
+    System.out.println(request.getParameter("id"));
+    System.out.println(request.getParameter("aux"));
+    int evalId = Integer.parseInt(request.getParameter("id"));
+    System.out.println(evalId);
+    Eval eval = ViewController.getEval(evalId, false);
 %>
 
 <html>
@@ -36,7 +40,6 @@
             <%= eval.getText() %>
         </p>
         <p>Autore della valutazione: <%= eval.getEvalusr() %></p>
-
     </div>
 
 </body>
