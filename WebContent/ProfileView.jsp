@@ -13,6 +13,7 @@
 	profileBean.setPassword(loginBean.getPassword());
 	profileBean.setUsername(loginBean.getUsername());
 	profileBean.setFirsTime(true);
+	
 }
 %>
 

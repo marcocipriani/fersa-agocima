@@ -7,7 +7,7 @@ import dao.EvalUsrDAO;
 import model.Eval;
 
 public class EditController {
-    public static void setEval(int evalId,String text,int stars,boolean isForUsr) throws SQLException  {
+    public static void setEval(int evalId,String text,int stars,boolean isForUsr) throws SQLException {
         if (!isForUsr){ 
         	EvalAptDAO.updateEval(text, stars, evalId);
         } else { 

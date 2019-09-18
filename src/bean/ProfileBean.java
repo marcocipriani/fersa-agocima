@@ -5,7 +5,9 @@ public class ProfileBean {
 	private String username;
 	private String password;
 	private Boolean loginRole;
+	
 	public ProfileBean() {
+		
 		this.firsTime = false;
 		this.username = "";
 		this.password = "";
