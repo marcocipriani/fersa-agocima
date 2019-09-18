@@ -1,24 +1,24 @@
 package bean;
 
 public class ProfileBean {
-	private boolean firsTime;
+	private boolean firstTime;
 	private String username;
 	private String password;
 	private Boolean loginRole;
 	
 	public ProfileBean() {
 		
-		this.firsTime = false;
+		this.firstTime = true;
 		this.username = "";
 		this.password = "";
 		this.loginRole = false;
-		System.out.println("creato nel costruttore");
+
 	}
 	public boolean isFirsTime() {
-		return firsTime;
+		return firstTime;
 	}
 	public void setFirsTime(boolean firsTime) {
-		this.firsTime = firsTime;
+		this.firstTime = firsTime;
 	}
 	public String getUsername() {
 		return username;
