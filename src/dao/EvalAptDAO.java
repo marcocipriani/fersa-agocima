@@ -5,7 +5,6 @@
 package dao;
 
 import model.EvalApt;
-import org.postgresql.util.PSQLException;
 
 import java.sql.*;
 import java.util.Vector;
@@ -17,7 +16,7 @@ public class EvalAptDAO {
     private static final String SEARCH_ADDRESS_QUERY = "select evalapt.id, text, stars, status, aptid, evalapt.owner, evalusr, address, contractid from EvalApt join Apt on evalapt.aptid = apt.id where status = true and address = ?";
     private static final String SEARCH_ID_QUERY = "select * from EvalApt where id = ?";
     private static final String CREATE_QUERY = "insert into EvalApt values (?,?,?,FALSE,?,?,?,?)";
-    private static final String UPDATE_QUERY = "update EvalApt set text = ?, stars = ?, status = FALSE where id = ?";
+    private static final String UPDATE_QUERY = "update EvalApt set text = ?, stars = ?, status = TRUE where id = ?";
     private static final String DELETE_QUERY = "delete from EvalApt where id = ?";
     private static final String AVG_QUERY = "select avg(stars) from EvalApt where aptid = ? and status = true";
 
@@ -177,7 +176,7 @@ public class EvalAptDAO {
             stmt.setInt(2, stars);
             stmt.setInt(3, id);
             stmt.execute();
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (SQLException e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
 
     }

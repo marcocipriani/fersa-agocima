@@ -71,7 +71,8 @@
                 <th scope="col">ID</th>
                 <th scope="col"># Appartamento</th>
                 <th scope="col">Terminato?</th>
-                <th></th>
+                <th scope="col">Azione</th>
+ 
             </tr>
             </thead>
             <tbody>
@@ -84,22 +85,24 @@
                 <td><%= contractsReadyList.elementAt(i).isExpired() %></td>
                 <td>
 <%
-                if(contractsReadyList.elementAt(i).isExpired()){
+
+                    if(contractsReadyList.elementAt(i).isExpired()){
 %>
                     <form action="CreateView.jsp" name="viewForm">
-                        <input name="view" type="submit" placeholder="" value="Crea valutazione" class="form-control">
+                        <input name="create" type="submit" value="Create" class="form-control">
                         <input name="id" type="hidden" value="<%= contractsReadyList.elementAt(i).getId() %>">
+                        <input name="username" type="hidden" value="<%= au.getUsername() %>">
                         <input name="role" type="hidden" value="<%= au.isActualRole() %>">
+                        
                     </form>
 <%
-                } else {
+                    } else {
 %>
-                    Contratto ancora in corso
+                    Contratto in corso
 <%
-                }
+                    }
 %>
-                </td>
-
+                </td>	
             </tr>
             <%
                 }
@@ -123,6 +126,7 @@
                     <th scope="col">Stelle</th>
                     <th scope="col">Testo</th>
                     <th scope="col">Autore della valutazione</th>
+                    <th scope="col">Azioni</th>
                 </tr>
             </thead>
             <tbody>
@@ -134,6 +138,12 @@
                     <td><%= evalAboutYouList.elementAt(i).getStars() %></td>
                     <td><%= evalAboutYouList.elementAt(i).getText() %></td>
                     <td><%= evalAboutYouList.elementAt(i).getEvalusr() %></td>
+                    <td>                         
+		                <form action="EvalUsrView.jsp" name="viewForm">
+		                    <input name="view" type="submit" value="View" class="form-control">
+		                    <input name="id" type="hidden" value="<%= evalAboutYouList.elementAt(i).getId() %>">
+		                </form>             	                
+                	</td>
                 </tr>
             <%
                 }
@@ -149,6 +159,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Stelle</th>
                 <th scope="col">Testo</th>
+                <th scope="col">Azioni</th>
             </tr>
             </thead>
             <tbody>
@@ -160,6 +171,44 @@
                 <td><%= evalMadeByYouList.elementAt(i).getId() %></td>
                 <td><%= evalMadeByYouList.elementAt(i).getStars() %></td>
                 <td><%= evalMadeByYouList.elementAt(i).getText() %></td>
+    			<td> 
+<%
+    			if(evalMadeByYouList.elementAt(i).getClass().toString().equals("class model.EvalUsr")){
+%>                                    
+	                <form action="EvalUsrView.jsp" name="viewForm">
+	                    <input name="view" type="submit" value="View" class="form-control">
+	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">
+	                </form>
+	                
+	                <form action="EditView.jsp" name="editForm">
+	                    <input name="editfromprofile" type="submit" value="Edit" class="form-control">
+	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">						
+						<input name="isforusr" type="hidden" value="<%= true %>">
+						<input name="text" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getText() %>">
+						<input name="stars" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getStars() %>">
+											
+	                </form>
+<%
+        		} else {
+%>
+        			<form action="EvalAptView.jsp" name="viewForm">
+	                    <input name="view" type="submit" value="View" class="form-control">
+	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">	                    
+	                </form>
+               
+				<form action="EditView.jsp" name="editForm">
+	                    <input name="editfromprofile" type="submit" value="Edit" class="form-control">
+						<input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">						
+						<input name="isforusr" type="hidden" value="<%= false %>">
+						<input name="text" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getText() %>">
+						<input name="stars" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getStars() %>">
+											
+	                </form>
+<%
+        		}
+%>	
+	                
+                </td>
             </tr>
             <%
                 }
@@ -180,6 +229,7 @@
                 <th scope="col">Stelle</th>
                 <th scope="col">Testo</th>
                 <th scope="col">Autore della valutazione</th>
+                <th scope="col">Azioni</th>
             </tr>
             </thead>
             <tbody>
@@ -192,6 +242,12 @@
                 <td><%= evalAboutYourAptsList.elementAt(i).getStars() %></td>
                 <td><%= evalAboutYourAptsList.elementAt(i).getText() %></td>
                 <td><%= evalAboutYourAptsList.elementAt(i).getEvalusr() %></td>
+                <td>                         
+		                <form action="EvalAptView.jsp" name="viewForm">
+		                    <input name="view" type="submit" value="View" class="form-control">
+		                    <input name="id" type="hidden" value="<%= evalAboutYourAptsList.elementAt(i).getId() %>">
+		                </form>             	                
+                	</td>
             </tr>
             <%
                 }

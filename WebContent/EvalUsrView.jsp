@@ -4,10 +4,10 @@
 <%@ page import="controller.ViewController" %>
 <%@ page import="model.Eval" %>
 
-<jsp:useBean id="viewBean" scope="request" type="bean.ViewBean"/>
 
 <%
-    Eval eval = ViewController.getEval(viewBean.getId(), false);
+	int evalId = Integer.parseInt(request.getParameter("id"));
+    Eval eval = ViewController.getEval(evalId, true);
 %>
 
 <html>
