@@ -6,13 +6,6 @@
 
 <jsp:useBean id="profileBean" scope="session" type="bean.ProfileBean"/>
 
-<<<<<<< HEAD
-<%
-	if(profileBean.isFirsTime()) {
-%>
-	<jsp:useBean id="loginBean" scope="request" type="bean.LoginBean"/>
-=======
->>>>>>> refs/remotes/origin/cid
 <%
     // manage and copy loginBean
     if(profileBean.isFirsTime()) {
@@ -58,6 +51,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+    <div class="logout"><a href="HomePage.jsp"><p class="text-info">Logout</p></a></div>
     <div class="container text-center">
 
         <h2>Bentornato <%= au.getName() %></h2>
@@ -78,7 +72,6 @@
         }
 %>
         </p>
-
         <hr>
 
         <h3>I tuoi contratti</h3>
@@ -274,10 +267,10 @@
             %>
             </tbody>
         </table>
-        <hr>
 <%
         }
 %>
+        <hr>
 
     </div>
 
