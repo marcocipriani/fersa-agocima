@@ -14,7 +14,8 @@ public class EvalAptDAO {
     private static final String SEARCH_AUTHOR_QUERY = "select * from EvalApt where evalusr = ?";
     private static final String SEARCH_OWNER_QUERY = "select * from EvalApt where owner = ?";
     private static final String SEARCH_ADDRESS_QUERY = "select evalapt.id, text, stars, status, aptid, evalapt.owner, evalusr, address, contractid from EvalApt join Apt on evalapt.aptid = apt.id where status = true and address = ?";
-    private static final String SEARCH_ID_QUERY = "select * from EvalApt where id = ?";
+    private static final String SEARCH_ID_QUERY = "select * from evalapt where aptid = ?";
+    private static final String FIND_ID_QUERY = "select * from EvalApt where id = ?";
     private static final String CREATE_QUERY = "insert into EvalApt values (?,?,?,FALSE,?,?,?,?)";
     private static final String UPDATE_QUERY = "update EvalApt set text = ?, stars = ?, status = TRUE where id = ?";
     private static final String DELETE_QUERY = "delete from EvalApt where id = ?";
@@ -57,6 +58,7 @@ public class EvalAptDAO {
 
     // only for tenant
     // evaluations where owner is username
+    // TODO deprecated?
     public static Vector<EvalApt> findYourApts(String username) {
 
         Vector<EvalApt> results = new Vector<EvalApt>();
@@ -123,7 +125,7 @@ public class EvalAptDAO {
 
         try {
             conn = ConnectTools.getConnection();
-            stmt = conn.prepareStatement(SEARCH_ID_QUERY);
+            stmt = conn.prepareStatement(FIND_ID_QUERY);
             stmt.setInt(1, id);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
@@ -144,6 +146,36 @@ public class EvalAptDAO {
         finally { ConnectTools.closeConnection(stmt, conn); }
 
         return ea;
+    }
+
+    public static Vector<EvalApt> searchById(int aptid){
+        Vector<EvalApt> results = new Vector<EvalApt>();
+        EvalApt ea = null;
+
+        try {
+            conn = ConnectTools.getConnection();
+            stmt = conn.prepareStatement(SEARCH_ID_QUERY);
+            stmt.setInt(1, aptid);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+
+            while (rs.next()){
+                ea = new EvalApt(
+                        rs.getInt("id"),
+                        rs.getString("text"),
+                        rs.getInt("stars"),
+                        rs.getBoolean("status"),
+                        rs.getInt("aptid"),
+                        rs.getString("owner"),
+                        rs.getString("evalusr"),
+                        rs.getInt("contractid")
+                );
+                results.add(ea);
+            }
+        } catch (Exception e) { e.printStackTrace(); }
+        finally { ConnectTools.closeConnection(stmt, conn); }
+
+        return results;
     }
 
     //TODO test as boolean or make it void

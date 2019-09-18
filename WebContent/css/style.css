@@ -19,12 +19,14 @@ body { background-color: #f5f5f5; }
 .login > form > div > div > label { margin-right: 30px; }
 .search > form > div > div > label { margin-right: 10px; }
 
+
 /******************** ProfileView.jsp ********************/
 
 .logout {
     text-align: left;
     margin: 10px;
 }
+
 
 /******************** CreateView.jsp ********************/
 
@@ -47,3 +49,10 @@ body { background-color: #f5f5f5; }
 }
 #createEvalAptForm > h3 { color: #007E2D; }
 #createEvalAptButton { background-color: #007E2D; }
+
+
+/******************** Search.jsp ********************/
+
+#searchPage > div > hr {
+    margin-bottom: 40px;
+}

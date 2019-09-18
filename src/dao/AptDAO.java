@@ -11,16 +11,16 @@ import java.util.Vector;
 
 public class AptDAO {
 
-    private static final String SEARCH_ID_QUERY = "select * from Apt where id = ?";
-    private static final String SEARCH_ADDRESS_QUERY = "select * from Apt where address = ?";
-    private static final String SEARCH_OWNER_QUERY = "select * from Apt where owner = ?";
+    private static final String SEARCH_ID_QUERY = "select * from apt where id = ?";
+    private static final String SEARCH_ADDRESS_QUERY = "select * from apt where address = ?";
+    private static final String SEARCH_OWNER_QUERY = "select * from apt where owner = ?";
 
     private static Connection conn = null;
     private static PreparedStatement stmt = null;
 
     public static Apt findByID(Integer id) {
 
-        Apt a = null;
+        Apt a = null; // apt to be returned
 
         try {
             conn = ConnectTools.getConnection();
@@ -28,8 +28,8 @@ public class AptDAO {
             stmt.setInt(1, id);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
+            rs.next();
 
-            rs.first();
             int aptId = rs.getInt("id");
             String owner = rs.getString("owner");
             String addr = rs.getString("address");
