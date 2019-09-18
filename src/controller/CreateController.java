@@ -3,10 +3,13 @@ package controller;
 import dao.ContractDAO;
 import dao.EvalAptDAO;
 import dao.EvalUsrDAO;
+import model.Contract;
+
+import java.util.Vector;
 
 public class CreateController {
 
-    public static String[] getContractDetails(int contractId){
+    public static Vector getContractDetails(int contractId){
         return (ContractDAO.getDetails(contractId));
     }
 
@@ -23,4 +26,5 @@ public class CreateController {
 
         return true; //fake
     }
+
 }

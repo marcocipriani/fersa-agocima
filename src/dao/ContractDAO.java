@@ -127,9 +127,9 @@ public class ContractDAO {
         return results;
     }
 
-    public static String[] getDetails(int id){
+    public static Vector getDetails(int id){
 
-        String[] result = new String[3];
+        Vector result = new Vector(3);
 
         try {
             conn = ConnectTools.getConnection();
@@ -142,9 +142,9 @@ public class ContractDAO {
             //rs.first(); // is it worth it?
 
             rs.first();
-            result[0] = rs.getString("renter");
-            result[1] = rs.getString("tenant");
-            result[2] = rs.getString("id");
+            result.add(0, rs.getString("renter"));
+            result.add(1, rs.getString("tenant"));
+            result.add(2, rs.getInt("apt"));
 
 
 
@@ -153,4 +153,5 @@ public class ContractDAO {
 
         return result;
     }
+
 }
