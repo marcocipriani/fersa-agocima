@@ -71,11 +71,8 @@
                 <th scope="col">ID</th>
                 <th scope="col"># Appartamento</th>
                 <th scope="col">Terminato?</th>
-<<<<<<< HEAD
                 <th scope="col">Azione</th>
-=======
-                <th></th>
->>>>>>> branch 'cid' of https://github.com/marcocipriani/fersa-agocima
+ 
             </tr>
             </thead>
             <tbody>
@@ -88,12 +85,15 @@
                 <td><%= contractsReadyList.elementAt(i).isExpired() %></td>
                 <td>
 <%
-<<<<<<< HEAD
+
                     if(contractsReadyList.elementAt(i).isExpired()){
 %>
                     <form action="CreateView.jsp" name="viewForm">
                         <input name="create" type="submit" value="Create" class="form-control">
                         <input name="id" type="hidden" value="<%= contractsReadyList.elementAt(i).getId() %>">
+                        <input name="username" type="hidden" value="<%= au.getUsername() %>">
+                        <input name="role" type="hidden" value="<%= au.isActualRole() %>">
+                        
                     </form>
 <%
                     } else {
@@ -103,24 +103,6 @@
                     }
 %>
                 </td>	
-=======
-                if(contractsReadyList.elementAt(i).isExpired()){
-%>
-                    <form action="CreateView.jsp" name="viewForm">
-                        <input name="view" type="submit" placeholder="" value="Crea valutazione" class="form-control">
-                        <input name="id" type="hidden" value="<%= contractsReadyList.elementAt(i).getId() %>">
-                        <input name="role" type="hidden" value="<%= au.isActualRole() %>">
-                    </form>
-<%
-                } else {
-%>
-                    Contratto ancora in corso
-<%
-                }
-%>
-                </td>
-
->>>>>>> branch 'cid' of https://github.com/marcocipriani/fersa-agocima
             </tr>
             <%
                 }
@@ -197,6 +179,15 @@
 	                    <input name="view" type="submit" value="View" class="form-control">
 	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">
 	                </form>
+	                
+	                <form action="EditView.jsp" name="editForm">
+	                    <input name="editfromprofile" type="submit" value="Edit" class="form-control">
+	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">						
+						<input name="isforusr" type="hidden" value="<%= true %>">
+						<input name="text" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getText() %>">
+						<input name="stars" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getStars() %>">
+											
+	                </form>
 <%
         		} else {
 %>
@@ -204,9 +195,18 @@
 	                    <input name="view" type="submit" value="View" class="form-control">
 	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">	                    
 	                </form>
+               
+				<form action="EditView.jsp" name="editForm">
+	                    <input name="editfromprofile" type="submit" value="Edit" class="form-control">
+						<input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">						
+						<input name="isforusr" type="hidden" value="<%= false %>">
+						<input name="text" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getText() %>">
+						<input name="stars" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getStars() %>">
+											
+	                </form>
 <%
         		}
-%>	                
+%>	
 	                
                 </td>
             </tr>
