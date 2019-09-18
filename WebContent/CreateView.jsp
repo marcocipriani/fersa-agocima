@@ -4,8 +4,30 @@
 <%@ page import="java.util.Vector" %>
 
 <%
-    if(request.getParameter("createForm") != null) {
-        //CreateController.postRenterForm();
+    if(request.getParameter("createRenterForm") != null) {
+        CreateController.postRenterForm(
+                request.getParameter("textUsr"),
+                Integer.parseInt(request.getParameter("starsUsr")),
+                request.getParameter("textApt"),
+                Integer.parseInt(request.getParameter("starsApt")),
+                Integer.parseInt(request.getParameter("aptId")),
+                request.getParameter("tenant"),
+                request.getParameter("me"),
+                Integer.parseInt(request.getParameter("contractId"))
+        );
+        System.out.println("RenterForm inviato. Reindirizzamento a ViewProfile");
+%>
+        <jsp:forward page="ProfileView.jsp"/>
+<%
+    } else if(request.getParameter("createRenterForm") != null) {
+        CreateController.postTenantForm(
+                request.getParameter("textUsr"),
+                Integer.parseInt(request.getParameter("starsUsr")),
+                request.getParameter("renter"),
+                request.getParameter("me"),
+                Integer.parseInt(request.getParameter("contractId"))
+        );
+        System.out.println("TenantForm inviato. Reindirizzamento a ViewProfile");
 %>
         <jsp:forward page="ProfileView.jsp"/>
 <%
@@ -49,103 +71,114 @@
         <p>relativa al contratto #<%= contractId %></p>
 
         <hr>
-
     </div>
+    <div id="form-container" class="container">
 
-    <div id="createEvalUsrForm" class="container">
-
-        <h3>Valutazione sull'utente <%= username %></h3>
-        <form name="createEvalUsrForm" action="CreateView.jsp"  method="POST" align="center">
-            <div class="row">
-                <div class="col-8 offset-2 form-group">
-                    <label for="textUsr">Testo della valutazione</label><br>
-                    <textarea id="textUsr" name="textUsr" rows="10" cols="100"
 <%
-                    if(!role){
+    // if tenant show this form
+    if(role){
 %>
-                    placeholder="Com'era il proprietario?"
-<%
-                    } else {
-%>
-                    placeholder="Com'era l'inquilino?"
-<%
-                    }
-%>
-                    required></textarea>
+        <form name="createTenantForm" action="CreateView.jsp"  method="POST" align="center">
+            <div id="createEvalUsrForm" <%--class="container"--%>>
+                <h3>Valutazione sull'utente <%= username %></h3>
+                <div class="row">
+                    <div class="col-8 offset-2 form-group">
+                        <label for="textUsr">Testo della valutazione</label><br>
+                        <textarea id="textUsr" name="textUsr" rows="10" cols="100" placeholder="Com'era l'inquilino?" required></textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-8 offset-2 form-group starsRadio">
-                    <label>Voto</label><br>
-                    1 <input type="radio" name="starsUsr" value="1">
-                    2 <input type="radio" name="starsUsr" value="2">
-                    3 <input type="radio" name="starsUsr" value="3">
-                    4 <input type="radio" name="starsUsr" value="4">
-                    5 <input type="radio" name="starsUsr" value="5">
+                <div class="row">
+                    <div class="col-8 offset-2 form-group starsRadio">
+                        <label>Voto</label><br>
+                        1 <input type="radio" name="starsUsr" value="1">
+                        2 <input type="radio" name="starsUsr" value="2">
+                        3 <input type="radio" name="starsUsr" value="3">
+                        4 <input type="radio" name="starsUsr" value="4">
+                        5 <input type="radio" name="starsUsr" value="5">
+                    </div>
                 </div>
-            </div>
-            <div class="row col-4" id="detailsUsr">
-                <p>Id del contratto: </p><input type="text" value="<%= contractId %>" class="form-control" readonly>
-                <input type="hidden" name="username" value="<%= username %>">
-                <input type="hidden" name="me" value="<%= evalusr %>">
-            </div>
+                <div id="detailsUsr" class="row col-4">
+                    <p>ID del contratto: </p><input type="text" name="contractId" value="<%= contractId %>" class="form-control" readonly>
+                    <input type="hidden" name="renter" value="<%= username %>">
+                    <input type="hidden" name="me" value="<%= evalusr %>">
+                </div>
 
-            <div class="row" style="margin-top: 20px;">
-                <div class="col text-center">
-                    <input id="createEvalUsrButton" type="submit" name="createForm" value="Crea valutazione utente" class="btn btn-secondary">
-                    <input type="reset" name="reset" class="btn btn-outline-secondary">
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col text-center">
+                        <input id="createEvalUsrButton" type="submit" name="createTenantForm" value="Crea valutazione utente" class="btn btn-secondary">
+                        <input type="reset" name="reset" class="btn btn-outline-secondary">
+                    </div>
                 </div>
             </div>
         </form>
-
-    <hr>
-    </div>
-
 <%
     // if renter show this form
-    if (!role) {
+    } else {
 %>
-    <div id="createEvalAptForm" class="container">
-        <h3>Valutazione sull'appartamento #<%= aptId %></h3>
+        <form name="createRenterForm" action="CreateView.jsp"  method="POST" align="center">
+            <div id="createEvalUsrForm" <%--class="container"--%>>
+                <h3>Valutazione sull'utente <%= username %></h3>
+                <div class="row">
+                    <div class="col-8 offset-2 form-group">
+                        <label for="textUsr">Testo della valutazione</label><br>
+                        <textarea id="textUsr" name="textUsr" rows="10" cols="100" placeholder="Com'era l'inquilino?" required></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 offset-2 form-group starsRadio">
+                        <label>Voto</label><br>
+                        1 <input type="radio" name="starsUsr" value="1">
+                        2 <input type="radio" name="starsUsr" value="2">
+                        3 <input type="radio" name="starsUsr" value="3">
+                        4 <input type="radio" name="starsUsr" value="4">
+                        5 <input type="radio" name="starsUsr" value="5">
+                    </div>
+                </div>
+                <div id="detailsUsr" class="row col-4">
+                    <p>ID del contratto: </p><input type="text" name="contractId" value="<%= contractId %>" class="form-control" readonly>
+                    <input type="hidden" name="tenant" value="<%= username %>">
+                    <input type="hidden" name="me" value="<%= renter %>">
+                </div>
+            </div>
 
-        <form name="createEvalAptForm" action="CreateView.jsp"  method="POST" align="center">
-            <div class="row">
-                <div class="col-8 offset-2 form-group">
-                    <label for="textApt">Testo della valutazione</label><br>
-                    <textarea id="textApt" name="textApt" rows="10" cols="100" placeholder="Com'era l'appartamento?" required></textarea>
+            <hr>
+
+            <div id="createEvalAptForm" <%--class="container"--%>>
+                <h3>Valutazione sull'appartamento #<%= aptId %></h3>
+                <div class="row">
+                    <div class="col-8 offset-2 form-group">
+                        <label for="textApt">Testo della valutazione</label><br>
+                        <textarea id="textApt" name="textApt" rows="10" cols="100" placeholder="Com'era l'appartamento?" required></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 offset-2 form-group starsRadio">
+                        <label>Voto</label><br>
+                        1 <input type="radio" name="starsApt" value="1">
+                        2 <input type="radio" name="starsApt" value="2">
+                        3 <input type="radio" name="starsApt" value="3">
+                        4 <input type="radio" name="starsApt" value="4">
+                        5 <input type="radio" name="starsApt" value="5">
+                    </div>
+                </div>
+                <div class="row col-4" id="detailsApt">
+                    <p>Id del contratto: </p><input type="text" value="<%= contractId %>" class="form-control" readonly>
+                    <br>
+                    <p>Proprietario dell'appartamento: </p><input type="text" value="<%= tenant %>" class="form-control" readonly><%--user sees but cannot interact--%>
+                    <input type="hidden" name="aptId" value="<%= aptId %>">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-8 offset-2 form-group starsRadio">
-                    <label>Voto</label><br>
-                    1 <input type="radio" name="starsApt" value="1">
-                    2 <input type="radio" name="starsApt" value="2">
-                    3 <input type="radio" name="starsApt" value="3">
-                    4 <input type="radio" name="starsApt" value="4">
-                    5 <input type="radio" name="starsApt" value="5">
-                </div>
-            </div>
-            <div class="row col-4" id="detailsApt">
-                <p>Id del contratto: </p><input type="text" value="<%= contractId %>" class="form-control" readonly>
-                <br>
-                <p>Proprietario dell'appartamento: </p><input type="text" value="<%= tenant %>" class="form-control" readonly><%--user sees but cannot interact--%>
-                <input type="hidden" name="aptId" value="<%= aptId %>">
-                <input type="hidden" name="username" value="<%= username %>">
-                <input type="hidden" name="me" value="<%= evalusr %>">
-            </div>
+
             <div class="row" style="margin-top: 20px;">
                 <div class="col text-center">
-                    <input id="createEvalAptButton" type="submit" name="createForm" value="Crea valutazione appartamento" class="btn btn-secondary">
+                    <input id="createEvalAptUsrButton" type="submit" name="createRenterForm" value="Crea valutazione appartamento e valutazione utente" class="btn btn-secondary">
                     <input type="reset" name="reset" class="btn btn-outline-secondary">
                 </div>
             </div>
         </form>
-
-    </div>
-
 <%
     }
 %>
-
+    </div>
 </body>
 </html>
