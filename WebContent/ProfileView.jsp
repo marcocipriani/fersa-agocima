@@ -4,11 +4,23 @@
 <%@ page import="model.*" %>
 <%@ page import="controller.ProfileController" %>
 
-<jsp:useBean id="loginBean" scope="request" type="bean.LoginBean"/>
+<jsp:useBean id="profileBean" scope="session" class="bean.ProfileBean"/>
+
+<%if(profileBean.isFirsTime()== false) { %>
+	<jsp:useBean id="loginBean" scope="request" type="bean.LoginBean"/>
+<%
+	profileBean.setLoginRole(loginBean.getLoginRole());
+	profileBean.setPassword(loginBean.getPassword());
+	profileBean.setUsername(loginBean.getUsername());
+	profileBean.setFirsTime(true);
+}
+%>
+
+
 
 <%
-    ActualUsr au = ProfileController.getUser(loginBean.getUsername(), loginBean.getPassword(), loginBean.getLoginRole());
-    System.out.println("@ProfileView.jsp - Username: " +loginBean.getUsername() + " pwd: " + loginBean.getPassword() + " ruolo di login: " + loginBean.getLoginRole());
+    ActualUsr au = ProfileController.getUser(profileBean.getUsername(), profileBean.getPassword(), profileBean.getLoginRole());
+    System.out.println("@ProfileView.jsp - Username: " +profileBean.getUsername() + " pwd: " + profileBean.getPassword() + " ruolo di login: " + profileBean.getLoginRole());
 
     Vector<Contract> contractsList = ProfileController.getContracts(au.getUsername(), au.isActualRole());
     Vector<Eval> evalAboutYouList = ProfileController.getEvalAboutYou(au.getUsername());
@@ -182,10 +194,10 @@
 	                
 	                <form action="EditView.jsp" name="editForm">
 	                    <input name="editfromprofile" type="submit" value="Edit" class="form-control">
-	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">						
-						<input name="isforusr" type="hidden" value="<%= true %>">
-						<input name="text" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getText() %>">
-						<input name="stars" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getStars() %>">
+	                    <input name="idfromprofile" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">						
+						<input name="isforusrprofile" type="hidden" value="true">
+						<input name="textfromprofile" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getText() %>">
+						<input name="starsfromprofile" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getStars() %>">
 											
 	                </form>
 <%
@@ -198,10 +210,10 @@
                
 				<form action="EditView.jsp" name="editForm">
 	                    <input name="editfromprofile" type="submit" value="Edit" class="form-control">
-						<input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">						
-						<input name="isforusr" type="hidden" value="<%= false %>">
-						<input name="text" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getText() %>">
-						<input name="stars" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getStars() %>">
+						<input name="idfromprofile" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">						
+						<input name="isforusrprofile" type="hidden" value="false">
+						<input name="textfromprofile" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getText() %>">
+						<input name="starsfromprofile" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getStars() %>">
 											
 	                </form>
 <%
