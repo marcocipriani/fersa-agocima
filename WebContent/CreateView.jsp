@@ -19,7 +19,8 @@
 %>
         <jsp:forward page="ProfileView.jsp"/>
 <%
-    } else if(request.getParameter("createRenterForm") != null) {
+    }
+    if(request.getParameter("createTenantForm") != null) {
         CreateController.postTenantForm(
                 request.getParameter("textUsr"),
                 Integer.parseInt(request.getParameter("starsUsr")),
