@@ -4,22 +4,27 @@
 <%@ page import="model.*" %>
 <%@ page import="controller.ProfileController" %>
 
-<jsp:useBean id="profileBean" scope="session" class="bean.ProfileBean"/>
+<jsp:useBean id="profileBean" scope="session" type="bean.ProfileBean"/>
 
+<<<<<<< HEAD
 <%
 	if(profileBean.isFirsTime()) {
 %>
 	<jsp:useBean id="loginBean" scope="request" type="bean.LoginBean"/>
+=======
+>>>>>>> refs/remotes/origin/cid
 <%
-	profileBean.setLoginRole(loginBean.getLoginRole());
-	profileBean.setPassword(loginBean.getPassword());
-	profileBean.setUsername(loginBean.getUsername());
-	profileBean.setFirsTime(true);
-	
-}
+    // manage and copy loginBean
+    if(profileBean.isFirsTime()) {
 %>
-
-
+	    <jsp:useBean id="loginBean" scope="request" type="bean.LoginBean"/>
+<%
+        profileBean.setLoginRole(loginBean.getLoginRole());
+        profileBean.setPassword(loginBean.getPassword());
+        profileBean.setUsername(loginBean.getUsername());
+        profileBean.setFirsTime(false);
+    }
+%>
 
 <%
     ActualUsr au = ProfileController.getUser(profileBean.getUsername(), profileBean.getPassword(), profileBean.getLoginRole());

@@ -3,6 +3,7 @@
 <!-- Creating LoginBean and SearchBean -->
 <jsp:useBean id="loginBean" scope="request" class="bean.LoginBean"/>
 <jsp:useBean id="searchBean" scope="request" class="bean.SearchBean" />
+<jsp:useBean id="profileBean" scope="session" class="bean.ProfileBean"/>
 
 <!-- Mapping JSP properties -->
 <jsp:setProperty name="loginBean" property="username"/>
@@ -16,7 +17,8 @@
     if (request.getParameter("login") != null) {
     	if (loginBean.validate()) {
 			if (loginBean.checkRole()) {
-%>		
+			    profileBean.setFirsTime(true); // every login is the first time
+%>
             	<jsp:forward page="ProfileView.jsp"/>
 <%
 			} else {
@@ -98,7 +100,7 @@
 
         <h2>Ricerca di appartamenti o utenti</h2>
 
-        <form action="HomePage.jsp" name="searchForm" method="POST">
+        <form action="HomePage.jsp" name="searchForm" method="GET">
             <div class="row">
                 <div class="col-8 offset-2 text-center form-group">
                     <input id="searchKeyword" name="searchKeyword" type="text"  value="" placeholder="Digitare indirizzo o username" class="form-control">

@@ -5,8 +5,8 @@
 package dao;
 
 import model.EvalUsr;
-import org.postgresql.util.PSQLException;
 import java.sql.*;
+import org.postgresql.util.PSQLException;
 import java.util.Vector;
 
 public class EvalUsrDAO {
@@ -14,7 +14,7 @@ public class EvalUsrDAO {
     private static final String SEARCH_AUTHOR_QUERY = "select * from EvalUsr where evalusr = ?";
     private static final String SEARCH_USERNAME_QUERY = "select * from EvalUsr where username = ?";
     private static final String SEARCH_ID_QUERY = "select * from EvalUsr where id = ?";
-    private static final String CREATE_QUERY = "insert into EvalUsr values (?,?,?,FALSE,?,?,?)";
+    private static final String CREATE_QUERY = "insert into EvalUsr values (?,?,?,true,?,?,?)";
     private static final String UPDATE_QUERY = "update EvalUsr set text = ?, stars = ?, status = TRUE where id = ?";
     private static final String DELETE_QUERY = "delete from EvalUsr where id = ?";
 
@@ -115,6 +115,7 @@ public class EvalUsrDAO {
     public static void createEval(String text, int stars, String username, String evalusr, int contractid) {
 
         Integer id = Indexing.askForIndex("EvalUsr");
+        System.out.println("@EvalUsrDAO - id: " + id);
 
         try {
             conn = ConnectTools.getConnection();
@@ -125,7 +126,10 @@ public class EvalUsrDAO {
             stmt.setString(4, username);
             stmt.setString(5, evalusr);
             stmt.setInt(6, contractid);
-            stmt.execute();
+            System.out.println(stmt);
+            stmt.executeUpdate();
+            System.out.println(stmt);
+            System.out.println("@EvalUsrDAO - Tutto bene ragazzi");
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
     }
@@ -150,9 +154,12 @@ public class EvalUsrDAO {
             conn = ConnectTools.getConnection();
             stmt = conn.prepareStatement(DELETE_QUERY);
             stmt.setInt(1, id);
+            System.out.println(id);
             stmt.execute();
+            System.out.println(stmt);
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
 
     }
+
 }
