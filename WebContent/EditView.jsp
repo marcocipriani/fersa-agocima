@@ -54,9 +54,9 @@ Eval eval = EditController.getEval(evalId, isForUsr);
                     <label>Testo della valutazione</label><br>
                     <input name="id" type="hidden" value="<%= eval.getId() %>">
                     <input name="isforusr" type="hidden" value="<%= isForUsr %>">             
-                   <!--  <textarea name="text" rows="10"></textarea> -->
-                   <input name="text" type="text" value="">
-                    <%System.out.println(eval.getText()); %>
+                    <textarea name="text" rows="10"></textarea>
+<!--                    <input name="text" type="text" value="">
+ -->                    <%System.out.println(eval.getText()); %>
                     
                 </div>
             </div>
