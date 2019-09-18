@@ -27,3 +27,19 @@ body {
 .starsRadio > input {
     margin-right: 20px;
 }
+
+#createEvalUsrForm {
+    border: 2px #CC0000 solid;
+    padding: 40px;
+    margin-bottom: 50px;
+}
+#createEvalUsrForm > h3 { color: #CC0000; }
+#createEvalUsrButton { background-color: #CC0000; }
+
+#createEvalAptForm {
+    border: 2px #007E2D solid;
+    padding: 40px;
+    margin-bottom: 50px;
+}
+#createEvalAptForm > h3 { color: #007E2D; }
+#createEvalAptButton { background-color: #007E2D; }
