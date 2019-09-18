@@ -6,19 +6,12 @@
 
 <jsp:useBean id="profileBean" scope="session" type="bean.ProfileBean"/>
 
-<<<<<<< HEAD
 <%
 	if(profileBean.isFirsTime()) {
 %>
 	<jsp:useBean id="loginBean" scope="request" type="bean.LoginBean"/>
-=======
->>>>>>> refs/remotes/origin/cid
-<%
-    // manage and copy loginBean
-    if(profileBean.isFirsTime()) {
-%>
-	    <jsp:useBean id="loginBean" scope="request" type="bean.LoginBean"/>
-<%
+
+<% 
         profileBean.setLoginRole(loginBean.getLoginRole());
         profileBean.setPassword(loginBean.getPassword());
         profileBean.setUsername(loginBean.getUsername());
@@ -200,13 +193,10 @@
 	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">
 	                </form>
 	                
-	                <form action="EditView.jsp" name="editForm">
+	                <form action="EditView.jsp" name="editFromProfileForm">
 	                    <input name="editfromprofile" type="submit" value="Edit" class="form-control">
 	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">						
-						<input name="isforusr" type="hidden" value="true">
-						<%-- <input name="text" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getText() %>">
-						<input name="stars" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getStars() %>"> --%>
-											
+						<input name="isforusr" type="hidden" value="true">											
 	                </form>
 <%
         		} else {
@@ -216,12 +206,10 @@
 	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">	                    
 	                </form>
                
-				<form action="EditView.jsp" name="editForm">
-	                    <input name="editfromprofile" type="submit" value="Edit" class="form-control">
-						<input name="idfromprofile" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">						
-						<input name="isforusrprofile" type="hidden" value="false">
-						<input name="textfromprofile" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getText() %>">
-						<input name="starsfromprofile" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getStars() %>">
+				<form action="EditView.jsp" name="editFromProfileForm">
+	                     <input name="editfromprofile" type="submit" value="Edit" class="form-control">
+	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">						
+						<input name="isforusr" type="hidden" value="false">											
 											
 	                </form>
 <%
