@@ -3,7 +3,6 @@ package controller;
 import dao.EvalAptDAO;
 import dao.EvalUsrDAO;
 import model.Eval;
-import model.EvalApt;
 
 public class ViewController {
 
