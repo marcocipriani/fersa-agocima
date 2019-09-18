@@ -15,7 +15,7 @@ public class EvalUsrDAO {
     private static final String SEARCH_USERNAME_QUERY = "select * from EvalUsr where username = ?";
     private static final String SEARCH_ID_QUERY = "select * from EvalUsr where id = ?";
     private static final String CREATE_QUERY = "insert into EvalUsr values (?,?,?,FALSE,?,?,?)";
-    private static final String UPDATE_QUERY = "update EvalUsr set text = ?, stars = ?, status = FALSE where id = ?";
+    private static final String UPDATE_QUERY = "update EvalUsr set text = ?, stars = ?, status = TRUE where id = ?";
     private static final String DELETE_QUERY = "delete from EvalUsr where id = ?";
 
     private static Connection conn = null;
