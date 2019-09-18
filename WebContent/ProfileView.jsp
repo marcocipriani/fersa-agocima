@@ -195,10 +195,10 @@
 	                
 	                <form action="EditView.jsp" name="editForm">
 	                    <input name="editfromprofile" type="submit" value="Edit" class="form-control">
-	                    <input name="idfromprofile" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">						
-						<input name="isforusrprofile" type="hidden" value="true">
-						<input name="textfromprofile" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getText() %>">
-						<input name="starsfromprofile" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getStars() %>">
+	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">						
+						<input name="isforusr" type="hidden" value="true">
+						<%-- <input name="text" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getText() %>">
+						<input name="stars" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getStars() %>"> --%>
 											
 	                </form>
 <%

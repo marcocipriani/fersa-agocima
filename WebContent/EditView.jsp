@@ -8,9 +8,13 @@
 <%
 	if (request.getParameter("edit") != null) {
 		int evalId = Integer.parseInt(request.getParameter("id"));
+		System.out.println(request.getParameter("id"));
 		boolean isForUsr = Boolean.parseBoolean(request.getParameter("isforusr"));
-		String evalText = request.getParameter(request.getParameter("text"));
+		String evalText = request.getParameter("text");
+		System.out.println(request.getParameter("text"));
 		int evalStars = Integer.parseInt(request.getParameter("stars"));
+		System.out.println(request.getParameter("stars"));
+
 		
 		EditController.setEval(evalId, evalText, evalStars, isForUsr);
 %>
@@ -18,13 +22,11 @@
 <% 
 	}
 
-int evalId = Integer.parseInt(request.getParameter("idfromprofile"));
-boolean isForUsr = Boolean.parseBoolean(request.getParameter("isforusrprofile"));
+int evalId = Integer.parseInt(request.getParameter("id"));
+System.out.println(request.getParameter("id"));
+boolean isForUsr = Boolean.parseBoolean(request.getParameter("isforusr"));
 System.out.println(isForUsr);
-isForUsr = Boolean.valueOf(request.getParameter("isforusrprofile"));
-System.out.println(isForUsr);
-int evalStars = Integer.parseInt(request.getParameter("starsfromprofile"));
-String evalText = request.getParameter("textfromprofile").toString();
+
 Eval eval = EditController.getEval(evalId, isForUsr);
 %>
 
@@ -52,9 +54,10 @@ Eval eval = EditController.getEval(evalId, isForUsr);
                     <label>Testo della valutazione</label><br>
                     <input name="id" type="hidden" value="<%= eval.getId() %>">
                     <input name="isforusr" type="hidden" value="<%= isForUsr %>">             
-                    <textarea name="text" rows="10" cols="100">
-                    <%= eval.getText() %>
-                    </textarea>
+                   <!--  <textarea name="text" rows="10"></textarea> -->
+                   <input name="text" type="text" value="">
+                    <%System.out.println(eval.getText()); %>
+                    
                 </div>
             </div>
             <div class="row">
