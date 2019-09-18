@@ -6,7 +6,9 @@
 
 <jsp:useBean id="profileBean" scope="session" class="bean.ProfileBean"/>
 
-<%if(profileBean.isFirsTime()== false) { %>
+<%
+	if(profileBean.isFirsTime()) {
+%>
 	<jsp:useBean id="loginBean" scope="request" type="bean.LoginBean"/>
 <%
 	profileBean.setLoginRole(loginBean.getLoginRole());
