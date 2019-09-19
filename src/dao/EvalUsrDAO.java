@@ -6,7 +6,6 @@ package dao;
 
 import model.EvalUsr;
 import java.sql.*;
-import org.postgresql.util.PSQLException;
 import java.util.Vector;
 
 public class EvalUsrDAO {
@@ -107,8 +106,7 @@ public class EvalUsrDAO {
                         rs.getInt("contractid")
                 );
             }
-        } catch (PSQLException psqle) { psqle.printStackTrace(); } //TODO sistemare eccezioni
-        catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
 
         return ea;

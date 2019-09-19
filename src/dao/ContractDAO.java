@@ -78,7 +78,6 @@ public class ContractDAO {
         return results;
     }
 
-    //TODO sostituire questa alle versioni singole
     public static Vector<Contract> findYourContracts(String username, boolean isTenant, boolean isExpired) {
         // if isTenant search will be performed in tenant column
         // otherwise in renter

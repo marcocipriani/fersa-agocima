@@ -58,7 +58,7 @@ public class EvalAptDAO {
     }
 
     // only for tenant
-    // evaluations where owner is your username TODO deprecated?
+    // evaluations where owner is your username
     public static Vector<EvalApt> findYourApts(String username) {
 
         Vector<EvalApt> results = new Vector<EvalApt>();
@@ -142,7 +142,7 @@ public class EvalAptDAO {
                         rs.getInt("contractid")
                 );
             }
-        } //TODO intercept NullPointerException
+        }
         catch (Exception e) { e.getStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
 
