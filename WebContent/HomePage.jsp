@@ -43,9 +43,15 @@
 	if (request.getParameter("search") != null) {
 		System.out.println("@Homepage.jsp - Chiave di ricerca: " + searchBean.getSearchKeyword());
         System.out.println("@Homepage.jsp - Selezione apt[false]/usr[true]: " + searchBean.isChoice());
+        if (!searchBean.isChoice()){
 %>
-            <jsp:forward page="SearchView.jsp"/>
+            <jsp:forward page="SearchAptView.jsp"/>
 <%
+        } else {
+%>
+            <jsp:forward page="SearchUsrView.jsp"/>
+<%
+        }
 	}
 %>
 
