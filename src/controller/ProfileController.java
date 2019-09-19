@@ -19,19 +19,19 @@ public class ProfileController {
     }
 
     public static ActualUsr getUser(String username, String pwd, boolean loginRole ) {
-    	ActualUsr au = UsrDAO.findByUsername(username, pwd, loginRole);
+    	ActualUsr au = UsrDAO.findByUsernameAndPassword(username, pwd, loginRole);
     	
     	if(loginRole && (au.getRoles() == 1 || au.getRoles() == 2)){
             au.setActualRole(true);
-            System.out.println("@UsrDAO.java - Sei un proprietario tenant");
+            System.out.println("@UsrDAO - Sei un proprietario tenant");
         } else if (!loginRole && (au.getRoles() == 0 || au.getRoles() == 2) ){
-            System.out.println("@UsrDAO.java - Sei un inquilino renter");
+            System.out.println("@UsrDAO - Sei un inquilino renter");
         } else if (!loginRole && (au.getRoles() == 1)) {
-            System.out.println("@UsrDAO.java - Hai provato come renter, Non hai i privilegi necessari");
+            System.out.println("@UsrDAO - Hai provato come renter, Non hai i privilegi necessari");
         } else if (loginRole && (au.getRoles() == 0)) {
-            System.out.println("@UsrDAO.java - Hai provato come tenant, Non hai i privilegi necessari");
+            System.out.println("@UsrDAO - Hai provato come tenant, Non hai i privilegi necessari");
         } else {
-        	System.out.println("@UsrDAO.java - Altro caso");
+        	System.out.println("@UsrDAO - Riprova");
         }
     	
     	return au;
@@ -43,16 +43,16 @@ public class ProfileController {
             resultList = EvalUsrDAO.findEvalAboutYou(username);
         } else if (type == 1) {
             resultList = EvalUsrDAO.findEvalMadeByYou(username);
-        } else if (type == 2){
+        } else if (type == 2) {
             resultList = EvalAptDAO.findYourApts(username); // not available for renter
         } else if (type == 3) {
             resultList = ContractDAO.findAsRenter(username);
         } else if (type == 4) {
             resultList = ContractDAO.findAsTenant(username);
-        } else  if (type == 5){
+        } else if (type == 5){
             resultList = EvalAptDAO.findEvalMadeByYou(username);
         }
-        System.out.println("@ProfileController.java - " + resultList.size() + " risultati");
+        System.out.println("@ProfileController > getList - " + resultList.size() + " risultati");
         return resultList;
     };
 
@@ -74,22 +74,19 @@ public class ProfileController {
     }
 
     public static Vector getContracts(String username, boolean isTenant){
-        if (!isTenant) {
-            return (getList(username, 3));
-        }
-        return (getList(username, 4));
+        if (!isTenant) { return (getList(username, 3));
+        } return (getList(username, 4));
     }
     
     public static boolean selectId(Contract c, Vector<Eval> v) {
     	Set<Integer> uniqueId = new HashSet<Integer>();
-    	for (int i=0; i<v.size();i++) {
+    	for (int i=0; i<v.size(); i++) {
     		uniqueId.add(v.elementAt(i).getContractid());
     		}
     	if(uniqueId.contains(c.getId())) {
     		return true;
-    	}else {
-		return false;	
+    	} else {
+		    return false;
     	}
     }
-    	
 }

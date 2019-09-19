@@ -5,7 +5,6 @@
 package dao;
 
 import model.Contract;
-
 import java.sql.*;
 import java.util.Vector;
 
@@ -28,7 +27,6 @@ public class ContractDAO {
             stmt = conn.prepareStatement(SEARCH_RENTER_QUERY, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                                                         // unnecessary if rs is not scrolled
             stmt.setString(1, username);
-            System.out.println("@ContractDao - Final statement: " + stmt);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
 
@@ -59,7 +57,6 @@ public class ContractDAO {
                                                         // unnecessary if rs is not scrolled
 
             stmt.setString(1, username);
-            System.out.println("@ContractDao - Final statement: " + stmt);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
 
@@ -101,15 +98,8 @@ public class ContractDAO {
         try {
             conn = ConnectTools.getConnection();
             Statement stmt2 = conn.createStatement();
-            // unnecessary if rs is not scrolled
-
-
-            System.out.println(searchQuery);
-
             stmt2.execute(searchQuery);
             ResultSet rs = stmt2.getResultSet();
-
-            //rs.first(); // is it worth it?
 
             while (rs.next()) {
                 c = new Contract(

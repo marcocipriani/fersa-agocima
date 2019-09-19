@@ -1,33 +1,37 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@ page import="model.EvalApt" %>
 <%@ page import="controller.EditController" %>
-<%@ page import="model.EvalUsr" %>
 <%@ page import="model.Eval" %>
 
 <%
 	if (request.getParameter("edit") != null) {
 		int evalId = Integer.parseInt(request.getParameter("id"));
-		System.out.println(request.getParameter("id"));
 		boolean isForUsr = Boolean.parseBoolean(request.getParameter("isforusr"));
-		String evalText = request.getParameter("text");
-		System.out.println(request.getParameter("text"));
+        String evalText = request.getParameter("text");
 		int evalStars = Integer.parseInt(request.getParameter("stars"));
-		System.out.println(request.getParameter("stars"));
 
-		
 		EditController.setEval(evalId, evalText, evalStars, isForUsr);
 %>
 		<jsp:forward page="ProfileView.jsp"/>
 <% 
 	}
 
-int evalId = Integer.parseInt(request.getParameter("id"));
-System.out.println(request.getParameter("id"));
-boolean isForUsr = Boolean.parseBoolean(request.getParameter("isforusr"));
-System.out.println(isForUsr);
+	if (request.getParameter("delete") != null) {
+        int evalId = Integer.parseInt(request.getParameter("id"));
+        boolean isForUsr = Boolean.parseBoolean(request.getParameter("isforusr"));
 
-Eval eval = EditController.getEval(evalId, isForUsr);
+        EditController.deleteEval(evalId, isForUsr);
+%>
+        <jsp:forward page="ProfileView.jsp"/>
+<%
+    }
+%>
+
+<%
+    int evalId = Integer.parseInt(request.getParameter("id"));
+    boolean isForUsr = Boolean.parseBoolean(request.getParameter("isforusr"));
+
+    Eval eval = EditController.getEval(evalId, isForUsr);
 %>
 
 <html>
@@ -44,7 +48,8 @@ Eval eval = EditController.getEval(evalId, isForUsr);
 <body>
 	<div class="container text-center">
 
-        <h2>Modifica la tua valutazione</h2>
+        <h2>Modifica la tua valutazione <%if(isForUsr){%>utente<%} else {%>appartamento<%}%></h2>
+        <p>ID valutazione: <%= evalId %></p>
         
         <hr>
 
@@ -55,9 +60,7 @@ Eval eval = EditController.getEval(evalId, isForUsr);
                     <input name="id" type="hidden" value="<%= eval.getId() %>">
                     <input name="isforusr" type="hidden" value="<%= isForUsr %>">             
                     <textarea name="text" rows="10"></textarea>
-<!--                    <input name="text" type="text" value="">
- -->                    <%System.out.println(eval.getText()); %>
-                    
+                    <!--<input name="text" type="text" value="">-->
                 </div>
             </div>
             <div class="row">
@@ -72,8 +75,13 @@ Eval eval = EditController.getEval(evalId, isForUsr);
             </div>
             <div class="row" style="margin-top: 20px;">
                 <div class="col text-center">
-                    <input id="editButton" type="submit" name="edit" value="Modifica valutazione" class="btn btn-secondary">
+                    <input id="edit-button" type="submit" name="edit" value="Modifica valutazione" class="btn btn-secondary">
                     <input type="reset" name="reset" class="btn btn-outline-secondary">
+                </div>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+                <div class="col text-center">
+                    <input id="delete-button" type="submit" name="delete" value="Cancella valutazione" class="btn btn-danger btn-block">
                 </div>
             </div>
         </form>

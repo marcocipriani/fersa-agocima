@@ -2,12 +2,14 @@ package controller;
 
 import java.util.Vector;
 
-import dao.AptDAO;
 import dao.EvalAptDAO;
+import dao.AptDAO;
+import model.EvalApt;
+import model.Apt;
+
 import dao.EvalUsrDAO;
 import dao.UsrDAO;
-import model.Apt;
-import model.EvalApt;
+import model.EvalUsr;
 import model.Usr;
 
 public class SearchController {
@@ -15,48 +17,32 @@ public class SearchController {
 	private SearchController() {
     }
 
-	public static Vector searchEvalList(boolean choice, String keyword) {
-        if (!choice) {
-        	Vector evalAptList = EvalAptDAO.findByAddress(keyword);
-			System.out.println("@SearchController.java: - " + evalAptList.size() + " risultati");
-        	return evalAptList;
-        } else {
-			Vector evalUsrList = EvalUsrDAO.findEvalAboutYou(keyword);
-			System.out.println("@SearchController.java: - " + evalUsrList.size() + " risultati");
-			return evalUsrList;
-        }
-    }
-
-    public static Vector<EvalApt> searchEvalAptList(int aptid){
+	// for SearchAptView.jsp
+	public static Vector<EvalApt> searchEvalAptList(int aptid){
 		Vector<EvalApt> evalAptList = EvalAptDAO.searchById(aptid);
-		System.out.println("@SearchController.java: - " + evalAptList.size() + " risultati");
+		System.out.println("@SearchController > searchEvalAptList: - " + evalAptList.size() + " valutazioni appartamento trovate");
 		return evalAptList;
-	}
-
-    public static Apt getApt(int aptid){
-		return (AptDAO.findByID(aptid));
 	}
 
 	public static Vector<Apt> getAptList(String address){
 		Vector<Apt> aptList = AptDAO.findByAddress(address);
-		System.out.println("@SearchController.java: - " + aptList.size() + " risultati");
+		System.out.println("@SearchController > getAptList: - " + aptList.size() + " appartamenti trovati");
 		return aptList;
 	}
 
-	private static Usr findUser(String username){
-		return (UsrDAO.searchByUsername(username));
+
+	// for SearchUsrView.jsp
+	public static Vector<EvalUsr> searchEvalUsrList(String keyword){
+		Vector<EvalUsr> evalUsrList = EvalUsrDAO.findEvalAboutYou(keyword);
+		System.out.println("@SearchController > searchEvalUsrList: - " + evalUsrList.size() + " valutazioni utente trovate");
+		return evalUsrList;
 	}
 
-	public static String getNameUsr(String username){
-		Usr u = findUser(username);
-		return (u.getName());
+	private static Usr findUser(String username){
+		return (UsrDAO.findByUsername(username));
 	}
 
 	public static boolean isRealUsr(String username){
 		return !(findUser(username) == null);
-	}
-
-    public static double getAvg(int aptid){
-		return (EvalAptDAO.getAvg(aptid));
 	}
 }

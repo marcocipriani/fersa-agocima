@@ -15,7 +15,6 @@
                 request.getParameter("me"),
                 Integer.parseInt(request.getParameter("contractId"))
         );
-        System.out.println("RenterForm inviato. Reindirizzamento a ViewProfile");
 %>
         <jsp:forward page="ProfileView.jsp"/>
 <%
@@ -28,7 +27,6 @@
                 request.getParameter("me"),
                 Integer.parseInt(request.getParameter("contractId"))
         );
-        System.out.println("TenantForm inviato. Reindirizzamento a ViewProfile");
 %>
         <jsp:forward page="ProfileView.jsp"/>
 <%
@@ -36,8 +34,7 @@
 %>
 
 <%
-    String me = request.getParameter("username"); //useless
-    System.out.println(me);
+    String me = request.getParameter("username");
     boolean role = Boolean.parseBoolean(request.getParameter("role"));
     int contractId = Integer.parseInt(request.getParameter("id"));
     Vector contractDetails = CreateController.getContractDetails(contractId);
