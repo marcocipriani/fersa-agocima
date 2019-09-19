@@ -15,7 +15,8 @@
 <body>
     <div class="container text-center">
         <h2>Qualcosa è andato storto</h2>
-        <p>Problema causato da: ${pageContext.exception}</p>
+        <p>Tipo di errore: ${pageContext.exception}</p>
+        <p>Localizzazione dell'errore: ${pageContext.exception.stackTrace}</p>
         <hr>
         <a href="HomePage.jsp">Ritorna alla pagina iniziale</a>
     </div>
