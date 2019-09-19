@@ -31,6 +31,7 @@
 %>
         <jsp:forward page="ProfileView.jsp"/>
 <%
+        }
     }
 %>
 
@@ -69,7 +70,6 @@
                     <input name="contractid" type="hidden" value="<%= eval.getContractid() %>">
                     <input name="evalusr" type="hidden" value="<%= eval.getEvalusr() %>">
                     <textarea name="text" rows="10"></textarea>
-                    <!--<input name="text" type="text" value="">-->
                 </div>
             </div>
             <div class="row">
