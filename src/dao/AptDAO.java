@@ -5,7 +5,6 @@
 package dao;
 
 import model.Apt;
-
 import java.sql.*;
 import java.util.Vector;
 
@@ -20,7 +19,7 @@ public class AptDAO {
 
     public static Apt findByID(Integer id) {
 
-        Apt a = null; // apt to be returned
+        Apt a = null;
 
         try {
             conn = ConnectTools.getConnection();
@@ -44,7 +43,7 @@ public class AptDAO {
 
     public static Vector<Apt> findByAddress(String address) {
 
-        Vector<Apt> results = new Vector<Apt>();
+        Vector<Apt> results = new Vector<>();
         Apt a = null;
 
         try {
@@ -72,7 +71,7 @@ public class AptDAO {
 
     public static Vector<Apt> findByOwner(String username) {
 
-        Vector<Apt> results = new Vector<Apt>();
+        Vector<Apt> results = new Vector<>();
         Apt a = null;
 
         try {
@@ -91,8 +90,7 @@ public class AptDAO {
                 );
                 results.add(a);
             }
-        }
-        catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
 
         return results;

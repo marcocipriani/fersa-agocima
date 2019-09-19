@@ -11,20 +11,21 @@ import java.util.Vector;
 
 public class EvalUsrDAO {
 
-    private static final String SEARCH_AUTHOR_QUERY = "select * from EvalUsr where evalusr = ?";
-    private static final String SEARCH_USERNAME_QUERY = "select * from EvalUsr where username = ?";
-    private static final String SEARCH_ID_QUERY = "select * from EvalUsr where id = ?";
-    private static final String CREATE_QUERY = "insert into EvalUsr values (?,?,?,true,?,?,?)";
-    private static final String UPDATE_QUERY = "update EvalUsr set text = ?, stars = ?, status = TRUE where id = ?";
-    private static final String DELETE_QUERY = "delete from EvalUsr where id = ?";
+    private static final String SEARCH_AUTHOR_QUERY = "select * from evalusr where evalusr = ?";
+    private static final String SEARCH_USERNAME_QUERY = "select * from evalusr where username = ?";
+    private static final String SEARCH_ID_QUERY = "select * from evalusr where id = ?";
+
+    private static final String CREATE_QUERY = "insert into evalusr values (?,?,?,true,?,?,?)";
+    private static final String UPDATE_QUERY = "update evalusr set text = ?, stars = ?, status = true where id = ?";
+    private static final String DELETE_QUERY = "delete from evalusr where id = ?";
 
     private static Connection conn = null;
     private static PreparedStatement stmt = null;
 
-    // evaluations where evalusr is username
+    // evaluations where evalusr is your username
     public static Vector<EvalUsr> findEvalMadeByYou(String username) {
 
-        Vector<EvalUsr> results = new Vector<EvalUsr>();
+        Vector<EvalUsr> results = new Vector<>();
         EvalUsr eu;
 
         try {
@@ -53,10 +54,10 @@ public class EvalUsrDAO {
         return results;
     }
 
-    // evaluations where owner is usernmae
+    // evaluations where username is your username
     public static Vector<EvalUsr> findEvalAboutYou(String username) {
 
-        Vector<EvalUsr> results = new Vector<EvalUsr>();
+        Vector<EvalUsr> results = new Vector<>();
         EvalUsr eu = null;
 
         try {
@@ -85,6 +86,7 @@ public class EvalUsrDAO {
     }
 
     public static EvalUsr findById(int id){
+
         EvalUsr ea = null;
 
         try {
@@ -104,18 +106,16 @@ public class EvalUsrDAO {
                         rs.getInt("contractid")
                 );
             }
-        } catch (PSQLException psqle) { System.out.println("@EvalUsrDAO.java - ID non corretto"); }
+        } catch (PSQLException psqle) { psqle.printStackTrace(); } //TODO sistemare eccezioni
         catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
 
         return ea;
     }
 
-    //TODO test as boolean or make it void
     public static void createEval(String text, int stars, String username, String evalusr, int contractid) {
 
         Integer id = Indexing.askForIndex("EvalUsr");
-        System.out.println("@EvalUsrDAO - id: " + id);
 
         try {
             conn = ConnectTools.getConnection();
@@ -126,10 +126,8 @@ public class EvalUsrDAO {
             stmt.setString(4, username);
             stmt.setString(5, evalusr);
             stmt.setInt(6, contractid);
-            System.out.println(stmt);
             stmt.executeUpdate();
-            System.out.println(stmt);
-            System.out.println("@EvalUsrDAO - Tutto bene ragazzi");
+            System.out.println("@EvalUsrDAO > createEval - " + stmt);
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
     }
@@ -143,9 +141,9 @@ public class EvalUsrDAO {
             stmt.setInt(2, stars);
             stmt.setInt(3, id);
             stmt.execute();
+            System.out.println("@EvalUsrDAO > updateEval - " + stmt);
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
-
     }
 
     public static void deleteEval(int id) {
@@ -156,10 +154,9 @@ public class EvalUsrDAO {
             stmt.setInt(1, id);
             System.out.println(id);
             stmt.execute();
-            System.out.println(stmt);
+            System.out.println("@EvalUsrDAO > deleteEval - " + stmt);
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
-
     }
 
 }

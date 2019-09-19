@@ -5,7 +5,6 @@
 package dao;
 
 import model.Contract;
-
 import java.sql.*;
 import java.util.Vector;
 
