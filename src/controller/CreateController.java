@@ -3,7 +3,6 @@ package controller;
 import dao.ContractDAO;
 import dao.EvalAptDAO;
 import dao.EvalUsrDAO;
-import model.Contract;
 
 import java.util.Vector;
 
