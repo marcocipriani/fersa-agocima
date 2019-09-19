@@ -18,9 +18,6 @@ public class LoginController {
 
     public ActualUsr login(String username, String password, boolean loginRole) {
         ActualUsr au = UsrDAO.findByUsernameAndPassword(username, password, loginRole);
-        
-        
-
         return au;
     }
 }
