@@ -6,8 +6,9 @@
 
 <jsp:useBean id="profileBean" scope="session" type="bean.ProfileBean"/>
 
+<!-- Check on loginForm -->
+
 <%
-    // manage and copy loginBean
     if(profileBean.isFirsTime()) {
 %>
 	    <jsp:useBean id="loginBean" scope="request" type="bean.LoginBean"/>
@@ -51,7 +52,12 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body id="profile-page">
-    <div class="logout"><a href="HomePage.jsp"><p class="text-info">Logout</p></a></div>
+    <div class="logout">
+	    <form action="HomePage.jsp" name="logoutForm" method="get">
+	    	<input name="logout" type="submit" value="Logout">
+	    </form>
+    </div>
+    
 
     <div class="container text-center">
 
@@ -160,6 +166,8 @@
                             <form action="EvalView.jsp" name="viewForm">
                                 <input name="view" type="submit" value="View" class="form-control">
                                 <input name="id" type="hidden" value="<%= evalAboutYouList.elementAt(i).getId() %>">
+                                <input name="kind" type="hidden" value="true">
+                                
                             </form>
                         </td>
                     </tr>
