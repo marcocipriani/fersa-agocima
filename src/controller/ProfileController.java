@@ -39,19 +39,18 @@ public class ProfileController {
     
     private static Vector getList(String username, int type){
         Vector resultList = null;
-        switch (type) {
-            case 0:
-                resultList = EvalUsrDAO.findEvalAboutYou(username);
-            case 1:
-                resultList = EvalUsrDAO.findEvalMadeByYou(username);
-            case 2:
-                resultList = EvalAptDAO.findYourApts(username); // not available for renter
-            case 3:
-                resultList = ContractDAO.findAsRenter(username);
-            case 4:
-                resultList = ContractDAO.findAsTenant(username);
-            case 5:
-                resultList = EvalAptDAO.findEvalMadeByYou(username);
+        if (type == 0) {
+            resultList = EvalUsrDAO.findEvalAboutYou(username);
+        } else if (type == 1) {
+            resultList = EvalUsrDAO.findEvalMadeByYou(username);
+        } else if (type == 2) {
+            resultList = EvalAptDAO.findYourApts(username); // not available for renter
+        } else if (type == 3) {
+            resultList = ContractDAO.findAsRenter(username);
+        } else if (type == 4) {
+            resultList = ContractDAO.findAsTenant(username);
+        } else if (type == 5){
+            resultList = EvalAptDAO.findEvalMadeByYou(username);
         }
         System.out.println("@ProfileController.java > getList - " + resultList.size() + " risultati");
         return resultList;
