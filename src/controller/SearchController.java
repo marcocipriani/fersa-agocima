@@ -39,7 +39,7 @@ public class SearchController {
 	}
 
 	private static Usr findUser(String username){
-		return (UsrDAO.searchByUsername(username));
+		return (UsrDAO.findByUsername(username));
 	}
 
 	public static boolean isRealUsr(String username){

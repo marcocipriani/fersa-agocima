@@ -46,7 +46,7 @@ public class LoginBean {
 
 	//TODO fondere con validate()
 	public boolean checkRole() {
-		ActualUsr au = UsrDAO.findByUsername(this.username, this.password, this.loginRole);
+		ActualUsr au = UsrDAO.findByUsernameAndPassword(this.username, this.password, this.loginRole);
     	
     	if(loginRole && (au.getRoles() == 1 || au.getRoles() == 2)){
             au.setActualRole(true);
