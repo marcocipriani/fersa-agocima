@@ -7,8 +7,9 @@
 
 <jsp:useBean id="profileBean" scope="session" type="bean.ProfileBean"/>
 
+<!-- Check on loginForm -->
+
 <%
-    // manage and copy loginBean
     if(profileBean.isFirsTime()) {
 %>
 	    <jsp:useBean id="loginBean" scope="request" type="bean.LoginBean"/>
@@ -52,7 +53,12 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body id="profile-page">
-    <div class="logout"><a href="HomePage.jsp"><p class="text-info">Logout</p></a></div>
+    <div class="logout">
+	    <form action="HomePage.jsp" name="logoutForm" method="get">
+	    	<input name="logout" type="submit" value="Logout">
+	    </form>
+    </div>
+    
 
     <div class="container text-center">
 

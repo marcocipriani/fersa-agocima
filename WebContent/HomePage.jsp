@@ -13,6 +13,18 @@
 <jsp:setProperty name="searchBean" property="searchKeyword"/>
 <jsp:setProperty name="searchBean" property="choice"/>
 
+<!-- Reset after logoutForm -->
+
+<% 
+ if (request.getParameter("logout") != null) {
+	 profileBean.setLoginRole(false);
+     profileBean.setPassword("");
+     profileBean.setUsername("");
+     profileBean.setFirsTime(true);
+     request.getSession().invalidate();
+ 	}
+ %>
+
 <!-- Check on loginForm -->
 <%
     if (request.getParameter("login") != null) {
