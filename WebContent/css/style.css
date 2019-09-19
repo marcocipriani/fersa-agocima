@@ -27,6 +27,13 @@ body { background-color: #f5f5f5; }
     margin: 10px;
 }
 
+#profile-page > div > div{
+    background: #fff;
+    border: 2px #6c757d solid;
+    padding: 20px;
+    margin-top: 20px;
+}
+
 
 /******************** CreateView.jsp ********************/
 
