@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page errorPage = "ErrorView.jsp" %>
 
 <!-- Creating LoginBean and SearchBean -->
 <jsp:useBean id="loginBean" scope="request" class="bean.LoginBean"/>
 <jsp:useBean id="searchBean" scope="request" class="bean.SearchBean" />
+<jsp:useBean id="profileBean" scope="session" class="bean.ProfileBean"/>
 
 <!-- Mapping JSP properties -->
 <jsp:setProperty name="loginBean" property="username"/>
@@ -11,12 +13,25 @@
 <jsp:setProperty name="searchBean" property="searchKeyword"/>
 <jsp:setProperty name="searchBean" property="choice"/>
 
+<!-- Reset after logoutForm -->
+
+<% 
+ if (request.getParameter("logout") != null) {
+	 profileBean.setLoginRole(false);
+     profileBean.setPassword("");
+     profileBean.setUsername("");
+     profileBean.setFirsTime(true);
+     request.getSession().invalidate();
+ 	}
+ %>
+
 <!-- Check on loginForm -->
 <%
     if (request.getParameter("login") != null) {
     	if (loginBean.validate()) {
 			if (loginBean.checkRole()) {
-%>		
+			    profileBean.setFirsTime(true); // every login is the first time
+%>
             	<jsp:forward page="ProfileView.jsp"/>
 <%
 			} else {
@@ -39,11 +54,17 @@
 <!-- Check on searchForm -->
 <%
 	if (request.getParameter("search") != null) {
-		System.out.println("@Homepage.jsp - Chiave di ricerca: " + searchBean.getSearchKeyword());
-        System.out.println("@Homepage.jsp - Selezione apt[false]/usr[true]: " + searchBean.isChoice());
+		System.out.println("@Homepage - Chiave di ricerca: " + searchBean.getSearchKeyword());
+        System.out.println("@Homepage - Selezione apt[false]/usr[true]: " + searchBean.isChoice());
+        if (!searchBean.isChoice()){
 %>
-            <jsp:forward page="SearchView.jsp"/>
+            <jsp:forward page="SearchAptView.jsp"/>
 <%
+        } else {
+%>
+            <jsp:forward page="SearchUsrView.jsp"/>
+<%
+        }
 	}
 %>
 
@@ -98,7 +119,7 @@
 
         <h2>Ricerca di appartamenti o utenti</h2>
 
-        <form action="HomePage.jsp" name="searchForm" method="POST">
+        <form action="HomePage.jsp" name="searchForm" method="GET">
             <div class="row">
                 <div class="col-8 offset-2 text-center form-group">
                     <input id="searchKeyword" name="searchKeyword" type="text"  value="" placeholder="Digitare indirizzo o username" class="form-control">

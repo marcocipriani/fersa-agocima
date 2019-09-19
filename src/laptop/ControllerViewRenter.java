@@ -55,7 +55,7 @@ public class ControllerViewRenter {
         
         
 
-        Vector<EvalUsr> evusr = EvalUsrDAO.findYourEvals(nomeRenter);
+        Vector<EvalUsr> evusr = EvalUsrDAO.findEvalAboutYou(nomeRenter);
         ObservableList<EvalUsr> valutazioni = FXCollections.observableArrayList();
         for(int i=0;i < evusr.size();i++) {
         	valutazioni.add(evusr.get(i));

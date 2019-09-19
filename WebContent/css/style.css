@@ -1,6 +1,6 @@
-body {
-    background-color: #f5f5f5;
-}
+/******************** HomePage.jsp ********************/
+
+body { background-color: #f5f5f5; }
 
 .login,
 .search {
@@ -16,10 +16,70 @@ body {
     margin-top: 10px;
 }
 
-.login > form > div > div > label {
-    margin-right: 30px;
+.login > form > div > div > label { margin-right: 30px; }
+.search > form > div > div > label { margin-right: 10px; }
+
+
+/******************** ProfileView.jsp ********************/
+
+.logout {
+    text-align: left;
+    margin: 10px;
 }
 
-.search > form > div > div > label {
-    margin-right: 10px;
+#profile-page > div > div{
+    background: #fff;
+    border: 2px #6c757d solid;
+    padding: 20px;
+    margin-top: 20px;
 }
+
+
+/******************** CreateView.jsp ********************/
+
+.starsRadio > input {
+    margin-right: 20px;
+}
+
+#createEvalUsrForm {
+    border: 2px #CC0000 solid;
+    padding: 40px;
+    margin-bottom: 50px;
+}
+#createEvalUsrForm > h3 { color: #CC0000; }
+#createEvalUsrButton { background-color: #CC0000; }
+
+#createEvalAptForm {
+    border: 2px #007E2D solid;
+    padding: 40px;
+    margin-bottom: 50px;
+}
+#createEvalAptForm > h3 { color: #007E2D; }
+#createEvalAptButton { background-color: #007E2D; }
+
+
+/******************** Search.jsp ********************/
+
+.search-page > div > div {
+    background: #fff;
+    border: 2px #CC0000 solid;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+#search-apt-page > div > div { border: 2px #007E2D solid; }
+
+.search-page > div > h1 {
+    color: #CC0000;
+}
+#search-apt-page > div > h1 { color: #007E2D; }
+
+
+/******************** EvalView.jsp ********************/
+
+.eval-view-page > div > div {
+    background: #fff;
+    border: 2px #CC0000 solid;
+    padding: 20px;
+    margin-top: 20px;
+}
+#eval-apt-view-page > div > div { border: 2px #007E2D solid; }

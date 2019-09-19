@@ -45,7 +45,7 @@ public class LoginController {
     	String user =username.getText();
     	String password=pwd.getText();
     	ActualUsr d;
-    	d = UsrDAO.findByUsername(user, password, false); 
+    	d = UsrDAO.findByUsernameAndPassword(user, password, false); 
     	if (isTenant.isSelected()==false) {
     		System.out.println(password);
     		System.out.println(d.getPwd());

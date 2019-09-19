@@ -44,26 +44,19 @@ public class LoginBean {
 		return  (found != null);
 	}
 
-	//TODO fondere con validate()
 	public boolean checkRole() {
-		ActualUsr au = UsrDAO.findByUsername(this.username, this.password, this.loginRole);
+		ActualUsr au = UsrDAO.findByUsernameAndPassword(this.username, this.password, this.loginRole);
     	
     	if(loginRole && (au.getRoles() == 1 || au.getRoles() == 2)){
             au.setActualRole(true);
-            System.out.println("@UsrDAO.java - Sei un proprietario tenant");
             return true;
         } else if (!loginRole && (au.getRoles() == 0 || au.getRoles() == 2) ){
-            System.out.println("@UsrDAO.java - Sei un inquilino renter");
             return true;
         } else if (!loginRole && (au.getRoles() == 1)) {
-            System.out.println("@UsrDAO.java - Hai provato come renter, Non hai i privilegi necessari");
             return false;
         } else if (loginRole && (au.getRoles() == 0)) {
-            System.out.println("@UsrDAO.java - Hai provato come tenant, Non hai i privilegi necessari");
             return false;
         }
-    	
-    	System.out.println("@UsrDAO.java - Altro caso");
         return false;
 	}
 

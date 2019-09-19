@@ -5,7 +5,6 @@
 package dao;
 
 import model.Contract;
-
 import java.sql.*;
 import java.util.Vector;
 
@@ -28,7 +27,6 @@ public class ContractDAO {
             stmt = conn.prepareStatement(SEARCH_RENTER_QUERY, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                                                         // unnecessary if rs is not scrolled
             stmt.setString(1, username);
-            System.out.println("@ContractDao - Final statement: " + stmt);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
 
@@ -59,7 +57,6 @@ public class ContractDAO {
                                                         // unnecessary if rs is not scrolled
 
             stmt.setString(1, username);
-            System.out.println("@ContractDao - Final statement: " + stmt);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
 
@@ -81,7 +78,6 @@ public class ContractDAO {
         return results;
     }
 
-    //TODO sostituire questa alle versioni singole
     public static Vector<Contract> findYourContracts(String username, boolean isTenant, boolean isExpired) {
         // if isTenant search will be performed in tenant column
         // otherwise in renter
@@ -101,15 +97,8 @@ public class ContractDAO {
         try {
             conn = ConnectTools.getConnection();
             Statement stmt2 = conn.createStatement();
-            // unnecessary if rs is not scrolled
-
-
-            System.out.println(searchQuery);
-
             stmt2.execute(searchQuery);
             ResultSet rs = stmt2.getResultSet();
-
-            //rs.first(); // is it worth it?
 
             while (rs.next()) {
                 c = new Contract(
@@ -127,9 +116,9 @@ public class ContractDAO {
         return results;
     }
 
-    public static String[] getDetails(int id){
+    public static Vector getDetails(int id){
 
-        String[] result = new String[3];
+        Vector result = new Vector(3);
 
         try {
             conn = ConnectTools.getConnection();
@@ -142,9 +131,9 @@ public class ContractDAO {
             //rs.first(); // is it worth it?
 
             rs.first();
-            result[0] = rs.getString("renter");
-            result[1] = rs.getString("tenant");
-            result[2] = rs.getString("id");
+            result.add(0, rs.getString("renter"));
+            result.add(1, rs.getString("tenant"));
+            result.add(2, rs.getInt("apt"));
 
 
 
@@ -153,4 +142,5 @@ public class ContractDAO {
 
         return result;
     }
+
 }
