@@ -152,7 +152,6 @@ public class EvalUsrDAO {
             conn = ConnectTools.getConnection();
             stmt = conn.prepareStatement(DELETE_QUERY);
             stmt.setInt(1, id);
-            System.out.println(id);
             stmt.execute();
             System.out.println("@EvalUsrDAO > deleteEval - " + stmt);
         } catch (Exception e) { e.printStackTrace(); }

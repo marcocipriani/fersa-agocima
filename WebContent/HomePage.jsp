@@ -41,8 +41,8 @@
 <!-- Check on searchForm -->
 <%
 	if (request.getParameter("search") != null) {
-		System.out.println("@Homepage.jsp - Chiave di ricerca: " + searchBean.getSearchKeyword());
-        System.out.println("@Homepage.jsp - Selezione apt[false]/usr[true]: " + searchBean.isChoice());
+		System.out.println("@Homepage - Chiave di ricerca: " + searchBean.getSearchKeyword());
+        System.out.println("@Homepage - Selezione apt[false]/usr[true]: " + searchBean.isChoice());
         if (!searchBean.isChoice()){
 %>
             <jsp:forward page="SearchAptView.jsp"/>

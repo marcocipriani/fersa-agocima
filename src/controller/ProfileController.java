@@ -23,15 +23,15 @@ public class ProfileController {
     	
     	if(loginRole && (au.getRoles() == 1 || au.getRoles() == 2)){
             au.setActualRole(true);
-            System.out.println("@UsrDAO.java - Sei un proprietario tenant");
+            System.out.println("@UsrDAO - Sei un proprietario tenant");
         } else if (!loginRole && (au.getRoles() == 0 || au.getRoles() == 2) ){
-            System.out.println("@UsrDAO.java - Sei un inquilino renter");
+            System.out.println("@UsrDAO - Sei un inquilino renter");
         } else if (!loginRole && (au.getRoles() == 1)) {
-            System.out.println("@UsrDAO.java - Hai provato come renter, Non hai i privilegi necessari");
+            System.out.println("@UsrDAO - Hai provato come renter, Non hai i privilegi necessari");
         } else if (loginRole && (au.getRoles() == 0)) {
-            System.out.println("@UsrDAO.java - Hai provato come tenant, Non hai i privilegi necessari");
+            System.out.println("@UsrDAO - Hai provato come tenant, Non hai i privilegi necessari");
         } else {
-        	System.out.println("@UsrDAO.java - Altro caso");
+        	System.out.println("@UsrDAO - Riprova");
         }
     	
     	return au;
@@ -52,7 +52,7 @@ public class ProfileController {
         } else if (type == 5){
             resultList = EvalAptDAO.findEvalMadeByYou(username);
         }
-        System.out.println("@ProfileController.java > getList - " + resultList.size() + " risultati");
+        System.out.println("@ProfileController > getList - " + resultList.size() + " risultati");
         return resultList;
     };
 

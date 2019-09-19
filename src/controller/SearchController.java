@@ -20,13 +20,13 @@ public class SearchController {
 	// for SearchAptView.jsp
 	public static Vector<EvalApt> searchEvalAptList(int aptid){
 		Vector<EvalApt> evalAptList = EvalAptDAO.searchById(aptid);
-		System.out.println("@SearchController.java: - " + evalAptList.size() + " valutazioni appartamento trovate");
+		System.out.println("@SearchController > searchEvalAptList: - " + evalAptList.size() + " valutazioni appartamento trovate");
 		return evalAptList;
 	}
 
 	public static Vector<Apt> getAptList(String address){
 		Vector<Apt> aptList = AptDAO.findByAddress(address);
-		System.out.println("@SearchController.java: - " + aptList.size() + " appartamenti trovati");
+		System.out.println("@SearchController > getAptList: - " + aptList.size() + " appartamenti trovati");
 		return aptList;
 	}
 
@@ -34,7 +34,7 @@ public class SearchController {
 	// for SearchUsrView.jsp
 	public static Vector<EvalUsr> searchEvalUsrList(String keyword){
 		Vector<EvalUsr> evalUsrList = EvalUsrDAO.findEvalAboutYou(keyword);
-		System.out.println("@SearchController.java: - " + evalUsrList.size() + " valutazioni utente trovate");
+		System.out.println("@SearchController > searchEvalUsrList: - " + evalUsrList.size() + " valutazioni utente trovate");
 		return evalUsrList;
 	}
 

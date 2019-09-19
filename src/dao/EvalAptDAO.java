@@ -142,7 +142,7 @@ public class EvalAptDAO {
                 );
             }
         } //TODO intercept NullPointerException
-        catch (Exception e) { e.getStackTrace(); System.out.println("@EvalAptDAO.java - ID non corretto"); }
+        catch (Exception e) { e.getStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
 
         return ea;
