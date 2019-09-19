@@ -97,7 +97,7 @@
                 average = sum / (resultList.size());
 %>
                 <p class="text-<% if (average >= 4) {%>success<%} else if(average > 2){%>warning<%} else {%>danger<%}%>">
-                    Media dell'appartamento: <%= average %></p>
+                    Media valutazioni dell'appartamento: <%= average %></p>
 <%
             } else {
 %>

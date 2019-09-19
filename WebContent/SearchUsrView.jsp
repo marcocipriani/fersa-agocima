@@ -50,7 +50,8 @@
         if (average != 0.0){
 %>
 
-        <p> Media valutazioni: <%= average %></p>
+        <p class="text-<% if (average >= 4) {%>success<%} else if(average > 2){%>warning<%} else {%>danger<%}%>">
+            Media valutazioni dell'utente: <%= average %></p>
 <%
         }
 %>
