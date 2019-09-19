@@ -15,8 +15,9 @@
 <body>
     <div class="container text-center">
         <h2>Qualcosa è andato storto</h2>
-        <p>Problema causato da: <%= exception.getCause() %></p>
-        <a href="HomePage.jsp">Ritorna alla homepage</a>
+        <p>Problema causato da: ${pageContext.exception}</p>
+        <hr>
+        <a href="HomePage.jsp">Ritorna alla pagina iniziale</a>
     </div>
 
 </body>

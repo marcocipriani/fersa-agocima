@@ -4,7 +4,6 @@
 <%@ page import="controller.ViewController" %>
 <%@ page import="model.Eval" %>
 
-
 <%
 	int evalId = Integer.parseInt(request.getParameter("id"));
 	boolean kind = Boolean.parseBoolean(request.getParameter("kind"));
