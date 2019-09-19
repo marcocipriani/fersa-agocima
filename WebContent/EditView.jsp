@@ -1,4 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+
+<jsp:useBean id="profileBean" scope="session" type="bean.ProfileBean"/>
 
 <%@ page import="controller.EditController" %>
 <%@ page import="model.Eval" %>
@@ -17,10 +19,14 @@
 	}
 
 	if (request.getParameter("delete") != null) {
-        int evalId = Integer.parseInt(request.getParameter("id"));
-        boolean isForUsr = Boolean.parseBoolean(request.getParameter("isforusr"));
-
-        EditController.deleteEval(evalId, isForUsr);
+	    if(profileBean.getLoginRole()) {
+            int evalId = Integer.parseInt(request.getParameter("id"));
+            boolean isForUsr = Boolean.parseBoolean(request.getParameter("isforusr"));
+            EditController.deleteEvalAsTenant(evalId, isForUsr);
+        } else {
+	        String evalusr = request.getParameter("evalusr");
+            int contractid = Integer.parseInt(request.getParameter("contractid"));
+            EditController.deleteEvalAsRenter(evalusr, contractid);
 %>
         <jsp:forward page="ProfileView.jsp"/>
 <%
@@ -58,7 +64,9 @@
                 <div class="col-8 offset-2 form-group">
                     <label>Testo della valutazione</label><br>
                     <input name="id" type="hidden" value="<%= eval.getId() %>">
-                    <input name="isforusr" type="hidden" value="<%= isForUsr %>">             
+                    <input name="isforusr" type="hidden" value="<%= isForUsr %>">
+                    <input name="contractid" type="hidden" value="<%= eval.getContractid() %>">
+                    <input name="evalusr" type="hidden" value="<%= eval.getEvalusr() %>">
                     <textarea name="text" rows="10"></textarea>
                     <!--<input name="text" type="text" value="">-->
                 </div>
@@ -81,7 +89,7 @@
             </div>
             <div class="row" style="margin-top: 20px;">
                 <div class="col text-center">
-                    <input id="delete-button" type="submit" name="delete" value="Cancella valutazione" class="btn btn-danger btn-block">
+                    <input id="delete-button" type="submit" name="delete" value="Cancella valutazione" class="btn btn-danger">
                 </div>
             </div>
         </form>
