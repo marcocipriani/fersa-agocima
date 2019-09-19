@@ -52,6 +52,7 @@
 </head>
 <body id="profile-page">
     <div class="logout"><a href="HomePage.jsp"><p class="text-info">Logout</p></a></div>
+
     <div class="container text-center">
 
         <h2>Bentornato <%= au.getName() %></h2>
@@ -235,45 +236,45 @@
             Vector<Eval> evalAboutYourAptsList = ProfileController.getEvalAboutYourApts(au.getUsername());
 %>
         <div>
-        <h3>Valutazioni fatte sui tuoi appartamenti</h3>
-        <table id="evalAboutYourAptsTable" class="table">
-            <thead class="thead-light">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Stelle</th>
-                <th scope="col">Testo</th>
-                <th scope="col">Autore della valutazione</th>
-                <th scope="col">Azioni</th>
-            </tr>
-            </thead>
-            <tbody>
-            <%
-                for (int i = 0; i < evalAboutYourAptsList.size(); i++) {
-            %>
-            <!--  a row for each result -->
-            <tr>
-                <td><%= evalAboutYourAptsList.elementAt(i).getId() %></td>
-                <td><%= evalAboutYourAptsList.elementAt(i).getStars() %></td>
-                <td><%= evalAboutYourAptsList.elementAt(i).getText() %></td>
-                <td><%= evalAboutYourAptsList.elementAt(i).getEvalusr() %></td>
-                <td>                         
-		                <form action="EvalView.jsp" name="viewForm">
-		                    <input name="view" type="submit" value="View" class="form-control">
-		                    <input name="id" type="hidden" value="<%= evalAboutYourAptsList.elementAt(i).getId() %>">
-                            <input name="kind" type="hidden" value="false">
-		                </form>             	                
-                	</td>
-            </tr>
-            <%
-                }
-            %>
-            </tbody>
-        </table>
+            <h3>Valutazioni fatte sui tuoi appartamenti</h3>
+            <table id="evalAboutYourAptsTable" class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Stelle</th>
+                    <th scope="col">Testo</th>
+                    <th scope="col">Autore della valutazione</th>
+                    <th scope="col">Azioni</th>
+                </tr>
+                </thead>
+                <tbody>
+<%
+                    for (int i = 0; i < evalAboutYourAptsList.size(); i++) {
+%>
+                <tr>
+                    <td><%= evalAboutYourAptsList.elementAt(i).getId() %></td>
+                    <td><%= evalAboutYourAptsList.elementAt(i).getStars() %></td>
+                    <td><%= evalAboutYourAptsList.elementAt(i).getText() %></td>
+                    <td><%= evalAboutYourAptsList.elementAt(i).getEvalusr() %></td>
+                    <td>
+                            <form action="EvalView.jsp" name="viewForm">
+                                <input name="view" type="submit" value="View" class="form-control">
+                                <input name="id" type="hidden" value="<%= evalAboutYourAptsList.elementAt(i).getId() %>">
+                                <input name="kind" type="hidden" value="false">
+                            </form>
+                    </td>
+                </tr>
+<%
+                    }
+%>
+                </tbody>
+            </table>
         </div>
 <%
         }
 %>
 
+    <hr>
     </div>
 
 </body>
