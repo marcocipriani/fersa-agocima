@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page errorPage = "ErrorView.jsp" %>
 
 <%@ page import="java.util.Vector" %>
 <%@ page import="model.*" %>
@@ -158,8 +159,9 @@
                         <td><%= evalAboutYouList.elementAt(i).getEvalusr() %></td>
                         <td>
                             <form action="EvalView.jsp" name="viewForm">
-                                <input name="view" type="submit" value="View" class="form-control">
+                                <input name="view" type="submit" value="Dettaglio" class="form-control">
                                 <input name="id" type="hidden" value="<%= evalAboutYouList.elementAt(i).getId() %>">
+                                <input name="kind" type="hidden" value="true">
                             </form>
                         </td>
                     </tr>

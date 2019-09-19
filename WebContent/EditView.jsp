@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page errorPage = "ErrorView.jsp" %>
 
 <jsp:useBean id="profileBean" scope="session" type="bean.ProfileBean"/>
 
