@@ -1,8 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page errorPage = "ErrorView.jsp" %>
 
 <%@ page import="controller.ViewController" %>
 <%@ page import="model.Eval" %>
-
 
 <%
 	int evalId = Integer.parseInt(request.getParameter("id"));
