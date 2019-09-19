@@ -18,6 +18,7 @@ public class EvalUsrDAO {
     private static final String CREATE_QUERY = "insert into evalusr values (?,?,?,true,?,?,?)";
     private static final String UPDATE_QUERY = "update evalusr set text = ?, stars = ?, status = true where id = ?";
     private static final String DELETE_QUERY = "delete from evalusr where id = ?";
+    private static final String DELETE_BY_CONTRACT_QUERY = "delete from evalusr where evalusr = ? and contractid = ?";
 
     private static Connection conn = null;
     private static PreparedStatement stmt = null;
@@ -154,6 +155,19 @@ public class EvalUsrDAO {
             stmt.setInt(1, id);
             stmt.execute();
             System.out.println("@EvalUsrDAO > deleteEval - " + stmt);
+        } catch (Exception e) { e.printStackTrace(); }
+        finally { ConnectTools.closeConnection(stmt, conn); }
+    }
+
+    public static void deleteEvalByContractId(String evalusr, int contractid){
+
+        try {
+            conn = ConnectTools.getConnection();
+            stmt = conn.prepareStatement(DELETE_BY_CONTRACT_QUERY);
+            stmt.setString(1, evalusr);
+            stmt.setInt(2, contractid);
+            stmt.execute();
+            System.out.println("@EvalUsrDAO > deleteEvalByContractId - " + stmt);
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
     }
