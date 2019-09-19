@@ -83,10 +83,10 @@
             <table id ="contractsTable" class="table">
                 <thead class="thead-light">
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col"># Appartamento</th>
-                    <th scope="col">Terminato?</th>
-                    <th scope="col">Azione</th>
+                    <th scope="col">ID contratto</th>
+                    <th scope="col">ID appartamento</th>
+                    <th scope="col">Stato del contratto</th>
+                    <th scope="col"></th>
 
                 </tr>
                 </thead>
@@ -97,14 +97,14 @@
                 <tr>
                     <td><%= contractsReadyList.elementAt(i).getId() %></td>
                     <td><%= contractsReadyList.elementAt(i).getApt() %></td>
-                    <td><%= contractsReadyList.elementAt(i).isExpired() %></td>
+                    <td><% if(contractsReadyList.elementAt(i).isExpired()){%>Terminato<%} else {%>Ancora in corso<%}%></td>
                     <td>
 <%
 
                         if(contractsReadyList.elementAt(i).isExpired()){
 %>
                         <form action="CreateView.jsp" name="viewForm">
-                            <input name="create" type="submit" value="Create" class="form-control">
+                            <input name="create" type="submit" value="Crea valutazione" class="form-control">
                             <input name="id" type="hidden" value="<%= contractsReadyList.elementAt(i).getId() %>">
                             <input name="username" type="hidden" value="<%= au.getUsername() %>">
                             <input name="role" type="hidden" value="<%= au.isActualRole() %>">
@@ -140,11 +140,11 @@
             <table id ="evalAboutYouTable" class="table">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">ID valutazione</th>
                         <th scope="col">Stelle</th>
                         <th scope="col">Testo</th>
                         <th scope="col">Autore della valutazione</th>
-                        <th scope="col">Azioni</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -175,10 +175,10 @@
         <table id="evalMadeByYouTable" class="table">
             <thead class="thead-light">
             <tr>
-                <th scope="col">ID</th>
+                <th scope="col">ID valutazione</th>
                 <th scope="col">Stelle</th>
                 <th scope="col">Testo</th>
-                <th scope="col">Azioni</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -194,13 +194,13 @@
     			if(evalMadeByYouList.elementAt(i).getClass().toString().equals("class model.EvalUsr")){
 %>                                    
 	                <form action="EvalView.jsp" name="viewForm">
-	                    <input name="view" type="submit" value="View" class="form-control">
+	                    <input name="view" type="submit" value="Dettaglio" class="form-control">
 	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">
                         <input name="kind" type="hidden" value="true">
 	                </form>
 	                
 	                <form action="EditView.jsp" name="editFromProfileForm">
-	                    <input name="editfromprofile" type="submit" value="Edit" class="form-control">
+	                    <input name="editfromprofile" type="submit" value="Modifica/Cancella" class="form-control">
 	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">						
 						<input name="isforusr" type="hidden" value="true">
 	                </form>
@@ -208,13 +208,13 @@
         		} else {
 %>
         			<form action="EvalView.jsp" name="viewForm">
-	                    <input name="view" type="submit" value="View" class="form-control">
+	                    <input name="view" type="submit" value="Dettaglio" class="form-control">
 	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">
                         <input name="kind" type="hidden" value="false">
 	                </form>
 
                     <form action="EditView.jsp" name="editFromProfileForm">
-                        <input name="editfromprofile" type="submit" value="Edit" class="form-control">
+                        <input name="editfromprofile" type="submit" value="Modifica/Cancella" class="form-control">
                         <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">
                         <input name="isforusr" type="hidden" value="false">
                     </form>
@@ -240,11 +240,11 @@
             <table id="evalAboutYourAptsTable" class="table">
                 <thead class="thead-light">
                 <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">ID valutazione</th>
                     <th scope="col">Stelle</th>
                     <th scope="col">Testo</th>
                     <th scope="col">Autore della valutazione</th>
-                    <th scope="col">Azioni</th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -276,6 +276,5 @@
 
     <hr>
     </div>
-
 </body>
 </html>
