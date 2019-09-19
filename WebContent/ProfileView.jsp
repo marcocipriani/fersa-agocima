@@ -152,7 +152,7 @@
                     <td><%= evalAboutYouList.elementAt(i).getText() %></td>
                     <td><%= evalAboutYouList.elementAt(i).getEvalusr() %></td>
                     <td>                         
-		                <form action="EvalUsrView.jsp" name="viewForm">
+		                <form action="EvalView.jsp" name="viewForm">
 		                    <input name="view" type="submit" value="View" class="form-control">
 		                    <input name="id" type="hidden" value="<%= evalAboutYouList.elementAt(i).getId() %>">
 		                </form>             	                
@@ -188,9 +188,10 @@
 <%
     			if(evalMadeByYouList.elementAt(i).getClass().toString().equals("class model.EvalUsr")){
 %>                                    
-	                <form action="EvalUsrView.jsp" name="viewForm">
+	                <form action="EvalView.jsp" name="viewForm">
 	                    <input name="view" type="submit" value="View" class="form-control">
 	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">
+                        <input name="kind" type="hidden" value="true">
 	                </form>
 	                
 	                <form action="EditView.jsp" name="editFromProfileForm">
@@ -201,9 +202,10 @@
 <%
         		} else {
 %>
-        			<form action="EvalAptView.jsp" name="viewForm">
+        			<form action="EvalView.jsp" name="viewForm">
 	                    <input name="view" type="submit" value="View" class="form-control">
-	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">	                    
+	                    <input name="id" type="hidden" value="<%= evalMadeByYouList.elementAt(i).getId() %>">
+                        <input name="kind" type="hidden" value="false">
 	                </form>
 
                     <form action="EditView.jsp" name="editFromProfileForm">
@@ -250,9 +252,10 @@
                 <td><%= evalAboutYourAptsList.elementAt(i).getText() %></td>
                 <td><%= evalAboutYourAptsList.elementAt(i).getEvalusr() %></td>
                 <td>                         
-		                <form action="EvalAptView.jsp" name="viewForm">
+		                <form action="EvalView.jsp" name="viewForm">
 		                    <input name="view" type="submit" value="View" class="form-control">
 		                    <input name="id" type="hidden" value="<%= evalAboutYourAptsList.elementAt(i).getId() %>">
+                            <input name="kind" type="hidden" value="false">
 		                </form>             	                
                 	</td>
             </tr>

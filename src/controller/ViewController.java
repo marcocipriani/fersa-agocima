@@ -1,8 +1,8 @@
 package controller;
 
+import model.Eval;
 import dao.EvalAptDAO;
 import dao.EvalUsrDAO;
-import model.Eval;
 
 public class ViewController {
 
