@@ -5,15 +5,14 @@
 package dao;
 
 import model.Apt;
-
 import java.sql.*;
 import java.util.Vector;
 
 public class AptDAO {
 
-    private static final String SEARCH_ID_QUERY = "select * from Apt where id = ?";
-    private static final String SEARCH_ADDRESS_QUERY = "select * from Apt where address = ?";
-    private static final String SEARCH_OWNER_QUERY = "select * from Apt where owner = ?";
+    private static final String SEARCH_ID_QUERY = "select * from apt where id = ?";
+    private static final String SEARCH_ADDRESS_QUERY = "select * from apt where address = ?";
+    private static final String SEARCH_OWNER_QUERY = "select * from apt where owner = ?";
 
     private static Connection conn = null;
     private static PreparedStatement stmt = null;
@@ -28,12 +27,13 @@ public class AptDAO {
             stmt.setInt(1, id);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
+            rs.next();
 
-            rs.first();
             int aptId = rs.getInt("id");
             String owner = rs.getString("owner");
             String addr = rs.getString("address");
-            a = new Apt(aptId, owner, addr);
+            int num = rs.getInt("number");
+            a = new Apt(aptId, owner, addr, num);
 
         } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
@@ -43,7 +43,7 @@ public class AptDAO {
 
     public static Vector<Apt> findByAddress(String address) {
 
-        Vector<Apt> results = new Vector<Apt>();
+        Vector<Apt> results = new Vector<>();
         Apt a = null;
 
         try {
@@ -57,7 +57,8 @@ public class AptDAO {
                 a = new Apt(
                         rs.getInt("id"),
                         rs.getString("owner"),
-                        rs.getString("address")
+                        rs.getString("address"),
+                        rs.getInt("number")
                 );
                 results.add(a);
             }
@@ -68,15 +69,15 @@ public class AptDAO {
         return results;
     }
 
-    public static Vector<Apt> findByOwner(String nickname) {
+    public static Vector<Apt> findByOwner(String username) {
 
-        Vector<Apt> results = new Vector<Apt>();
+        Vector<Apt> results = new Vector<>();
         Apt a = null;
 
         try {
             conn = ConnectTools.getConnection();
             stmt = conn.prepareStatement(SEARCH_OWNER_QUERY);
-            stmt.setString(1, nickname);
+            stmt.setString(1, username);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
 
@@ -84,12 +85,12 @@ public class AptDAO {
                 a = new Apt(
                         rs.getInt("id"),
                         rs.getString("owner"),
-                        rs.getString("address")
+                        rs.getString("address"),
+                        rs.getInt("number")
                 );
                 results.add(a);
             }
-        }
-        catch (Exception e) { e.printStackTrace(); }
+        } catch (Exception e) { e.printStackTrace(); }
         finally { ConnectTools.closeConnection(stmt, conn); }
 
         return results;

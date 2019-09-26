@@ -11,13 +11,15 @@ public abstract class Eval {
     protected int stars;
     protected boolean status; // 0 pending, 1 published
     protected String evalusr; // l'autore della valutazione
+    protected int contractid;
 
-    public Eval(int id, String text, int stars, boolean status, String evalusr) {
+    public Eval(int id, String text, int stars, boolean status, String evalusr, int contractid) {
         this.id = id;
         this.text = text;
         this.stars = stars;
         this.status = status;
         this.evalusr = evalusr;
+        this.contractid = contractid;
     }
 
     public int getId() {
@@ -59,4 +61,8 @@ public abstract class Eval {
     public void setEvalusr(String evalUsr) {
         this.evalusr = evalUsr;
     }
+
+    public int getContractid() { return contractid; }
+
+    public void setContractid(int contractid) { this.contractid = contractid; }
 }
