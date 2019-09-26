@@ -1,6 +1,7 @@
 # fersa-agocima
 
-Progetto per l'esame di *Ingegneria del Software e Progettazione Web e Laboratorio di Applicazioni Software (ISPW + LAS)*.<br>
-Consegna di Eros **AGO**stini, Marco **CI**priani, Matteo **MA**gnani.<br>
+Evaluation system for a renting application.<br>
 
-Applicazione sviluppata in Java con interfacce grafiche in Gluon Scene Builder (`.src/laptop`) e JSP (`.src/web`).
+Project built for the Software Development exam (*Ingegneria del Software e Progettazione Web e Laboratorio di Applicazioni Software*).<br>
+Developed in Java, using JSP (`WebContent`) and JavaFX (`.src/laptop`).<br>
+Made by Marco Cipriani and Matteo Magnani.<br>
